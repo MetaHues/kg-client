@@ -32,6 +32,7 @@ class App extends Component {
     //let kitty = this.props.kitty;
     return (
       <div className="App">
+        <h1>Test push change to github</h1>
         <Navigator/>
         <Card kitty={user} post={post}/>
       </div>      
