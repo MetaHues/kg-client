@@ -1,30 +1,25 @@
-import React, { Component } from 'react';
-import logo from '../logo/logo.svg';
-import Card from './Card';
-import Navigator from './Navigator';
-//import '../css/App.css';
+import React, { Component } from 'react'
+import Post from './Post'
+import Navigator from './Navigator'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 const user = {
-  name:"SampleKitty1",
-  id:"317047310",
-  profileImg:"https://placekitten.com/500/500",
-  posts:["324230842"],
-  friends:["1","2","3","4"]
+	"_id" : "5b21b3f3418a3903acb098ed",
+	"posts" : [ ],
+	"friends" : [ ],
+	"name" : "Hello Kitty",
+	"profileImg" : "https://placekitten.com/500/500",
+	"__v" : 0
 }
 
 const post = {
-  id:"324230842",
-  userId:"317047310",
-  labels:null,
-  postText:"This is a kitty, there are many like it, but this is mine. My kitty is my best friend. It is my life. I must master it as I must master my life. My kitty, without me, is useless. Without my kitty, I am useless.",
-  likedBy:null,
-  comments:[
-    {userId:"1", userName:"friend1", text:"awesome pic!", time:"10pm"},
-    {userId:"2", userName:"friend2", text:"SoOooOoO cool!", time:"10pm"},
-    {userId:"3", userName:"friend3", text:"Cute...", time:"10pm"},
-    {userId:"4", userName:"friend4", text:"not good pic!", time:"10pm"},
-    {userId:"317047310", userName:"SampleKitty1", text:"your not good pic!", time:"10.1pm"}
-  ]
+  "_id" : "5b21b4f92b56b003cb6f08cd",
+  "likes" : 42,
+  "postText" : "This is my kitty, there are many like it, but this is my kitty and i will defend it with my life because this kitty is mine and i am it's",
+	"userId" : "5b21b3f3418a3903acb098ed",
+	"mediaUrl" : "https://sanrio-production-weblinc.netdna-ssl.com/media/W1siZiIsIjIwMTYvMDYvMTQvMjAvNDgvMzQvMTM3L2NocmFjdGVyX2hlbGxvX2tpdHR5LmpwZyJdXQ/chracter-hello-kitty.jpg?sha=f5e7c272d3fc6e78",
+	"comments" : [ ],
+	"__v" : 0
 }
 
 class App extends Component {
@@ -33,10 +28,15 @@ class App extends Component {
     return (
       <div className="App">
         <Navigator/>
-        <Card kitty={user} post={post}/>
+        <BrowserRouter>
+          <Switch>
+            {/* <Route exact path='/' render={() => (<Card user={user} post={post} />)}/> */}
+            <Route path='/post/:postid' render={() => (<Post user={user} post={post}/>)}/>
+          </Switch>
+        </BrowserRouter>
       </div>      
     );
   }
 }
 
-export default App;
+export default App
