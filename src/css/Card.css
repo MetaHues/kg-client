@@ -12,7 +12,7 @@ body {
 .kard {
   background-color: #fff;
   width: 600px;
-  margin:0 auto;
+  margin: 0 auto 60px auto;
   border: 1px solid #efefef;
   border-radius: 3px;
 }
@@ -65,7 +65,12 @@ body {
 .media img,
 .media video {
   width: 600px;
-  height: 600px;
+  max-height: 600px;
+  min-height: 300px;
+  height: auto;
+  object-fit: contain;
+  border-top: 1px solid #efefef;
+  border-bottom: 1px solid #efefef;
 }
 
 video {
@@ -103,6 +108,7 @@ li:last {
 
 .time_posted {
   color: #8e8e8e;
+  font-size: 10px;
 }
 
 input, select, textarea, button{
