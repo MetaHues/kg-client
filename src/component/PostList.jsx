@@ -19,6 +19,7 @@ class PostList extends Component {
         }
         console.log(process.env.NODE_ENV)
         console.log(uri)
+        console.log(this.props.match)
         Axios.get(`${uri}/post?userId=${this.props.match.params.userId}`)
         .then(posts => {
             console.log(posts)
