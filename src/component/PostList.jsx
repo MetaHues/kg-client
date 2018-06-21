@@ -13,9 +13,9 @@ class PostList extends Component {
 
     componentDidMount() {
         console.log(db)
-        let uri = db.localUri
-        if(process.env.NODE_ENV === 'production') {
-            uri = db.serverUri
+        let uri = db.serverUri
+        if(typeof process.env.NODE_ENV === 'development') {
+            uri = db.localUri
         }
         console.log(process.env.NODE_ENV)
         console.log(uri)
