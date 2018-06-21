@@ -1,4 +1,4 @@
 {
     "localUri" : "http://localhost:3000",
-    "cloudUri" : "https://metahues-kg-api.herokuapp.com/user"
+    "cloudUri" : "https://metahues-kg-api.herokuapp.com"
 }
