@@ -1,4 +1,4 @@
 {
     "localUri" : "http://localhost:3000",
-    "cloudUri" : "mongodb+srv://kg-api:SjuSCQuQtlXb1Mu7@kg-cluster-acshg.gcp.mongodb.net/test?retryWrites=true"
+    "cloudUri" : "https://metahues-kg-api.herokuapp.com/user"
 }
