@@ -14,14 +14,15 @@ class PostList extends Component {
     componentDidMount() {
         console.log(db)
         let uri = db.cloudUri
-        if(typeof process.env.NODE_ENV === 'development') {
+        if(process.env.NODE_ENV === 'development') {
             uri = db.localUri
         }
         console.log(process.env.NODE_ENV)
         console.log(uri)
         console.log(this.props.match)
-        console.log(`${uri}/user/post?userId=${this.props.match.params.userId}`)
-        Axios.get(`${uri}/user/post?userId=${this.props.match.params.userId}`)
+        let target = `${uri}/post?userId=${this.props.match.params.userId}`
+        console.log(target)
+        Axios.get(target)
         .then(posts => {
             console.log(posts)
             let cardList = posts.data.map(post =>  {return <Card key={post._id} postId={post._id} /> })

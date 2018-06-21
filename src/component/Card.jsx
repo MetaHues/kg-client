@@ -14,7 +14,7 @@ class Card extends Component {
 
     componentDidMount() {
         let uri = db.cloudUri
-        if(typeof process.env.NODE_ENV === 'development') {
+        if(process.env.NODE_ENV === 'development') {
             uri = db.localUri
         }
         Axios.get(`${uri}/post/${this.props.postId}`)
