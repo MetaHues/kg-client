@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import '../css/Card.css'
 import Axios from 'axios'
+import db from '../config/db'
 
 class Card extends Component {
     constructor(props) {
@@ -12,12 +13,14 @@ class Card extends Component {
     }
 
     componentDidMount() {
-        const url = process.env.API_URL
-        console.log(url)
-        Axios.get(`${url}/post/${this.props.postId}`)
+        let uri = db.cloudUri
+        if(process.env.NODE_ENV === 'development') {
+            uri = db.localUri
+        }
+        Axios.get(`${uri}/post/${this.props.postId}`)
         .then(postRes => {
             this.setState({post: postRes.data})
-            Axios.get(`${url}/user/${postRes.data.userId}`)
+            Axios.get(`${uri}/user/${postRes.data.userId}`)
             .then(userRes => {
                 this.setState({user: userRes.data})
             })
@@ -63,8 +66,8 @@ class Card extends Component {
                 <a><i className="fa fa-ellipsis-h"/></a>
                 </div>
             </article>
-        )
+        );
     }
 }
 
-export default Card
+export default Card;
