@@ -15,7 +15,7 @@ class Home extends Component {
         if(typeof process.env.API_URL) url = process.env.API_URL
 
 
-        Axios.get(`${url}/post?userId=${this.props.match.params.userId}`)
+        Axios.get(`${url}/post}`)
         .then(posts => {
             console.log(posts)
             this.setState({PostList: <PostList posts={posts.data} />})

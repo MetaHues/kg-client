@@ -5,7 +5,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import Navigator from './Navigator'
 import Home from './Home'
 import Post from './Post'
-import PostList from './PostList'
+import UserPage from './UserPage'
 
 class App extends Component {
   render() {
@@ -16,10 +16,9 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path='/home' component={Home} />
-
             <Route exact path='/' render={() => (<Redirect to='/5b28b24100616c081b67260e' />)} />
             <Route path='/post/:postId' render={(props) => (<Post {...props}/>)}/>
-            <Route path='/:userId' render={(props) => (<PostList {...props}/>)}/>
+            <Route path='/:userId' render={(props) => (<UserPage {...props}/>)}/>
           </Switch>
         </BrowserRouter>
       </div>      

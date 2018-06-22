@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Card from './Card'
 import Axios from 'axios'
+import PostList from './PostList'
 
 class UserPage extends Component {
     constructor(props){
@@ -11,7 +11,7 @@ class UserPage extends Component {
     componentDidMount() {
         let url = 'localhost:3000'
         if(typeof process.env.API_URL) url = process.env.API_URL
-
+        console.log(this.props)
         Axios.get(`${url}/post?userId=${this.props.match.params.userId}`)
         .then(posts => {
             console.log(posts)
@@ -25,8 +25,8 @@ class UserPage extends Component {
 
     render() {
         return (
-            <div className = 'PostList'>
-                {this.state.postList}
+            <div className = 'UserPage'>
+                {this.state.PostList}
             </div>
         )
     }
