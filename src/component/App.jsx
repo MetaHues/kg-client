@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
-import Post from './Post'
-import PostList from './PostList'
 import Navigator from './Navigator'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+
+// import components
+import Post from './Post'
+import PostList from './PostList'
+import Home from './Home'
 
 class App extends Component {
   render() {
