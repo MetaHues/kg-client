@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Post from './Post'
 import PostList from './PostList'
 import Navigator from './Navigator'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
 class App extends Component {
   render() {

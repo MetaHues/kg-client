@@ -13,10 +13,8 @@ class Card extends Component {
     }
 
     componentDidMount() {
-        let uri = db.cloudUri
-        if(process.env.NODE_ENV === 'development') {
-            uri = db.localUri
-        }
+        const uri = process.env.API_URI
+        console.log(uri)
         Axios.get(`${uri}/post/${this.props.postId}`)
         .then(postRes => {
             this.setState({post: postRes.data})
@@ -66,8 +64,8 @@ class Card extends Component {
                 <a><i className="fa fa-ellipsis-h"/></a>
                 </div>
             </article>
-        );
+        )
     }
 }
 
-export default Card;
+export default Card

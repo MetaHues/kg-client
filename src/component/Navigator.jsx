@@ -26,4 +26,4 @@ class Navigator extends Component {
     }
 }
 
-export default Navigator;
+export default Navigator
