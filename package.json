@@ -13,7 +13,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:online": "API_URI='https://metahues-kg-api.herokuapp.com' react-scripts start",
+    "start:online": "API_URL='https://metahues-kg-api.herokuapp.com' react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import '../css/Card.css'
 import Axios from 'axios'
-import db from '../config/db'
 
 class Card extends Component {
     constructor(props) {
@@ -13,12 +12,12 @@ class Card extends Component {
     }
 
     componentDidMount() {
-        const uri = process.env.API_URI
-        console.log(uri)
-        Axios.get(`${uri}/post/${this.props.postId}`)
+        const url = process.env.API_URL
+        console.log(url)
+        Axios.get(`${url}/post/${this.props.postId}`)
         .then(postRes => {
             this.setState({post: postRes.data})
-            Axios.get(`${uri}/user/${postRes.data.userId}`)
+            Axios.get(`${url}/user/${postRes.data.userId}`)
             .then(userRes => {
                 this.setState({user: userRes.data})
             })

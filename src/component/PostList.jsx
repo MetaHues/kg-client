@@ -12,10 +12,10 @@ class PostList extends Component {
     }
 
     componentDidMount() {
-        let uri = 'localhost:3000'
-        if(typeof process.env.API_URI) uri = process.env.API_URI
+        let url = 'localhost:3000'
+        if(typeof process.env.API_URL) url = process.env.API_URL
 
-        Axios.get(`${uri}/post?userId=${this.props.match.params.userId}`)
+        Axios.get(`${url}/post?userId=${this.props.match.params.userId}`)
         .then(posts => {
             console.log(posts)
             let cardList = posts.data.map(post =>  {return <Card key={post._id} postId={post._id} /> })
