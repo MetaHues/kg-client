@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Card from './Card'
 import Axios from 'axios'
-import db from '../config/db'
 
 class PostList extends Component {
     constructor(props){
