@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Card from './Card'
-import Axios from 'axios'
 
 class PostList extends Component {
     constructor(props){
@@ -11,18 +10,9 @@ class PostList extends Component {
     }
 
     componentDidMount() {
-        let url = 'localhost:3000'
-        if(typeof process.env.API_URL) url = process.env.API_URL
-
-        Axios.get(`${url}/post?userId=${this.props.match.params.userId}`)
-        .then(posts => {
-            console.log(posts)
-            let cardList = posts.data.map(post =>  {return <Card key={post._id} postId={post._id} /> })
-            this.setState({cardList: cardList})
-        })
-        .catch(err => {
-            console.log(err)
-        })
+        console.log(this.props)
+        let cardList = this.props.posts.map(post =>  {return <Card key={post._id} postId={post._id} /> })
+        this.setState({cardList: cardList})
     }
 
     render() {
