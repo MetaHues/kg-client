@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+
+// style
 import '../css/Navigator.css'
 
 class Navigator extends Component {

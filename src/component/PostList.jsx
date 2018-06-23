@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+
+// components
 import Card from './Card'
 
 class PostList extends Component {

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
+
+// components
 import PostList from './PostList'
 
 class UserPage extends Component {

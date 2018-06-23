@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
-
+// components
 import PostList from './PostList'
 import PostGrid from './PostGrid'
 
