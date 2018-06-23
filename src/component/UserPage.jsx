@@ -9,9 +9,9 @@ class UserPage extends Component {
     }
 
     componentDidMount() {
-        let url = 'localhost:3000'
-        if(typeof process.env.API_URL) url = process.env.API_URL
-        console.log(this.props)
+        let url = 'https://metahues-kg-api.herokuapp.com'
+        if(process.env.API_URL !== undefined) url = process.env.API_URL
+
         Axios.get(`${url}/post?userId=${this.props.match.params.userId}`)
         .then(posts => {
             console.log(posts)
