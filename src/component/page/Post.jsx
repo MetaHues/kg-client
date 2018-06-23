@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 // components
-import Card from './Card'
+import Card from '../partial/Card'
 
 class Post extends Component {
     constructor(props) {

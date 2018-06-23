@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
 // components
-import PostList from './PostList'
-import PostGrid from './PostGrid'
+import PostList from '../partial/PostList'
+import PostGrid from '../partial/PostGrid'
 
 class Home extends Component {
     constructor(props){

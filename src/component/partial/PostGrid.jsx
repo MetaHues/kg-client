@@ -4,7 +4,7 @@ import React, { Component } from 'react'
 import PostGridTile from './PostGridTile'
 
 //styles
-import '../css/PostGrid.css'
+import '../../css/PostGrid.css'
 
 class PostGrid extends Component {
     constructor(props){

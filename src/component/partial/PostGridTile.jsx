@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
 // style
-import '../css/PostGridTile.css'
+import '../../css/PostGridTile.css'
 
 class PostGridTile extends Component {
     constructor(props) {

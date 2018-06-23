@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Axios from 'axios'
 
 // components
-import PostList from './PostList'
+import PostList from '../partial/PostList'
 
 class UserPage extends Component {
     constructor(props){
