@@ -1,24 +1,24 @@
-.search-large {
+.Navigator .search-large {
     display: none;
 }
 
-.logo-large{
+.Navigator .logo-large{
     display: none;
 }
 
-a:link {
+.Navigator a:link {
     text-decoration: inherit;
     color: inherit;
     cursor: auto;
 }
 
-a:visited {
+.Navigator a:visited {
     text-decoration: inherit;
     color: inherit;
     cursor: auto;
 }
 
-nav {
+.Navigator nav {
     display: flex;
     height: 75px;
     background-color: #fff;
@@ -27,54 +27,54 @@ nav {
     font-size: 24px;
 }
 
-nav > div {
+.Navigator nav > div {
     display: flex;
     align-items: center;
 }
 
-ul {
+.Navigator ul {
     display: flex;
 }
 
-ul > a {
+.Navigator ul > a {
     margin-left: 30px;
 }
 
-.logo {
+.Navigator .logo {
     margin-left: 40px;
     margin-right: auto;
 }
 
-.subnav {
+.Navigator .subnav {
     margin-left: auto;
     margin-right: 40px;
 }
 
-.search i {
+.Navigator .search i {
     font-size: 14px;
     margin-right: 4px;
     color: #a9a9a9;
     padding-bottom: 2px;
 }
 
-.form-control::-moz-placeholder{
+.Navigator .form-control::-moz-placeholder{
     color:#a9a9a9;
     opacity:1;
 }
 
-.form-control:-ms-input-placeholder{
+.Navigator .form-control:-ms-input-placeholder{
     color:#a9a9a9;
 }
 
-.form-control::-webkit-input-placeholder{
+.Navigator .form-control::-webkit-input-placeholder{
     color:#a9a9a9;
 }
 
-.search {
+.Navigator .search {
     width: 30%;
 }
 
-.searchBoarder {
+.Navigator .searchBoarder {
     width: 100%;
     border: solid 1px #efefef;
     display: flex;
@@ -82,7 +82,7 @@ ul > a {
     padding: 5px;
 }
 
-input {
+.Navigator input {
     outline: none;
     text-decoration: inherit;
     border: none;
@@ -90,11 +90,11 @@ input {
 }
 
 @media(min-width : 600px) {
-    .search {
+    .Navigator .search {
         display: inline-flex;
     }
     
-    .company-name{
+    .Navigator .company-name{
         display: inline-flex;
     }
     

@@ -25,11 +25,11 @@ class Navigator extends Component {
                     </div>
                 </nav>
                 <div className="search-small">
-                        <div className="searchBoarder">
-                            <i className="fa fa-search"/>
-                            <input type="text" placeholder="Search"/>
-                        </div>
+                    <div className="searchBoarder">
+                        <i className="fa fa-search"/>
+                        <input type="text" placeholder="Search"/>
                     </div>
+                </div>
             </div>
         )
     }

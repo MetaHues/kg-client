@@ -1,4 +1,9 @@
-img {
+.PostGridTile a {
+    width: 100%;
+    height: 100%;
+}
+
+.PostGridTile img {
     height: 100%;
     width: 100%;
     object-fit: cover;

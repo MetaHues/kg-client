@@ -42,7 +42,9 @@ class PostGridTile extends Component {
         }
         return (
             <div className='PostGridTile'>
-                <img src={this.state.post.mediaUrl} alt='' />
+                <a href={`/post/${this.state.post._id}`}>
+                    <img src={this.state.post.mediaUrl} alt='' />
+                </a>
             </div>
         )
     }
