@@ -9,14 +9,14 @@ import UserPage from './UserPage'
 
 class App extends Component {
   render() {
-    //let kitty = this.props.kitty;
+
     return (
       <div className="App">
         <Navigator/>
         <BrowserRouter>
           <Switch>
-            <Route exact path='/home' component={Home} />
-            <Route exact path='/' render={() => (<Redirect to='/5b28b24100616c081b67260e' />)} />
+            <Route exact path='/home' render={() => (<Home view={'grid'}/>)} />
+            <Route exact path='/' render={() => (<Redirect to='/home' />)} />
             <Route path='/post/:postId' render={(props) => (<Post {...props}/>)}/>
             <Route path='/:userId' render={(props) => (<UserPage {...props}/>)}/>
           </Switch>

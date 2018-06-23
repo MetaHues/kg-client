@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import '../css/Card.css'
 import Axios from 'axios'
+
+// Styling
+import '../css/Card.css'
 
 class Card extends Component {
     constructor(props) {
