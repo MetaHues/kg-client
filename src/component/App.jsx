@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
 // import components
 import Navigator from './Navigator'
+import NavigatorMobile from './NavigatorMobile'
 import Home from './Home'
 import Post from './Post'
 import UserPage from './UserPage'
@@ -21,6 +22,7 @@ class App extends Component {
             <Route path='/:userId' render={(props) => (<UserPage {...props}/>)}/>
           </Switch>
         </BrowserRouter>
+        <NavigatorMobile/>
       </div>      
     );
   }

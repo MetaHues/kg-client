@@ -27,7 +27,7 @@ class Navigator extends Component {
                 <div className="search-small">
                     <div className="searchBoarder">
                         <i className="fa fa-search"/>
-                        <input type="text" placeholder="Search"/>
+                        <input type="text" placeholder=" Search"/>
                     </div>
                 </div>
             </div>

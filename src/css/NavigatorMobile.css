@@ -1,0 +1,22 @@
+.NavigatorMobile {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border-top: 1px solid #efefef;
+    margin-top: 2em;
+}
+
+.NavigatorMobile ul {
+    display: flex;
+    justify-content: space-around;
+}
+
+.NavigatorMobile i {
+    font-size: 2em;
+    color: black;
+}
+
+
+
