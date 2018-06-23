@@ -1,7 +1,7 @@
 .PostGrid {
     display: grid;
-    width: 80%;
-    grid-template-columns: 31% 31% 31%;
-    grid-gap: 30px;
+    width: 100%;
+    grid-template-columns: 32% 32% 32%;
+    grid-gap: 1.33%;
     margin: 0 auto;
 }

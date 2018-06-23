@@ -1,11 +1,13 @@
 img {
     height: 100%;
     width: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    overflow: hidden;
 }
 
 .PostGridTile {
-    height: 23vw;
+    height: 33vw;
+    margin-bottom: 1vw;
     background-color: #fff;
     display: flex;
 }

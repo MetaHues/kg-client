@@ -1,3 +1,11 @@
+.search-large {
+    display: none;
+}
+
+.logo-large{
+    display: none;
+}
+
 a:link {
     text-decoration: inherit;
     color: inherit;
@@ -29,7 +37,7 @@ ul {
 }
 
 ul > a {
-    margin-left: 40px;
+    margin-left: 30px;
 }
 
 .logo {
@@ -81,3 +89,13 @@ input {
     font-size: 14px;
 }
 
+@media(min-width : 600px) {
+    .search {
+        display: inline-flex;
+    }
+    
+    .company-name{
+        display: inline-flex;
+    }
+    
+}
