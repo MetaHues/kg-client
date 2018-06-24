@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import Axios from 'axios'
 // style
 import '../../css/PostGridTile.css'
@@ -42,9 +43,9 @@ class PostGridTile extends Component {
         }
         return (
             <div className='PostGridTile'>
-                <a href={`/post/${this.state.post._id}`}>
+                <Link to={`/post/${this.state.post._id}`}>
                     <img src={this.state.post.mediaUrl} alt='' />
-                </a>
+                </Link>
             </div>
         )
     }
