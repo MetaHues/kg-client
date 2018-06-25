@@ -4,6 +4,7 @@ import Axios from 'axios'
 // components
 import PostGrid from '../partial/PostGrid'
 import Search from '../partial/Search'
+import NavigatorMobile from '../navigation/NavigatorMobile'
 
 class Home extends Component {
     constructor(props){
@@ -34,6 +35,7 @@ class Home extends Component {
             <div className = 'Explore'>
                 <Search />
                 <PostGrid posts={this.state.posts} />
+                <NavigatorMobile/>
             </div>
         )
     }

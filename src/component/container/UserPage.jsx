@@ -3,6 +3,7 @@ import Axios from 'axios'
 
 // components
 import PostList from '../partial/PostList'
+import NavigatorMobile from '../navigation/NavigatorMobile'
 
 class UserPage extends Component {
     constructor(props){
@@ -29,6 +30,7 @@ class UserPage extends Component {
         return (
             <div className = 'UserPage'>
                 {this.state.PostList}
+                <NavigatorMobile/>
             </div>
         )
     }
