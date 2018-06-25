@@ -1,0 +1,23 @@
+.Search {
+    width: 100%;
+    display: block;
+}
+
+.Search .searchBoarder {
+    width: 100% - 12px;
+    border: solid 1px #efefef;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.Search i {
+    font-size: 14px;
+    margin-right: 4px;
+    color: #a9a9a9;
+    padding-bottom: 2px;
+}
+
+.Search input {
+    width: 100%;
+}

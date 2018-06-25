@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 //components
 import PostGridTile from './PostGridTile'
+import Search from './Search'
 
 //styles
 import '../../css/PostGrid.css'

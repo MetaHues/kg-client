@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
+
 // components
-import PostList from '../partial/PostList'
 import PostGrid from '../partial/PostGrid'
+import Search from '../partial/Search'
 
 class Home extends Component {
     constructor(props){
@@ -29,16 +30,10 @@ class Home extends Component {
 
     render() {
         if(this.state.posts === null) return ( <div className = 'Home' />)
-        if(this.props.view === 'grid') {
-            return ( 
-                <div className = 'Home'>
-                    <PostGrid posts={this.state.posts} />
-                </div>
-            )
-        }
-        return (
-            <div className = 'Home'>
-                <PostList posts={this.state.posts} />
+        return ( 
+            <div className = 'Explore'>
+                <Search />
+                <PostGrid posts={this.state.posts} />
             </div>
         )
     }
