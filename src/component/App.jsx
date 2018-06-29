@@ -2,12 +2,11 @@ import React, { Component } from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
 // import components
-import NavigatorMobile from './navigation/NavigatorMobile'
 import Explore from './container/Explore'
 import Post from './container/Post'
 import UserPage from './container/UserPage'
 import Login from './container/Login'
-
+console.log(process.env)
 class App extends Component {
   render() {
     return (

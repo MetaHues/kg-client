@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Axios from 'axios'
+import path from 'path'
 
 // components
 import PostGrid from '../partial/PostGrid'
@@ -16,8 +17,12 @@ class Home extends Component {
 
     componentDidMount() {
         let url = 'https://metahues-kg-api.herokuapp.com'
-        if(process.env.API_URL !== undefined) url = process.env.API_URL
-
+        if(process.env.API_URL) url = process.env.API_URL
+        console.log(url)
+        console.log(`${url}/post`)
+        let p = path.join(url, '/post')
+        console.log(typeof url)
+        console.log(p)
         Axios.get(`${url}/post`)
         .then(posts => {
             console.log(posts)
