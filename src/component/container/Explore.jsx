@@ -29,9 +29,9 @@ class Home extends Component {
             this.setState({posts: posts.data})
         })
         .catch(err => {
+            console.log('explore error')
             console.log(err)
         })
-        .catch(err => console.log(err))
     }
 
     render() {
