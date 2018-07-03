@@ -10,47 +10,49 @@ import Login from './container/Login'
 
 
 class App extends Component {
-  constructor() {
-    super()
-
-    this.state = {
-      user : null
+    constructor() {
+        super()
+        console.log('app constructor')
+        this.state = {
+            user : null
+        }
     }
-  }
 
-  componentDidMount() {
-    axios.get('/me')
-    .then(self => {
-      this.setState({user: self})
-      console.log(self)
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }
+    componentDidMount() {
 
-
-  render() {
-    console.log(this.state)
-    if(!this.state.user) {
-      return (<div></div>)
+        axios.get('/me')
+        .then(self => {
+            console.log(self)
+            this.setState({user: self})
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
-    return (
-      <div className="App">
-        <BrowserRouter>
-          <div>
-            <Switch>
-              <Route exact path='/login' render={(props) => (<Login {...props} />)} />
-              <Route exact path='/explore' render={() => (<Explore view={'grid'} />)} />
-              <Route exact path='/' render={() => (<Redirect to='/home' />)} />
-              <Route path='/post/:postId' render={(props) => (<Post {...props} />)} />
-              <Route path='/:userId' render={(props) => (<UserPage {...props} />)} />
-            </Switch>
-          </div>
-        </BrowserRouter>
-      </div>      
-    );
-  }
+
+
+    render() {
+        console.log('rendering app')
+        console.log(this.state)
+        if(!this.state.user) {
+            return (<div></div>)
+        }
+        return (
+            <div className="App">
+                <BrowserRouter>
+                    <div>
+                        <Switch>
+                            <Route exact path='/login' render={(props) => (<Login {...props} />)} />
+                            <Route exact path='/explore' render={() => (<Explore view={'grid'} />)} />
+                            <Route exact path='/' render={() => (<Redirect to='/home' />)} />
+                            <Route path='/post/:postId' render={(props) => (<Post {...props} />)} />
+                            <Route path='/:userId' render={(props) => (<UserPage {...props} />)} />
+                        </Switch>
+                    </div>
+                </BrowserRouter>
+            </div>      
+        );
+    }
 }
 
 export default App
