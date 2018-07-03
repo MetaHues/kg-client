@@ -1,14 +1,40 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect, withRouter } from 'react-router-dom'
+import axios from 'axios'
 
 // import components
 import Explore from './container/Explore'
 import Post from './container/Post'
 import UserPage from './container/UserPage'
 import Login from './container/Login'
-console.log(process.env)
+
+
 class App extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      user : null
+    }
+  }
+
+  componentDidMount() {
+    axios.get('/me')
+    .then(self => {
+      this.setState({user: self})
+      console.log(self)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+
   render() {
+    console.log(this.state)
+    if(!this.state.user) {
+      return (<div></div>)
+    }
     return (
       <div className="App">
         <BrowserRouter>
