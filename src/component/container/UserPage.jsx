@@ -14,7 +14,6 @@ class UserPage extends Component {
     componentDidMount() {
         Axios.get(`/post?userId=${this.props.match.params.userId}`)
         .then(posts => {
-            console.log(posts)
             let postList = <PostList posts={posts.data} />
             this.setState({PostList : postList})
         })

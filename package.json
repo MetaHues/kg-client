@@ -2,12 +2,18 @@
   "name": "client-react",
   "version": "0.1.0",
   "private": true,
+  "proxy": {
+    "/": {
+      "target": "http://localhost:5000"
+    }
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "fetch": "^1.1.0",
     "font-awesome": "^4.7.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
+    "react-facebook-login": "^4.0.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4"
   },
@@ -20,6 +26,5 @@
     "eject": "react-scripts eject",
     "deploy": "git push heroku master"
   },
-  "devDependencies": {},
-  "proxy": "http://localhost:5000"
+  "devDependencies": {}
 }

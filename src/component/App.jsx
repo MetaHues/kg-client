@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Switch, Route, Redirect, withRouter } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 // import components
@@ -12,18 +12,15 @@ import Login from './container/Login'
 class App extends Component {
     constructor() {
         super()
-        console.log('app constructor')
         this.state = {
             user : null
         }
     }
 
     componentDidMount() {
-
         axios.get('/me')
-        .then(self => {
-            console.log(self)
-            this.setState({user: self})
+        .then(res => {
+            this.setState({user: res.data})
         })
         .catch(err => {
             console.log(err)
@@ -32,10 +29,8 @@ class App extends Component {
 
 
     render() {
-        console.log('rendering app')
-        console.log(this.state)
         if(!this.state.user) {
-            return (<div></div>)
+            return (<Login ></Login>)
         }
         return (
             <div className="App">
@@ -44,7 +39,7 @@ class App extends Component {
                         <Switch>
                             <Route exact path='/login' render={(props) => (<Login {...props} />)} />
                             <Route exact path='/explore' render={() => (<Explore view={'grid'} />)} />
-                            <Route exact path='/' render={() => (<Redirect to='/home' />)} />
+                            <Route exact path='/' render={() => (<Redirect to='/explore' />)} />
                             <Route path='/post/:postId' render={(props) => (<Post {...props} />)} />
                             <Route path='/:userId' render={(props) => (<UserPage {...props} />)} />
                         </Switch>

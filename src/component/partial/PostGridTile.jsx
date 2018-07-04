@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import Axios from 'axios'
+import axios from 'axios'
+
 // style
 import '../../css/PostGridTile.css'
 
@@ -14,16 +15,11 @@ class PostGridTile extends Component {
     }
 
     componentDidMount() {
-        let url = 'https://metahues-kg-api.herokuapp.com'
-        if(process.env.API_URL !== undefined) url = process.env.API_URL
-
-
-        Axios.get(`${url}/post/${this.props.postId}`)
+        axios.get(`/post/${this.props.postId}`)
         .then(postRes => {
-            this.setState({post: postRes.data})
-            Axios.get(`${url}/user/${postRes.data.userId}`)
+            axios.get(`/user/${postRes.data.userId}`)
             .then(userRes => {
-                this.setState({user: userRes.data})
+                this.setState({post: postRes.data, user: userRes.data})
             })
             .catch(err => {
                 console.log(err)

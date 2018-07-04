@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import Axios from 'axios'
-import path from 'path'
+import axios from 'axios'
 
 // components
 import PostGrid from '../partial/PostGrid'
@@ -16,14 +15,11 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        console.log(Axios.defaults.baseURL)
-        Axios.get('/post')
+        axios.get('/post')
         .then(posts => {
-            console.log(posts)
             this.setState({posts: posts.data})
         })
         .catch(err => {
-            console.log('explore error')
             console.log(err)
         })
     }

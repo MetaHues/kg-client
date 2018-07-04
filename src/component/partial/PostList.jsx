@@ -12,7 +12,6 @@ class PostList extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props)
         let cardList = this.props.posts.map(post =>  {return <Card key={post._id} postId={post._id} /> })
         this.setState({cardList: cardList})
     }

@@ -11,11 +11,11 @@ class Login extends Component {
                     <div className="logo">
                         KittyGlitter
                     </div>
-                    <a href="http://localhost:5000/auth/facebook" alt="facebook login button" >
+                    <a href="/auth/facebook" alt="facebook login button" >
                         <button id='facebook_login'>
                             Log in with Facebook
                         </button>
-                    </a>
+                    </a> 
                     <hr/>
                     <input id='userName' placeholder='user name' />
                     <button id='user_login'>
