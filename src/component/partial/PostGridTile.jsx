@@ -15,9 +15,9 @@ class PostGridTile extends Component {
     }
 
     componentDidMount() {
-        axios.get(`/post/${this.props.postId}`)
+        axios.get(`/api/post/${this.props.postId}`)
         .then(postRes => {
-            axios.get(`/user/${postRes.data.userId}`)
+            axios.get(`/api/user/${postRes.data.userId}`)
             .then(userRes => {
                 this.setState({post: postRes.data, user: userRes.data})
             })

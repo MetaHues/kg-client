@@ -18,11 +18,12 @@ class App extends Component {
     }
 
     componentDidMount() {
-        axios.get('/me')
+        axios.get('/api/user/profile')
         .then(res => {
             this.setState({user: res.data})
         })
         .catch(err => {
+            this.setState({user: undefined})
             console.log(err)
         })
     }
@@ -30,7 +31,11 @@ class App extends Component {
 
     render() {
         if(!this.state.user) {
-            return (<Login ></Login>)
+            return (
+                <div>
+                    <Login ></Login>
+                </div>
+            )
         }
         return (
             <div className="App">
@@ -40,8 +45,10 @@ class App extends Component {
                             <Route exact path='/login' render={(props) => (<Login {...props} />)} />
                             <Route exact path='/explore' render={() => (<Explore view={'grid'} />)} />
                             <Route exact path='/' render={() => (<Redirect to='/explore' />)} />
+                            <Route exact path='/home' render={() => (<Redirect to='/user/home' />)} />
                             <Route path='/post/:postId' render={(props) => (<Post {...props} />)} />
-                            <Route path='/:userId' render={(props) => (<UserPage {...props} />)} />
+                            <Route path='/user/:userId' render={(props) => (<UserPage {...props} />)} />
+                            <Route render={()=>(<div>no route!</div>)} />
                         </Switch>
                     </div>
                 </BrowserRouter>

@@ -6,6 +6,7 @@
     background-color: #fff;
     border-top: 1px solid #efefef;
     margin-top: 2em;
+    z-index: 100;
 }
 
 .NavigatorMobile ul {

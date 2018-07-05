@@ -16,11 +16,6 @@ class Login extends Component {
                             Log in with Facebook
                         </button>
                     </a> 
-                    <hr/>
-                    <input id='userName' placeholder='user name' />
-                    <button id='user_login'>
-                        Log in
-                    </button>
                 </div>
             </div>
         )

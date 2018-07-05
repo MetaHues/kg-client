@@ -15,7 +15,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        axios.get('/post')
+        axios.get('/api/post')
         .then(posts => {
             this.setState({posts: posts.data})
         })

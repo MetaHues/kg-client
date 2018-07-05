@@ -14,10 +14,10 @@ class Card extends Component {
     }
 
     componentDidMount() { 
-        Axios.get(`/post/${this.props.postId}`)
+        Axios.get(`/api/post/${this.props.postId}`)
         .then(postRes => {
             this.setState({post: postRes.data})
-            Axios.get(`/user/${postRes.data.userId}`)
+            Axios.get(`/api/user/${postRes.data.userId}`)
             .then(userRes => {
                 this.setState({user: userRes.data})
             })
