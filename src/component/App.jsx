@@ -7,8 +7,9 @@ import Explore from './container/Explore'
 import Post from './container/Post'
 import UserPage from './container/UserPage'
 import Login from './container/Login'
-import AuthenticateUserRedirect from './container/AuthenticateUserRedirect'
+import AuthenticatedRoute from './container/AuthenticatedRoute'
 import Profile from './container/Profile'
+import CreatePost from './container/CreatePost'
 
 
 class App extends Component {
@@ -35,22 +36,14 @@ class App extends Component {
         return (
             <div className="App">
                 <Switch>
-                    <Route exact path='/login' render={(props) => (<Login {...props} />)} />
+                    <Route exact path='/login' render={props => (<Login {...props} />)} />
                     <Route exact path='/explore' render={() => (<Explore view={'grid'} />)} />
                     <Route exact path='/' render={() => (<Redirect to='/explore' />)} />
-                    <Route path='/post/:postId' render={(props) => (<Post {...props} />)} />
-                    <Route path='/user/:userId' render={(props) => (<UserPage {...props} />)} />
-                    <Route exact path='/home' render={(props) => (
-                        <div>
-                            <AuthenticateUserRedirect />
-                            <UserPage user={this.state.user} {...props} />
-                        </div>
-                    )} />
-                    <Route exact path='/profile' render={(props) => (
-                        <AuthenticateUserRedirect >                        
-                            <Profile {...props} />
-                        </AuthenticateUserRedirect>                        
-                    )} />
+                    <Route exact path='/createpost' render={props => (<CreatePost {...props} />)} />
+                    <Route path='/post/:postId' render={props => (<Post {...props} />)} />
+                    <Route path='/user/:userId' render={props => (<UserPage {...props} />)} />
+                    <AuthenticatedRoute exact path='/home' render={props => (<UserPage {...props} user={this.state.user} />)} />
+                    <AuthenticatedRoute exact path='/profile' render={props => (<Profile {...props } />)} />
                     <Route render={()=>(<div>no route!</div>)} />
                 </Switch>
             </div>      
