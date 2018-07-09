@@ -39,9 +39,9 @@ class App extends Component {
                     <Route exact path='/login' render={props => (<Login {...props} />)} />
                     <Route exact path='/explore' render={() => (<Explore view={'grid'} />)} />
                     <Route exact path='/' render={() => (<Redirect to='/explore' />)} />
-                    <Route exact path='/createpost' render={props => (<CreatePost {...props} />)} />
                     <Route path='/post/:postId' render={props => (<Post {...props} />)} />
                     <Route path='/user/:userId' render={props => (<UserPage {...props} />)} />
+                    <AuthenticatedRoute exact path='/createpost' render={props => (<CreatePost {...props} />)} />
                     <AuthenticatedRoute exact path='/home' render={props => (<UserPage {...props} user={this.state.user} />)} />
                     <AuthenticatedRoute exact path='/profile' render={props => (<Profile {...props } />)} />
                     <Route render={()=>(<div>no route!</div>)} />

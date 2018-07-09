@@ -6,7 +6,7 @@ import PostGrid from '../partial/PostGrid'
 import Search from '../partial/Search'
 import NavigatorMobile from '../navigation/NavigatorMobile'
 
-class Home extends Component {
+class Explore extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -25,7 +25,7 @@ class Home extends Component {
     }
 
     render() {
-        if(this.state.posts === null) return ( <div className = 'Home' />)
+        if(this.state.posts === null) return ( <div className = 'Explore' />)
         return ( 
             <div className = 'Explore'>
                 <Search />
@@ -36,4 +36,4 @@ class Home extends Component {
     }
 }
 
-export default Home
+export default Explore

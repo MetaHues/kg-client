@@ -13,7 +13,7 @@ class AuthenticatedRoute extends React.Component {
     componentDidMount() {
         axios.get('/api/user/profile')
         .then(res => {
-            this.setState({isLoggedIn: true})
+            if(!this.state.isLoggedIn) this.setState({isLoggedIn: true})
         })
         .catch(err => {
             this.setState({isLoggedIn: false})
@@ -25,9 +25,6 @@ class AuthenticatedRoute extends React.Component {
         if(!this.state.isLoggedIn) {
             return (<Redirect to='/login' />)
         }
-        // if(Component) return (
-        //     <Route {...rest} render={ props =>{ <Component {...this.props} /> }} />
-        // )
         return (
             <Route {...rest} render={render} />
         )

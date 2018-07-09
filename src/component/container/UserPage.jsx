@@ -12,8 +12,6 @@ class UserPage extends Component {
     }
 
     componentDidMount() {
-        console.log('userpage')
-        console.log(this.props.user)
         let userId = this.props.match.params.userId;
         if(this.props.user) userId = this.props.user._id;
 

@@ -13,7 +13,8 @@ class Card extends Component {
         }
     }
 
-    componentDidMount() { 
+    componentDidMount() {
+        // get the current user
         Axios.get(`/api/post/${this.props.postId}`)
         .then(postRes => {
             this.setState({post: postRes.data})
@@ -32,7 +33,6 @@ class Card extends Component {
 
     render() {
         if(this.state.user === null || this.state.post === null) return null
-        console.log(this.state.user)
         return (
             <article className="kard">
                 <div className="section header">
