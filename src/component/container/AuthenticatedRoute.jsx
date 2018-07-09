@@ -1,8 +1,8 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Route } from 'react-router-dom'
 import axios from 'axios'
 
-class AuthenticateUserRedirect extends React.Component {
+class AuthenticatedRoute extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -21,18 +21,17 @@ class AuthenticateUserRedirect extends React.Component {
         })
     }
     render() {
-        console.log(this.props)
-        console.log(this.state.isLoggedIn)
-        if(this.state.isLoggedIn) {
-            return (
-                <div className='AuthenticateUserRedirect'>
-                </div>
-            )
+        const { component: Component, render, ...rest } = this.props
+        if(!this.state.isLoggedIn) {
+            return (<Redirect to='/login' />)
         }
+        // if(Component) return (
+        //     <Route {...rest} render={ props =>{ <Component {...this.props} /> }} />
+        // )
         return (
-            <Redirect to='/login' />
+            <Route {...rest} render={render} />
         )
     }
 }
 
-export default AuthenticateUserRedirect
+export default AuthenticatedRoute

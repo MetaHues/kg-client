@@ -32,14 +32,17 @@ class Card extends Component {
 
     render() {
         if(this.state.user === null || this.state.post === null) return null
+        console.log(this.state.user)
         return (
             <article className="kard">
                 <div className="section header">
-                    <img src="{this.state.user.img}" alt="" srcSet=""/>
-                    <div className="kitty_name"><strong>{this.state.user.name}</strong></div>
+                    <img src={this.state.user.img} alt="" srcSet=""/>
+                    <div className="kitty_name"><strong>{this.state.user.name}</strong></div>     
                 </div>
                 <div className="media">
-                    <img src={this.state.post.mediaUrl} alt="" />
+                    {this.state.post.media && this.state.post.media.img !== undefined &&
+                        <img src={this.state.post.media.img} alt="" />
+                    }
                 </div>
                 <div className="section interactions">
                     <a className="like_button"><i className="fa fa-heart-o"/></a>
