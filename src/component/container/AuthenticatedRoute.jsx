@@ -38,11 +38,11 @@ class AuthenticatedRoute extends React.Component {
         }
         // loading and logged in
 
-
-        console.log(rest)
         if(Component) {
-            return (<Route user={this.state.user} {...rest} render={()=>(<Component user={this.state.user} {...rest} />)}/>)
+            console.log('component')
+            return (<Route {...rest} render={(props)=>(<Component user={this.state.user} {...props} />)}/>)
         }
+        console.log(render)
         return (
             <Route user={this.state.user} {...rest} render={render} />
         )

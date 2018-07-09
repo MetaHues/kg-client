@@ -4,7 +4,7 @@ import axios from 'axios'
 class CreatePost extends Component {
     SubmitPost = (e) => {
         e.preventDefault()
-
+        console.log(this.props)
         let newPost = {
             media: {
                 img: document.querySelector('#post_img').value

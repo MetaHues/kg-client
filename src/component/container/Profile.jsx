@@ -9,7 +9,6 @@ class Profile extends React.Component {
         this.state = {
             user: props.user
         }
-        console.log(props)
     }
 
     render (){
@@ -17,7 +16,7 @@ class Profile extends React.Component {
             <div>
                 <h1> Profile </h1>
                 <header>
-                    {/* <img src={this.props.user.img} alt='picture of user' /> */}
+                    <img src={this.props.user.img} alt='picture of user' />
                     <div>
                         {this.props.user.name}
                     </div>

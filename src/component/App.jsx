@@ -37,14 +37,13 @@ class App extends Component {
         return (
             <div className="App">
                 <Switch>
-                    <Route exact path='/login' render={props => (<Login {...props} />)} />
+                    <Route exact path='/login' component={Login} />
                     <Route exact path='/explore' render={() => (<Explore view={'grid'} />)} />
                     <Route exact path='/' render={() => (<Redirect to='/explore' />)} />
-                    <Route path='/post/:postId' render={props => (<Post {...props} />)} />
-                    <Route path='/user/:userId' render={props => (<UserPage {...props} />)} />
-                    <AuthenticatedRoute exact path='/createpost' render={props => (<CreatePost {...props} />)} />
-                    <AuthenticatedRoute exact path='/home' render={props => (<UserPage {...props} user={this.state.user} />)} />
-                    {/* <AuthenticatedRoute exact path='/profile' render={props => (<Profile user={this.state.user} {...props } />)} /> */}
+                    <Route path='/post/:postId' component={Post} />
+                    <Route path='/user/:userId' component={UserPage} />
+                    <AuthenticatedRoute exact path='/createpost' component={CreatePost} />
+                    <AuthenticatedRoute exact path='/home' component={UserPage} />
                     <AuthenticatedRoute exact path='/profile' component={Profile} />
                     <Route render={()=>(<div>no route!</div>)} />
                 </Switch>

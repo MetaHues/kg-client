@@ -8,12 +8,14 @@ import NavigatorMobile from '../navigation/NavigatorMobile'
 class UserPage extends Component {
     constructor(props){
         super(props)
-        this.state = {PostList : null}
+        this.state = { PostList : null }
+        console.log(props)
     }
 
     componentDidMount() {
-        let userId = this.props.match.params.userId;
-        if(this.props.user) userId = this.props.user._id;
+        let userId = ""
+        if(this.props.user) userId = this.props.user._id
+        else userId = this.props.match.params.userId;
 
         axios.get(`/api/post?userId=${userId}`)
         .then(posts => {
