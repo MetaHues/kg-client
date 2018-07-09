@@ -21,16 +21,17 @@ class App extends Component {
     }
 
     componentDidMount() {
+        // get current user
         axios.get('/api/user/profile')
         .then(res => {
             this.setState({user: res.data})
+            console.log('user set in app')
         })
         .catch(err => {
             this.setState({user: undefined})
             console.log(err)
         })
     }
-
 
     render() {
         return (
@@ -43,7 +44,8 @@ class App extends Component {
                     <Route path='/user/:userId' render={props => (<UserPage {...props} />)} />
                     <AuthenticatedRoute exact path='/createpost' render={props => (<CreatePost {...props} />)} />
                     <AuthenticatedRoute exact path='/home' render={props => (<UserPage {...props} user={this.state.user} />)} />
-                    <AuthenticatedRoute exact path='/profile' render={props => (<Profile {...props } />)} />
+                    {/* <AuthenticatedRoute exact path='/profile' render={props => (<Profile user={this.state.user} {...props } />)} /> */}
+                    <AuthenticatedRoute exact path='/profile' component={Profile} />
                     <Route render={()=>(<div>no route!</div>)} />
                 </Switch>
             </div>      

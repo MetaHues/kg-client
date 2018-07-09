@@ -14,7 +14,8 @@ class Card extends Component {
     }
 
     componentDidMount() {
-        // get the current user
+        // get card data
+        // TODO: move this into app
         Axios.get(`/api/post/${this.props.postId}`)
         .then(postRes => {
             this.setState({post: postRes.data})
