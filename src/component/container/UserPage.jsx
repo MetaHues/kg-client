@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Axios from 'axios'
+import axios from 'axios'
 
 // components
 import PostList from '../partial/PostList'
@@ -12,7 +12,12 @@ class UserPage extends Component {
     }
 
     componentDidMount() {
-        Axios.get(`/api/post?userId=${this.props.match.params.userId}`)
+        console.log('userpage')
+        console.log(this.props.user)
+        let userId = this.props.match.params.userId;
+        if(this.props.user) userId = this.props.user._id;
+
+        axios.get(`/api/post?userId=${userId}`)
         .then(posts => {
             let postList = <PostList posts={posts.data} />
             this.setState({PostList : postList})

@@ -35,7 +35,7 @@ class Card extends Component {
         return (
             <article className="kard">
                 <div className="section header">
-                    <img src={this.state.user.profileImg} alt="" srcSet=""/>
+                    <img src="{this.state.user.img}" alt="" srcSet=""/>
                     <div className="kitty_name"><strong>{this.state.user.name}</strong></div>
                 </div>
                 <div className="media">
