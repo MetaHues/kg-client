@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import axios from 'axios'
 
 // import components
@@ -11,45 +13,43 @@ import AuthenticatedRoute from './container/AuthenticatedRoute'
 import Profile from './container/Profile'
 import CreatePost from './container/CreatePost'
 
+// actions
+import addPosts from '../action/posts'
 
 class App extends Component {
-    constructor() {
-        super()
-        this.state = {
-            user : null
-        }
-    }
-
+    
     componentDidMount() {
-        // get current user
-        axios.get('/api/user/profile')
+        axios.get('/api/post')
         .then(res => {
-            this.setState({user: res.data})
-            console.log('user set in app')
-        })
-        .catch(err => {
-            this.setState({user: undefined})
+            this.props.addPosts(res.data)
+        }).catch(err => {
             console.log(err)
         })
     }
 
     render() {
         return (
-            <div className="App">
-                <Switch>
-                    <Route exact path='/login' component={Login} />
-                    <Route exact path='/explore' render={() => (<Explore view={'grid'} />)} />
-                    <Route exact path='/' render={() => (<Redirect to='/explore' />)} />
-                    <Route path='/post/:postId' component={Post} />
-                    <Route path='/user/:userId' component={UserPage} />
-                    <AuthenticatedRoute exact path='/createpost' component={CreatePost} />
-                    <AuthenticatedRoute exact path='/home' component={UserPage} />
-                    <AuthenticatedRoute exact path='/profile' component={Profile} />
-                    <Route render={()=>(<div>no route!</div>)} />
-                </Switch>
-            </div>      
+            <BrowserRouter>
+                <div className="App">
+                    <Switch>
+                        <Route exact path='/login' component={Login} />
+                        <Route exact path='/explore' render={() => (<Explore view={'grid'} />)} />
+                        <Route exact path='/' render={() => (<Redirect to='/explore' />)} />
+                        <Route path='/post/:postId' component={Post} />
+                        <Route path='/user/:userId' component={UserPage} />
+                        <AuthenticatedRoute exact path='/createpost' component={CreatePost} />
+                        <AuthenticatedRoute exact path='/home' component={UserPage} />
+                        <AuthenticatedRoute exact path='/profile' component={Profile} />
+                        <Route render={()=>(<div>no route!</div>)} />
+                    </Switch>
+                </div>
+            </BrowserRouter>     
         );
     }
 }
 
-export default App
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ addPosts: addPosts }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(App)

@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
+// components
+import NavigatorMobile from '../navigation/NavigatorMobile'
+
 class CreatePost extends Component {
     SubmitPost = (e) => {
         e.preventDefault()
@@ -30,6 +33,7 @@ class CreatePost extends Component {
                     <input type='text' id='post_comment' name='post_comment' placeholder='Comment' />
                     <button type='button' onClick={this.SubmitPost} >Submit</button>
                 </form>
+                <NavigatorMobile/>
             </div>
         )
     }

@@ -1,36 +1,48 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import axios from 'axios'
+import get from 'lodash.get'
 
 // style
 import '../../css/PostGridTile.css'
+
+// actions
+import addUser from '../../action/users'
 
 class PostGridTile extends Component {
     constructor(props) {
         super(props)
         this.state = {
             user: null,
-            post: null,
+            imgUrl: null
         }
     }
 
     componentDidMount() {
-        axios.get(`/api/post/${this.props.postId}`)
-        .then(postRes => {
-            axios.get(`/api/user/${postRes.data.userId}`)
+        const {users, post} = this.props
+        const imgUrl = get(this.props, 'post.media.img')
+
+        console.log('lookup', users[post.userId])
+        if(users[post.userId]) {
+            this.setState({user: users[post.userId], imgUrl: imgUrl})
+        } else {
+            axios.get(`/api/user/${this.props.post.userId}`)
             .then(userRes => {
-                this.setState({post: postRes.data, user: userRes.data})
+                this.setState({user: userRes.data, imgUrl: imgUrl})
+                this.props.addUser(userRes.data)
             })
             .catch(err => {
                 console.log(err)
             })
-        })
-        .catch(err => {
-            console.log(err)
-        })
+        }
+
+
     }
+
     render() {
-        if(this.state.user === null || this.state.post === null) {
+        if(this.state.user === null) {
             return (
                 <div className='PostGridTile'>
                     <img src='' alt=''  />
@@ -39,12 +51,20 @@ class PostGridTile extends Component {
         }
         return (
             <div className='PostGridTile'>
-                <Link to={`/post/${this.state.post._id}`}>
-                    <img src={this.state.post.mediaUrl} alt='' />
+                <Link to={`/post/${this.props.post._id}`}>
+                    <img src={this.state.imgUrl} alt='' />
                 </Link>
             </div>
         )
     }
 }
 
-export default PostGridTile
+const mapStateToProps = (state) => {
+    return { users: state.users }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ addUser: addUser }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostGridTile)
