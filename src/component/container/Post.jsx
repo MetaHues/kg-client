@@ -5,11 +5,6 @@ import Card from '../partial/Card'
 import NavigatorMobile from '../navigation/NavigatorMobile'
 
 class Post extends Component {
-    constructor() {
-        super()
-        this.state = {}
-    }
-
     render() {
         return (
             <div className='Post'>

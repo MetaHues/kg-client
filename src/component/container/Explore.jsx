@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import axios from 'axios'
 
 // components
@@ -22,6 +23,7 @@ class Explore extends Component {
         .catch(err => {
             console.log(err)
         })
+        console.log(this.props.posts)
     }
 
     render() {
@@ -29,11 +31,15 @@ class Explore extends Component {
         return ( 
             <div className = 'Explore'>
                 <Search />
-                <PostGrid posts={this.state.posts} />
+                <PostGrid posts={this.props.posts} />
                 <NavigatorMobile/>
             </div>
         )
     }
 }
 
-export default Explore
+const mapStateToProps = (store) => {
+    return { posts: store.posts }
+}
+
+export default connect(mapStateToProps)(Explore)

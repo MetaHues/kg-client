@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 //components
 import PostGridTile from './PostGridTile'
@@ -11,7 +11,7 @@ function PostGrid(props) {
     return (
         <div className = 'PostGrid'>
             {props.posts.map( post => {
-                return (<PostGridTile key={post._id} postId={post._id} />)
+                return (<PostGridTile key={post._id} post={post}/>)
             })}
         </div>
     )
