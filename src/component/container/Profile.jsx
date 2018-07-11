@@ -10,9 +10,9 @@ class Profile extends React.Component {
             <div>
                 <h1> Profile </h1>
                 <header>
-                    <img src={this.props.user.img} alt='user' />
+                    <img src={this.props.self.img} alt='user' />
                     <div>
-                        {this.props.user.name}
+                        {this.props.self.name}
                     </div>
                 </header>
                 <a href='/auth/logout'>
@@ -25,7 +25,7 @@ class Profile extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { user: state.user }
+    return { self: state.self }
 }
 
 export default connect(mapStateToProps)(Profile)
