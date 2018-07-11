@@ -37,8 +37,6 @@ class PostGridTile extends Component {
                 console.log(err)
             })
         }
-
-
     }
 
     render() {
