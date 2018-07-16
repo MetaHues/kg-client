@@ -7,10 +7,10 @@ class Search extends Component {
     render() {
         return (
             <div className="Search">
-                <div className="searchBoarder">
+                {/* <div className="searchBoarder">
                     <i className="fa fa-search"/>
                     <input type="text" placeholder="Search"/>
-                </div>
+                </div> */}
             </div>
         )
     }
