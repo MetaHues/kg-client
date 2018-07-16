@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Axios from 'axios'
 
+// components
+import Comments from './Comments'
+
 // Styling
 import '../../css/Card.css'
 
@@ -77,18 +80,11 @@ class Card extends Component {
                 <div className="section like_info">
                     <p><strong>{this.state.post.likes} Grumpys</strong></p>
                 </div>
-                <div className="section comments">
-                    <ol>
-                        <li><strong>{this.state.user.name} </strong>{this.state.post.postText}</li>
-                        {this.state.post.comments.map(comment => {
-                            return <li><strong>{comment.userName} </strong>{comment.text}</li>
-                        })}
-                    </ol>
-                </div>
                 <div className="section comment_area">
                 <input type="text" name="" id="" placeholder="Add a some glitter..."/>
                 <a><i className="fa fa-ellipsis-h"/></a>
                 </div> */}
+                <Comments userName={this.state.user.name} msg={this.props.post.msg} />
                 <div className="section time_posted">{this.getHours(this.props.post.createdAt)}</div>
                 
             </article>
