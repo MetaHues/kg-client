@@ -25,7 +25,7 @@ class AuthenticatedRoute extends React.Component {
     
     render() {
         const { self, component: Component, render, ...rest } = this.props
-        console.log('self', self)
+
         // Loading
         let isLoading = !self
         if(isLoading) {
@@ -33,9 +33,8 @@ class AuthenticatedRoute extends React.Component {
         }
 
         // Not logged in
-        let isNotAuthorized = !self.name
-        console.log('isnotauth', isNotAuthorized)
-        if(isNotAuthorized) {
+        let isAuthorized = (self.name !== undefined)
+        if(!isAuthorized) {
             return (<Redirect to='/login' />)
         }
 

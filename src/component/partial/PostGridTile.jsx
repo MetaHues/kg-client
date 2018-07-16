@@ -24,7 +24,6 @@ class PostGridTile extends Component {
         const {users, post} = this.props
         const imgUrl = get(this.props, 'post.media.img')
 
-        console.log('lookup', users[post.userId])
         if(users[post.userId]) {
             this.setState({user: users[post.userId], imgUrl: imgUrl})
         } else {

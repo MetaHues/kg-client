@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import Axios from 'axios'
 
 // Styling
@@ -30,15 +31,32 @@ class Card extends Component {
         .catch(err => {
             console.log(err)
         })
+
+        // if(users[post.userId]) {
+        //     this.setState({user: users[post.userId], imgUrl: imgUrl})
+        // } else {
+        //     axios.get(`/api/user/${this.props.post.userId}`)
+        //     .then(userRes => {
+        //         this.setState({user: userRes.data, imgUrl: imgUrl})
+        //         this.props.addUser(userRes.data)
+        //     })
+        //     .catch(err => {
+        //         console.log(err)
+        //     })
+        // }
     }
 
     render() {
-        if(this.state.user === null || this.state.post === null) return null
+        if(this.state.user === null || this.props.post === null) return null
         return (
             <article className="kard">
                 <div className="section header">
-                    <img src={this.state.user.img} alt="" srcSet=""/>
-                    <div className="kitty_name"><strong>{this.state.user.name}</strong></div>     
+                    <Link to={`/user/${this.state.user._id}`}>
+                        <img src={this.state.user.img} alt="" srcSet=""/>
+                    </Link>
+                    <Link to={`/user/${this.state.user._id}`}>
+                        <div className="kitty_name"><strong>{this.state.user.name}</strong></div>
+                    </Link>
                 </div>
                 <div className="media">
                     {this.state.post.media && this.state.post.media.img !== undefined &&

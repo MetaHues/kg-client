@@ -8,7 +8,7 @@ function PostList(props) {
     return (
         <div className = 'PostList'>
             {props.posts.map(post =>  {
-                return <Card key={post._id} postId={post._id} /> })
+                return <Card key={post._id} postId={post._id} post={post} /> })
             }
         </div>
     )
