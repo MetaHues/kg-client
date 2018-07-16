@@ -46,6 +46,12 @@ class Card extends Component {
         // }
     }
 
+    getHours(createdAtString) {
+        const createdAt = new Date(createdAtString)
+        const hoursSinceCreatedAt = Math.round((Date.now() - createdAt.getTime()) / 36e5)
+        return `Created: ${createdAt.toLocaleDateString()} ${createdAt.toLocaleTimeString()}`
+    }
+
     render() {
         if(this.state.user === null || this.props.post === null) return null
         return (
@@ -63,7 +69,7 @@ class Card extends Component {
                         <img src={this.state.post.media.img} alt="" />
                     }
                 </div>
-                <div className="section interactions">
+                {/* <div className="section interactions">
                     <a className="like_button"><i className="fa fa-heart-o"/></a>
                     <a className="comment_button"><i className="fa fa-diamond"/></a>
                     <a className="bookmark_button"><i className="fa fa-bookmark-o"/></a>
@@ -79,11 +85,12 @@ class Card extends Component {
                         })}
                     </ol>
                 </div>
-                <div className="section time_posted">69 HOURS AGO</div>
                 <div className="section comment_area">
                 <input type="text" name="" id="" placeholder="Add a some glitter..."/>
                 <a><i className="fa fa-ellipsis-h"/></a>
-                </div>
+                </div> */}
+                <div className="section time_posted">{this.getHours(this.props.post.createdAt)}</div>
+                
             </article>
         );
     }
