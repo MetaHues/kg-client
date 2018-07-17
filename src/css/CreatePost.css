@@ -1,11 +1,12 @@
 .CreatePost {
-    height: 85vh;
-    padding: 20px;
+    height: 80vh;
+    width: 100%;
 }
 
 .CreatePost__title {
     font-size: 2rem;
     padding: .5rem 0 .5rem 0;
+    color: tomato;
 }
 
 .CreatePost__container {
@@ -13,11 +14,15 @@
     width: 100%;
     margin: 0 auto;
     height: 100%;
+    box-sizing: border-box;
 }
 
 .CreatePost__container form {
+    padding: 15px 15px;
     display: flex;
     flex-direction: column;
+    height: 66%;
+    box-sizing: border-box;
 }
 
 .CreatePost__container form > * {
@@ -31,15 +36,18 @@
 
 .CreatePost__preview-img-container {
     height: 33%;
-    background-color: tomato;
-    margin-bottom: 15px;
     position: relative;
+    font-size: 5rem;
+    font-weight: 300;
+    color: #888;
+    border-bottom: 1px solid black;
 }
-.CreatePost__preview-img-container > img {
+.CreatePost__preview-img-container > img,
+.CreatePost__preview-img-container > i {
     max-height: 100%;
     max-width: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}   
+}

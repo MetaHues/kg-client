@@ -8,16 +8,21 @@ import NavigatorMobile from '../navigation/NavigatorMobile'
 import '../../css/CreatePost.css'
 
 class CreatePost extends Component {
-
+    constructor(props) {
+        super(props)
+        this.setImgUrl = this.setImgUrl.bind(this)
+        this.focusImgInput = this.selectImgInput.bind(this)
+    }
 
     submitPost = (e) => {
         e.preventDefault()
+
         console.log(this.props)
         let newPost = {
             media: {
-                img: document.querySelector('#post_img').value
+                img: this.imgInput.value
             },
-            msg: document.querySelector('#post_comment').value,
+            msg: this.msgInput.value,
             likes: 0,
             comments: []
         }
@@ -31,24 +36,26 @@ class CreatePost extends Component {
     }
 
     setImgUrl() {
-        let src = document.querySelector('#post_img').value
-        let img = document.querySelector('.CreatePost__preview-img')
-        console.log('img', img)
-        img.src = src
+        this.previewImg.src = this.imgInput.value
+    }
+
+    selectImgInput() {
+        this.imgInput.focus()
     }
 
     render() {
         return (
             <div className='CreatePost'>
+                <h1 className='CreatePost__title'>Post a picture</h1>
                 <div className="CreatePost__container">
-                    <h1 className='CreatePost__title'>Post a picture</h1>
-                    <div className="CreatePost__preview-img-container">
-                        <img src="" alt="" className="CreatePost__preview-img"/>
+                    <div className="CreatePost__preview-img-container" onClick={this.selectImgInput.bind(this)}>
+                        <i className='CreatePost__picture-icon fa fa-picture-o' />
+                        <img ref={ref => this.previewImg = ref} src="" alt='' className="CreatePost__preview-img"/>
                     </div>
                     <form action='/api/post' method='post'>
-                        <input type='text' id='post_img' name='post_img' placeholder='Image URL' onChange={this.setImgUrl} />
-                        <input type='text' id='post_comment' name='post_comment' placeholder='Comment' />
-                        <button type='button' onClick={this.submitPost} >Submit</button>
+                        <input ref={r => this.imgInput=r} type='text' placeholder='Image URL' onChange={this.setImgUrl.bind(this)} />
+                        <input ref={r => this.msgInput=r} type='text' placeholder='Comment' />
+                        <button type='submit' onClick={this.submitPost} >Submit</button>
                     </form>
                 </div>
                 <NavigatorMobile/>
