@@ -1,0 +1,45 @@
+.CreatePost {
+    height: 85vh;
+    padding: 20px;
+}
+
+.CreatePost__title {
+    font-size: 2rem;
+    padding: .5rem 0 .5rem 0;
+}
+
+.CreatePost__container {
+    border: 1px solid black;
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.CreatePost__container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.CreatePost__container form > * {
+    margin-bottom: 15px;
+}
+
+.CreatePost__container button {
+    margin-top: auto;
+    padding: 10px;
+}
+
+.CreatePost__preview-img-container {
+    height: 33%;
+    background-color: tomato;
+    margin-bottom: 15px;
+    position: relative;
+}
+.CreatePost__preview-img-container > img {
+    max-height: 100%;
+    max-width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}   
