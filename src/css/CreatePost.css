@@ -32,6 +32,8 @@
 .CreatePost__container button {
     margin-top: auto;
     padding: 10px;
+    color: tomato;
+    background-color: white;
 }
 
 .CreatePost__preview-img-container {
@@ -50,4 +52,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.CreatePost__alert {
+    color: tomato;
 }

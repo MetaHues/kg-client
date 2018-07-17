@@ -22,7 +22,7 @@ class CreatePost extends Component {
 
         if(this.previewImg.width === 0 || this.previewImg.height === 0) {
             this.imgInput.focus()
-            this.setState({alert: <div className='alert text'>Invalid Img: Please add url below. </div>})
+            this.setState({alert: <div className='CreatePost__alert'>Invalid Img: Please add url below. </div>})
             return
         }
 
