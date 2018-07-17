@@ -35,7 +35,7 @@ class UserPage extends Component {
         if(isHome) {
             let postArray = Object.keys(this.props.posts).map((key) => {return this.props.posts[key]})
             let sortedPostArray = postArray.sort((a, b) => {
-                return new Date(a.createdAt) - new Date(b.createdAt)
+                return new Date(b.createdAt) - new Date(a.createdAt)
             })
             return(
                 <div className='UserPage'>
@@ -58,7 +58,7 @@ class UserPage extends Component {
         
         let postArray = this.props.posts.filter(post => { return post.userId === this.userId})
         let sortedPostArray = postArray.sort((a, b) => {
-            return new Date(a.createdAt) - new Date(b.createdAt)
+            return new Date(b.createdAt) - new Date(a.createdAt)
         })
         return (
             <div className='UserPage'>
