@@ -20,32 +20,20 @@ class UserPage extends Component {
         // load friends
         let isHome = this.props.match.path === '/home'
 
-        if(!isHome) {
+        if(isHome) {
+            this.user = this.props.self
+        } else {
             this.userId = this.props.match.params.userId
             this.user = this.props.users[this.userId]
         }
+
         let postsLoaded = this.props.posts !== undefined 
         let userLoaded = this.user !== undefined
 
         if(!postsLoaded) {
             return (<div className='UserPage' />)
         }
-        console.log('postArray', postArray)
         
-        // TODO: filter by friends
-        if(isHome) {
-            let postArray = Object.keys(this.props.posts).map((key) => {return this.props.posts[key]})
-            let sortedPostArray = postArray.sort((a, b) => {
-                return new Date(b.createdAt) - new Date(a.createdAt)
-            })
-            return(
-                <div className='UserPage'>
-                    <PostList posts={sortedPostArray} />
-                    <NavigatorMobile/>
-                </div>
-            )
-        }
-
         if(!userLoaded) {
             axios.get(`/api/user/${this.userId}`)
                 .then(userRes => {
@@ -56,13 +44,35 @@ class UserPage extends Component {
                 })
             return (<div className='UserPage' />)
         }
-        
-        let postArray = this.props.posts.filter(post => { return post.userId === this.userId})
+
+
+
+        // TODO: filter by friends
+        let postArray = []
+        let title = ''
+        if(isHome) {
+            postArray = Object.keys(this.props.posts).map((key) => {return this.props.posts[key]})
+            console.log(postArray)
+            title = 'Friends Posts'
+            // let sortedPostArray = postArray.sort((a, b) => {
+            //     return new Date(b.createdAt) - new Date(a.createdAt)
+            // })
+            // return(
+            //     <div className='UserPage'>
+            //         <PostList posts={sortedPostArray} />
+            //         <NavigatorMobile/>
+            //     </div>
+            // )
+        } else {
+            title = `${this.user.name} Posts`
+            postArray = this.props.posts.filter(post => { return post.userId === this.userId})
+        }
         let sortedPostArray = postArray.sort((a, b) => {
             return new Date(b.createdAt) - new Date(a.createdAt)
         })
         return (
             <div className='UserPage'>
+                <h1 className="UserPage__title">{title}</h1>
                 <PostList posts={sortedPostArray} />
                 <NavigatorMobile/>
             </div>
