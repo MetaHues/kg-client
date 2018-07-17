@@ -16,8 +16,6 @@ import '../../css/UserPage.css'
 class UserPage extends Component {
 
     render() {
-        console.log(this.props)
-        // load friends
         let isHome = this.props.match.path === '/home'
 
         if(isHome) {
@@ -45,24 +43,12 @@ class UserPage extends Component {
             return (<div className='UserPage' />)
         }
 
-
-
         // TODO: filter by friends
         let postArray = []
         let title = ''
         if(isHome) {
             postArray = Object.keys(this.props.posts).map((key) => {return this.props.posts[key]})
-            console.log(postArray)
             title = 'Friends Posts'
-            // let sortedPostArray = postArray.sort((a, b) => {
-            //     return new Date(b.createdAt) - new Date(a.createdAt)
-            // })
-            // return(
-            //     <div className='UserPage'>
-            //         <PostList posts={sortedPostArray} />
-            //         <NavigatorMobile/>
-            //     </div>
-            // )
         } else {
             title = `${this.user.name} Posts`
             postArray = this.props.posts.filter(post => { return post.userId === this.userId})
