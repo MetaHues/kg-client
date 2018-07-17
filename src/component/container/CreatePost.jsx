@@ -12,12 +12,20 @@ class CreatePost extends Component {
         super(props)
         this.setImgUrl = this.setImgUrl.bind(this)
         this.focusImgInput = this.selectImgInput.bind(this)
+        this.state = {
+            alert: (<div className='CreatePost__alert' />)
+        }
     }
 
     submitPost = (e) => {
         e.preventDefault()
 
-        console.log(this.props)
+        if(this.previewImg.width === 0 || this.previewImg.height === 0) {
+            this.imgInput.focus()
+            this.setState({alert: <div className='alert text'>Invalid Img: Please add url below. </div>})
+            return
+        }
+
         let newPost = {
             media: {
                 img: this.imgInput.value
@@ -53,6 +61,8 @@ class CreatePost extends Component {
                         <img ref={ref => this.previewImg = ref} src="" alt='' className="CreatePost__preview-img"/>
                     </div>
                     <form action='/api/post' method='post'>
+                        <h2>Add the url to the image below</h2>
+                        {this.state.alert}
                         <input ref={r => this.imgInput=r} type='text' placeholder='Image URL' onChange={this.setImgUrl.bind(this)} />
                         <input ref={r => this.msgInput=r} type='text' placeholder='Comment' />
                         <button type='submit' onClick={this.submitPost} >Submit</button>
