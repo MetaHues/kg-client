@@ -18,23 +18,18 @@ class Card extends Component {
     }
 
     componentDidMount() {
+        console.log('card mount')
         // get card data
-        // TODO: move this into app
-        Axios.get(`/api/post/${this.props.postId}`)
-        .then(postRes => {
-            this.setState({post: postRes.data})
-            Axios.get(`/api/user/${postRes.data.userId}`)
+        // TODO: move this into app // can't this may be access directly
+        if(this.props.post !== undefined) {
+            Axios.get(`/api/user/${this.props.post.userId}`)
             .then(userRes => {
                 this.setState({user: userRes.data})
             })
             .catch(err => {
                 console.log(err)
             })
-        })
-        .catch(err => {
-            console.log(err)
-        })
-
+        } 
         // if(users[post.userId]) {
         //     this.setState({user: users[post.userId], imgUrl: imgUrl})
         // } else {
@@ -51,7 +46,6 @@ class Card extends Component {
 
     getHours(createdAtString) {
         const createdAt = new Date(createdAtString)
-        const hoursSinceCreatedAt = Math.round((Date.now() - createdAt.getTime()) / 36e5)
         return `Created: ${createdAt.toLocaleDateString()} ${createdAt.toLocaleTimeString()}`
     }
 
@@ -68,8 +62,8 @@ class Card extends Component {
                     </Link>
                 </div>
                 <div className="media">
-                    {this.state.post.media && this.state.post.media.img !== undefined &&
-                        <img src={this.state.post.media.img} alt="" />
+                    {this.props.post.media && this.props.post.media.img !== undefined &&
+                        <img src={this.props.post.media.img} alt="" />
                     }
                 </div>
                 {/* <div className="section interactions">

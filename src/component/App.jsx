@@ -19,15 +19,19 @@ import addPosts from '../action/posts'
 class App extends Component {
     
     componentDidMount() {
+        console.log('app did mount')
         axios.get('/api/post')
         .then(res => {
             this.props.addPosts(res.data)
+            console.log('added Posts')
         }).catch(err => {
             console.log(err)
         })
     }
 
     render() {
+        console.log('app render')
+
         return (
             <BrowserRouter>
                 <div className="App">
