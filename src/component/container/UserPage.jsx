@@ -10,6 +10,9 @@ import NavigatorMobile from '../navigation/NavigatorMobile'
 // actions
 import addUser from '../../action/users'
 
+// styles
+import '../../css/UserPage.css'
+
 class UserPage extends Component {
 
     render() {
@@ -28,8 +31,6 @@ class UserPage extends Component {
             return (<div className='UserPage' />)
         }
         console.log('postArray', postArray)
-        // const peopleArray = Object.keys(peopleObj).map(i => peopleObj[i])
-
         
         // TODO: filter by friends
         if(isHome) {
