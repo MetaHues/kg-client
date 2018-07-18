@@ -1,0 +1,35 @@
+
+
+.Profile__header {
+    display:flex;
+    justify-content: space-around;
+    align-content: center;
+    text-align: center;
+}
+
+.Profile__header--title {
+    color: tomato;
+}
+
+.Profile__header--edit-button {
+    color: tomato;
+    background-color: white;
+}
+
+.Profile__user-info--container {
+    display: flex;
+}
+
+.Profile__user-info--pic {
+    padding: 20px;
+    border-radius: 50%;
+}
+
+.Profile__user-info--name {
+    align-self: center;
+    margin-left: 15px;
+    font-size: 1.3rem;
+    font-weight: 400;
+    letter-spacing: -.5px;
+}
+
