@@ -3,6 +3,7 @@ import axios from 'axios'
 
 // components
 import NavigatorMobile from '../navigation/NavigatorMobile'
+import MobileHeader from '../partial/MobileHeader'
 
 // styles
 import '../../css/CreatePost.css'
@@ -55,7 +56,7 @@ class CreatePost extends Component {
     render() {
         return (
             <div className='CreatePost'>
-                <h1 className='CreatePost__title'>Post a picture</h1>
+                <MobileHeader title={'New Post'} />
                 <div className="CreatePost__container">
                     <div className="CreatePost__preview-img-container" onClick={this.selectImgInput.bind(this)}>
                         <i className='CreatePost__picture-icon fa fa-picture-o' />

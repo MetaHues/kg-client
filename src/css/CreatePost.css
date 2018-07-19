@@ -3,12 +3,6 @@
     width: 100%;
 }
 
-.CreatePost__title {
-    font-size: 2rem;
-    padding: .5rem 0 .5rem 0;
-    color: tomato;
-}
-
 .CreatePost__container {
     border: 1px solid black;
     width: 100%;
