@@ -1,0 +1,23 @@
+.mobile-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    border-bottom: 1px solid #efefef;
+}
+
+.mobile-header_logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 25%;
+}
+
+.mobile-header_title {
+    color: tomato;
+    align-content: center;
+}
+
+.mobile-header_spacer {
+    width: 25%;
+}

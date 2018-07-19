@@ -6,14 +6,16 @@ import axios from 'axios'
 import PostViewer from './PostViewer'
 import Search from '../partial/Search'
 import NavigatorMobile from '../navigation/NavigatorMobile'
+import MobileHeader from '../partial/MobileHeader'
 
 class Explore extends Component {
     render() {
         if(this.props.posts === null) return ( <div className = 'Explore' />)
         return ( 
             <div className = 'Explore'>
+                <MobileHeader title={'Explore'}/>
                 <Search />
-                <PostViewer posts={this.props.posts} />
+                <PostViewer posts={this.props.posts} view={'GRID'} />
                 <NavigatorMobile/>
             </div>
         )

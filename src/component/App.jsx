@@ -12,6 +12,7 @@ import Login from './container/Login'
 import AuthenticatedRoute from './container/AuthenticatedRoute'
 import Profile from './container/Profile'
 import CreatePost from './container/CreatePost'
+import Home from './container/Home'
 
 // actions
 import addPosts from '../action/posts'
@@ -38,7 +39,7 @@ class App extends Component {
                         <Route path='/post/:postId' component={Post} />
                         <Route path='/user/:userId' component={PostViewer} />
                         <AuthenticatedRoute exact path='/createpost' component={CreatePost} />
-                        <AuthenticatedRoute exact path='/home' component={PostViewer} />
+                        <AuthenticatedRoute exact path='/home' component={Home} />
                         <AuthenticatedRoute exact path='/profile' component={Profile} />
                         <Route render={()=>(<div>no route!</div>)} />
                     </Switch>
