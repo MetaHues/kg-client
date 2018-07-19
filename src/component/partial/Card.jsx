@@ -9,40 +9,33 @@ import Comments from './Comments'
 import '../../css/Card.css'
 
 class Card extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            user: null,
-            post: null,
-        }
-    }
 
-    componentDidMount() {
-        console.log('card mount')
-        // get card data
-        // TODO: move this into app // can't this may be access directly
-        if(this.props.post !== undefined) {
-            Axios.get(`/api/user/${this.props.post.userId}`)
-            .then(userRes => {
-                this.setState({user: userRes.data})
-            })
-            .catch(err => {
-                console.log(err)
-            })
-        } 
-        // if(users[post.userId]) {
-        //     this.setState({user: users[post.userId], imgUrl: imgUrl})
-        // } else {
-        //     axios.get(`/api/user/${this.props.post.userId}`)
-        //     .then(userRes => {
-        //         this.setState({user: userRes.data, imgUrl: imgUrl})
-        //         this.props.addUser(userRes.data)
-        //     })
-        //     .catch(err => {
-        //         console.log(err)
-        //     })
-        // }
-    }
+    // componentDidMount() {
+    //     console.log('card mount')
+    //     // get card data
+    //     // TODO: move this into app // can't this may be access directly
+    //     if(this.props.post !== undefined) {
+    //         Axios.get(`/api/user/${this.props.post.userId}`)
+    //         .then(userRes => {
+    //             this.setState({user: userRes.data})
+    //         })
+    //         .catch(err => {
+    //             console.log(err)
+    //         })
+    //     } 
+    //     if(users[post.userId]) {
+    //         this.setState({user: users[post.userId], imgUrl: imgUrl})
+    //     } else {
+    //         axios.get(`/api/user/${this.props.post.userId}`)
+    //         .then(userRes => {
+    //             this.setState({user: userRes.data, imgUrl: imgUrl})
+    //             this.props.addUser(userRes.data)
+    //         })
+    //         .catch(err => {
+    //             console.log(err)
+    //         })
+    //     }
+    // }
 
     getHours(createdAtString) {
         const createdAt = new Date(createdAtString)
@@ -50,15 +43,16 @@ class Card extends Component {
     }
 
     render() {
-        if(this.state.user === null || this.props.post === null) return null
+        if(!this.props.user || !this.props.post || !this.props.post.media.img) return null;
+
         return (
             <article className="kard">
                 <div className="section header">
-                    <Link to={`/user/${this.state.user._id}`}>
-                        <img src={this.state.user.img} alt="" srcSet=""/>
+                    <Link to={`/user/${this.props.user._id}`}>
+                        <img src={this.props.user.img} alt="" srcSet=""/>
                     </Link>
-                    <Link to={`/user/${this.state.user._id}`}>
-                        <div className="kitty_name"><strong>{this.state.user.name}</strong></div>
+                    <Link to={`/user/${this.props.user._id}`}>
+                        <div className="kitty_name"><strong>{this.props.user.name}</strong></div>
                     </Link>
                 </div>
                 <div className="media">
@@ -78,7 +72,7 @@ class Card extends Component {
                 <input type="text" name="" id="" placeholder="Add a some glitter..."/>
                 <a><i className="fa fa-ellipsis-h"/></a>
                 </div> */}
-                <Comments userName={this.state.user.name} msg={this.props.post.msg} />
+                <Comments userName={this.props.user.name} msg={this.props.post.msg} />
                 <div className="section time_posted">{this.getHours(this.props.post.createdAt)}</div>
                 
             </article>
