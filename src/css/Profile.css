@@ -1,31 +1,31 @@
 
 
-.Profile__header {
+.Profile_header {
     display:flex;
     justify-content: space-around;
     align-content: center;
     text-align: center;
 }
 
-.Profile__header--title {
+.Profile_header_title {
     color: tomato;
 }
 
-.Profile__header--edit-button {
+.Profile_header_edit-button {
     color: tomato;
     background-color: white;
 }
 
-.Profile__user-info--container {
+.Profile_user-info_container {
     display: flex;
 }
 
-.Profile__user-info--pic {
+.Profile_user-info_pic {
     padding: 20px;
     border-radius: 50%;
 }
 
-.Profile__user-info--name {
+.Profile_user-info_name {
     align-self: center;
     margin-left: 15px;
     font-size: 1.3rem;
