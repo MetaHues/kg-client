@@ -1,0 +1,23 @@
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+}
+
+.profile-header_logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 25%;
+}
+
+.profile-header_title {
+    color: tomato;
+    align-content: center;
+}
+
+.profile-header_edit-button {
+    width: 25%;
+
+}

@@ -1,17 +1,9 @@
-
-
-.Profile_header {
-    display:flex;
-    justify-content: space-around;
-    align-content: center;
-    text-align: center;
+.Profile {
+    position: relative;
 }
 
-.Profile_header_title {
-    color: tomato;
-}
-
-.Profile_header_edit-button {
+.Profile_edit-button {
+    position: absolute;
     color: tomato;
     background-color: white;
 }

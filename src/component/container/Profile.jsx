@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 // components
 import NavigatorMobile from '../navigation/NavigatorMobile'
+import ProfileHeader from '../partial/ProfileHeader'
+import ProfileUserMessage from '../partial/ProfileUserMessage'
 
 // style
 import '../../css/Profile.css'
@@ -12,18 +14,17 @@ class Profile extends React.Component {
         console.log(this.props)
         return (
             <div className='Profile'>
-                <header className='Profile_header'>
-                    <div className='Profile_header_logo'>KittyGlitter</div>
-                    <h1 className='Profile_header_title'> Profile </h1>
-                    <button className='Profile_header_edit-button'>Edit</button>
-                </header>
+                <ProfileHeader />
                 <section className='Profile_user-info'>
                     <div className="Profile_user-info_container">
                         <img className='Profile_user-info_pic' src={this.props.self.img} alt='user' />
                         <div className='Profile_user-info_name'>{this.props.self.name}</div>
                     </div>
+                <ProfileUserMessage self={this.props.self} />
                 </section>
+                <section className='Profile_user-stats_container'>
 
+                </section>
                 <a href='/auth/logout'>
                     <button>Logout</button>
                 </a>
