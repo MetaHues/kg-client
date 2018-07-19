@@ -1,0 +1,22 @@
+.user-stats_list {
+    display: flex;
+    padding: .5rem 0;
+    border-top: 1px solid #efefef;
+    border-bottom: 1px solid #efefef;
+}
+
+.user-stats_list-item {
+    display: flex;
+    flex-direction: column;
+    width: 33.3%;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.user-stats_list-item_label {
+    color: #999;
+}
+
+.user-stats_list-item_stat {
+    margin-bottom: .1rem;
+}

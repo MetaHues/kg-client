@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import NavigatorMobile from '../navigation/NavigatorMobile'
 import ProfileHeader from '../partial/ProfileHeader'
 import ProfileUserMessage from '../partial/ProfileUserMessage'
+import ProfileUserStats from '../partial/ProfileUserStats'
 
 // style
 import '../../css/Profile.css'
@@ -20,11 +21,9 @@ class Profile extends React.Component {
                         <img className='Profile_user-info_pic' src={this.props.self.img} alt='user' />
                         <div className='Profile_user-info_name'>{this.props.self.name}</div>
                     </div>
-                <ProfileUserMessage self={this.props.self} />
+                    <ProfileUserMessage self={this.props.self} />
                 </section>
-                <section className='Profile_user-stats_container'>
-
-                </section>
+                <ProfileUserStats />
                 <a href='/auth/logout'>
                     <button>Logout</button>
                 </a>
