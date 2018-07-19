@@ -42,6 +42,7 @@ class AuthenticatedRoute extends React.Component {
             return (<Route {...rest} render={(props)=>(<Component {...props} />)}/>)
         }
         return (
+            // TODO: check if this gets self as prop
             <Route {...rest} render={render} />
         )
     }
