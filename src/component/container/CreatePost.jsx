@@ -32,7 +32,8 @@ class CreatePost extends Component {
             },
             msg: this.msgInput.value,
             likes: 0,
-            comments: []
+            comments: [],
+            userId: this.props.self
         }
         axios.post('/api/post', newPost)
         .then((res) => {
