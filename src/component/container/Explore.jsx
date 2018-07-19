@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import axios from 'axios'
 
 // components
-import PostGrid from '../partial/PostGrid'
+import PostViewer from './PostViewer'
 import Search from '../partial/Search'
 import NavigatorMobile from '../navigation/NavigatorMobile'
 
@@ -13,7 +13,7 @@ class Explore extends Component {
         return ( 
             <div className = 'Explore'>
                 <Search />
-                <PostGrid posts={this.props.posts} />
+                <PostViewer posts={this.props.posts} />
                 <NavigatorMobile/>
             </div>
         )

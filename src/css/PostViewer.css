@@ -1,8 +1,8 @@
-.PostList {
+.PostViewer {
     margin-bottom: 15%;
 }
 
-.UserPage__title {
+.PostViewer__title {
     font-size: 2rem;
     padding: .5rem 0 .5rem 0;
     color: tomato;

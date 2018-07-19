@@ -6,13 +6,13 @@ import NavigatorMobile from '../navigation/NavigatorMobile'
 import ProfileHeader from '../partial/ProfileHeader'
 import ProfileUserMessage from '../partial/ProfileUserMessage'
 import ProfileUserStats from '../partial/ProfileUserStats'
+import PostViewer from './PostViewer'
 
 // style
 import '../../css/Profile.css'
 
 class Profile extends React.Component {
     render() {
-        console.log(this.props)
         return (
             <div className='Profile'>
                 <ProfileHeader />
@@ -24,6 +24,7 @@ class Profile extends React.Component {
                     <ProfileUserMessage self={this.props.self} />
                 </section>
                 <ProfileUserStats />
+                <PostViewer posts={this.props.posts} userIds={[this.props.self._id]} view={'GRID'} />
                 <a href='/auth/logout'>
                     <button>Logout</button>
                 </a>
@@ -34,7 +35,7 @@ class Profile extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { self: state.self }
+    return { self: state.self, posts: state.posts }
 }
 
 export default connect(mapStateToProps)(Profile)

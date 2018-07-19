@@ -39,13 +39,7 @@ class PostGridTile extends Component {
     }
 
     render() {
-        if(this.state.user === null) {
-            return (
-                <div className='PostGridTile'>
-                    <img src='' alt=''  />
-                </div>
-            )
-        }
+        if(!this.state.user || !this.state.imgUrl) { return null }
         return (
             <div className='PostGridTile'>
                 <Link to={`/post/${this.props.post._id}`}>

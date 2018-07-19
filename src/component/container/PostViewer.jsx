@@ -6,30 +6,33 @@ import axios from 'axios'
 // components
 import PostList from '../partial/PostList'
 import NavigatorMobile from '../navigation/NavigatorMobile'
+import PostGrid from '../partial/PostGrid'
 
 // actions
 import addUser from '../../action/users'
 
 // styles
-import '../../css/UserPage.css'
+import '../../css/PostViewer.css'
 
 class PostViewer extends Component {
-    
-    componentDidMount() {
-        console.log('mount', this.user, this.props)
-    }
-
-    componentDidUpdate() {
-        console.log('update', this.user, this.props)
-    }
 
     render() {
-        console.log('render', this.user, this.props)
+        console.log('render', this.props)
+        // let userIds = [this.props.self._id]
+        let posts = this.props.posts
+        if(this.props.userIds) {
+            posts = this.props.posts.filter(post => this.props.userIds.includes(post.userId))
+        }
+        let view = null;
+        if(this.props.view === 'LIST') {
+            view = <PostList posts={posts} />
+        } else {
+            view = <PostGrid posts={posts} />
+        }
+
         return (
-            <div className='UserPage'>
-                <p>postviewer</p>
-                {/* <PostList posts={sortedPostArray} /> */}
-                <PostList posts={this.props.posts} user={this.props.self} />
+            <div className='PostViewer'>
+                {view}
                 <NavigatorMobile/>
             </div>
         )
