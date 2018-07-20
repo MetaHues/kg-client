@@ -11,9 +11,11 @@ class FollowButton extends React.Component {
         super(props)
         this.buttonText = 'follow'
     }
-    addFriend() {
+
+    // add or remove from friends
+    toggleFriend() {
         let friend = {
-            userId: this.state.user._id
+            userId: this.props.userId
         }
         Axios.post('/api/user/friend', friend)
                 .then(res => {
@@ -28,9 +30,10 @@ class FollowButton extends React.Component {
     }
 
     renderButton() {
-        console.log('Followbutton', this.props)
+        // not logged in > so do not show
         if(!this.props.self) return <div className="kard_follow-user-button"/>
         
+        // if friend show 'unfollow' if not friend show 'follow
         let isFriend = this.props.self.friends.includes(this.props.userId)
         if(isFriend) {
             return (

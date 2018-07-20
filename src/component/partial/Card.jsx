@@ -38,22 +38,6 @@ class Card extends Component {
         return `Created: ${createdAt.toLocaleDateString()} ${createdAt.toLocaleTimeString()}`
     }
 
-    addFriend() {
-        let friend = {
-            userId: this.state.user._id
-        }
-        Axios.post('/api/user/friend', friend)
-                .then(res => {
-                    console.log(res)
-                    // the button needs to know who your friends are
-                    console.log('addfriendreturn', res.data.self)
-                    this.props.setSelf(res.data.self)
-                })
-                .catch(err => {
-                    console.log('addFriend err', err)
-                })
-    }
-
     render() {
         if(this.state.user === null || this.props.post === null || !this.props.post.media.img) return null
         return (
