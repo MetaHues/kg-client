@@ -1,17 +1,14 @@
 import React from 'react'
-import get from 'lodash.get'
+
+// style
+import '../../css/ProfileUserMessage.css'
 
 export default function ProfileUserMessage(props) {
-    let name = get(props, ['self', 'name'])
-    let msg = get(props, ['self', 'msg'])
-
-    if(!name || !msg) {
-        return null;
-    }
+    console.log(props)
     return (
-        <div className='Profile_user-info_msg'>
-            <div>{name}</div>
-            <div>{msg}</div>
+        <div className='Profile_user-info_msg-container'>
+            <div className='Profile_user-info_msg-name'>{props.name}</div>
+            <div className='Profile_user-info_msg-msg'>{props.msg}</div>
         </div>
     )
 }
