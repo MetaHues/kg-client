@@ -26,7 +26,7 @@ body {
 }
 
 .section.header {
-  padding: 16px;
+  padding: 5px 16px;
 }
 
 .section.like_info {
@@ -120,4 +120,8 @@ input, select, textarea, button{
   color: tomato;
   font-family: lobster;
   margin-left: auto;
+}
+
+.kard_follow-user-button_grey {
+  color: #8e8e8e;
 }

@@ -31,20 +31,21 @@ class FollowButton extends React.Component {
 
     renderButton() {
         // not logged in > so do not show
-        if(!this.props.self) return <div className="kard_follow-user-button"/>
+        if(!this.props.self || this.props.self._id === this.props.userId) return <div className="kard_follow-user-button"/>
         
         // if friend show 'unfollow' if not friend show 'follow
         let isFriend = this.props.self.friends.includes(this.props.userId)
+        let buttonText = 'follow'
         if(isFriend) {
             return (
-                <button className='kard_follow-user-button' onClick={this.addFriend.bind(this)}>
-                    Unfollow
+                <button className='kard_follow-user-button kard_follow-user-button_grey' onClick={this.toggleFriend.bind(this)}>
+                    unfollow
                 </button>
-            )
+            )        
         } else {
             return (
-                <button className='kard_follow-user-button' onClick={this.addFriend.bind(this)}>
-                    Follow
+                <button className='kard_follow-user-button' onClick={this.toggleFriend.bind(this)}>
+                    follow
                 </button>
             )
         }
