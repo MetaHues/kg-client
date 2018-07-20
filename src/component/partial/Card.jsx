@@ -4,6 +4,7 @@ import Axios from 'axios'
 
 // components
 import Comments from './Comments'
+import FollowButton from './FollowButton'
 
 // Styling
 import '../../css/Card.css'
@@ -37,6 +38,22 @@ class Card extends Component {
         return `Created: ${createdAt.toLocaleDateString()} ${createdAt.toLocaleTimeString()}`
     }
 
+    addFriend() {
+        let friend = {
+            userId: this.state.user._id
+        }
+        Axios.post('/api/user/friend', friend)
+                .then(res => {
+                    console.log(res)
+                    // the button needs to know who your friends are
+                    console.log('addfriendreturn', res.data.self)
+                    this.props.setSelf(res.data.self)
+                })
+                .catch(err => {
+                    console.log('addFriend err', err)
+                })
+    }
+
     render() {
         if(this.state.user === null || this.props.post === null || !this.props.post.media.img) return null
         return (
@@ -48,7 +65,8 @@ class Card extends Component {
                     <Link to={`/user/${this.state.user._id}`}>
                         <div className="kitty_name"><strong>{this.state.user.name}</strong></div>
                     </Link>
-                    <button className='kard_follow-user-button'>follow</button>
+                    {/* <button className='kard_follow-user-button' onClick={this.addFriend.bind(this)}>follow</button> */}
+                    <FollowButton userId={this.state.user._id}/>
                 </div>
                 <div className="media">
                     {this.props.post.media && this.props.post.media.img !== undefined &&
@@ -75,4 +93,4 @@ class Card extends Component {
     }
 }
 
-export default Card;
+export default Card
