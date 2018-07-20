@@ -48,6 +48,7 @@ class Card extends Component {
                     <Link to={`/user/${this.state.user._id}`}>
                         <div className="kitty_name"><strong>{this.state.user.name}</strong></div>
                     </Link>
+                    <button className='kard_follow-user-button'>follow</button>
                 </div>
                 <div className="media">
                     {this.props.post.media && this.props.post.media.img !== undefined &&

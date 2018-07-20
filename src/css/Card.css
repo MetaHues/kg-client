@@ -115,3 +115,9 @@ input, select, textarea, button{
   font-family: inherit;
   font-size: inherit;
 }
+
+.kard_follow-user-button {
+  color: tomato;
+  font-family: lobster;
+  margin-left: auto;
+}
