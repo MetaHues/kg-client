@@ -30,18 +30,6 @@ class Card extends Component {
                 console.log(err)
             })
         } 
-        // if(users[post.userId]) {
-        //     this.setState({user: users[post.userId], imgUrl: imgUrl})
-        // } else {
-        //     axios.get(`/api/user/${this.props.post.userId}`)
-        //     .then(userRes => {
-        //         this.setState({user: userRes.data, imgUrl: imgUrl})
-        //         this.props.addUser(userRes.data)
-        //     })
-        //     .catch(err => {
-        //         console.log(err)
-        //     })
-        // }
     }
 
     getHours(createdAtString) {
