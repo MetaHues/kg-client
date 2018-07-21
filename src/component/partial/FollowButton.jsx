@@ -7,11 +7,6 @@ import Axios from 'axios'
 import setSelf from '../../action/self'
 
 class FollowButton extends React.Component {
-    constructor(props) {
-        super(props)
-        this.buttonText = 'follow'
-    }
-
     // add or remove from friends
     toggleFriend() {
         let friend = {
@@ -19,9 +14,7 @@ class FollowButton extends React.Component {
         }
         Axios.post('/api/user/friend', friend)
                 .then(res => {
-                    console.log(res)
                     // the button needs to know who your friends are
-                    console.log('addfriendreturn', res.data.self)
                     this.props.setSelf(res.data.self)
                 })
                 .catch(err => {
@@ -29,13 +22,12 @@ class FollowButton extends React.Component {
                 })
     }
 
-    renderButton() {
+    render() {
         // not logged in > so do not show
         if(!this.props.self || this.props.self._id === this.props.userId) return <div className="kard_follow-user-button"/>
-        
+        console.log('followbutton prop', this.props)
         // if friend show 'unfollow' if not friend show 'follow
         let isFriend = this.props.self.friends.includes(this.props.userId)
-        let buttonText = 'follow'
         if(isFriend) {
             return (
                 <button className='kard_follow-user-button kard_follow-user-button_grey' onClick={this.toggleFriend.bind(this)}>
@@ -49,11 +41,6 @@ class FollowButton extends React.Component {
                 </button>
             )
         }
-    }
-
-    render() {
-        console.log('follow button props', this.props)
-        return this.renderButton()
     }
 }
 

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
 // components
 import NavigatorMobile from '../navigation/NavigatorMobile'
@@ -7,6 +9,10 @@ import MobileHeader from '../partial/MobileHeader'
 
 // styles
 import '../../css/CreatePost.css'
+
+// actions
+import addPosts from '../../action/posts'
+import setSelf from '../../action/self'
 
 class CreatePost extends Component {
     constructor(props) {
@@ -37,8 +43,10 @@ class CreatePost extends Component {
             userId: this.props.self
         }
         axios.post('/api/post', newPost)
-        .then((res) => {
-            this.props.history.push(`/post/${res.data._id}`)
+        .then(res => {
+            this.props.addPosts([res.data.post])
+            this.props.setSelf(res.data.self)
+            this.props.history.push(`/post/${res.data.post._id}`)
         })
         .catch(err => {
             console.log(err)
@@ -76,4 +84,8 @@ class CreatePost extends Component {
     }
 }
 
-export default CreatePost
+const mapDispatchToProps = dispatch => {
+    return bindActionCreators({ addPosts: addPosts, setSelf: setSelf }, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(CreatePost)
