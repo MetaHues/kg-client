@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import Axios from 'axios'
 
 // components
 import Comments from './Comments'
 import FollowButton from './FollowButton'
 
-// Styling
+// actions
+import addUser from '../../action/users'
+
+// styles
 import '../../css/Card.css'
 
 class Card extends Component {
@@ -18,19 +23,29 @@ class Card extends Component {
         }
     }
 
+    getUser() {
+        let user = this.props.users[this.props.post.userId]
+        if(user) {
+            this.setState({user: user})
+            return user
+        }
+
+        Axios.get(`/api/user/${this.props.post.userId}`)
+        .then(userRes => {
+            this.setState({user: userRes.data})
+            return
+        })
+        .catch(err => {
+            return null
+            console.log(err)
+        })
+    }
+
     componentDidMount() {
-        console.log('card mount')
-        // get card data
-        // TODO: move this into app // can't this may be access directly
-        if(this.props.post !== undefined) {
-            Axios.get(`/api/user/${this.props.post.userId}`)
-            .then(userRes => {
-                this.setState({user: userRes.data})
-            })
-            .catch(err => {
-                console.log(err)
-            })
-        } 
+        if(!this.props.post) {
+            return
+        }
+        this.getUser()
     }
 
     getHours(createdAtString) {
@@ -77,4 +92,15 @@ class Card extends Component {
     }
 }
 
-export default Card
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ addUser: addUser }, dispatch)
+}
+
+const mapStateToProps = (state) => {
+    return { 
+        self: state.self,
+        users: state.users
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Card)
