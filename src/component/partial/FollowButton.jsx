@@ -8,11 +8,11 @@ import setSelf from '../../action/self'
 
 class FollowButton extends React.Component {
     // add or remove from friends
-    toggleFriend() {
-        let friend = {
+    toggleFollow() {
+        let toggleFollow = {
             userId: this.props.userId
         }
-        Axios.post('/api/user/friend', friend)
+        Axios.post('/api/user/friend', toggleFollow)
                 .then(res => {
                     // the button needs to know who your friends are
                     this.props.setSelf(res.data.self)
@@ -25,18 +25,17 @@ class FollowButton extends React.Component {
     render() {
         // not logged in > so do not show
         if(!this.props.self || this.props.self._id === this.props.userId) return <div className="kard_follow-user-button"/>
-        console.log('followbutton prop', this.props)
         // if friend show 'unfollow' if not friend show 'follow
         let isFriend = this.props.self.friends.includes(this.props.userId)
         if(isFriend) {
             return (
-                <button className='kard_follow-user-button kard_follow-user-button_grey' onClick={this.toggleFriend.bind(this)}>
+                <button className='kard_follow-user-button kard_follow-user-button_grey' onClick={this.toggleFollow.bind(this)}>
                     unfollow
                 </button>
             )        
         } else {
             return (
-                <button className='kard_follow-user-button' onClick={this.toggleFriend.bind(this)}>
+                <button className='kard_follow-user-button' onClick={this.toggleFollow.bind(this)}>
                     follow
                 </button>
             )
