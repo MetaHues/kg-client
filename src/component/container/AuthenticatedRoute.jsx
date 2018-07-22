@@ -33,7 +33,7 @@ class AuthenticatedRoute extends React.Component {
         }
 
         // Not logged in
-        let isAuthorized = (self.name !== undefined)
+        let isAuthorized = (self !== undefined)
         if(!isAuthorized) {
             return (<Redirect to='/login' />)
         }

@@ -14,14 +14,14 @@ import '../../css/Profile.css'
 
 class Profile extends React.Component {
     renderProfileUserMessage() {
-        let name = get(this.props, ['self', 'name'])
-        let msg = get(this.props, ['self', 'msg'])
+        let name = get(this.props, ['user', 'name'])
+        let msg = get(this.props, ['user', 'msg'])
         if(!name || !msg) return null
         return <ProfileUserMessage msg={msg} name={name} />
     }
 
     renderProfileUserStats() {
-        let counts = get(this.props, ['self', 'counts'])
+        let counts = get(this.props, ['user', 'counts'])
         if(!counts) return null
         else return <ProfileUserStats counts={counts}/>
     }
@@ -32,15 +32,15 @@ class Profile extends React.Component {
                 <ProfileHeader />
                 <section className='Profile_user-info'>
                     <div className="Profile_user-info_container">
-                        <img className='Profile_user-info_pic' src={this.props.self.img} alt='user' />
-                        <div className='Profile_user-info_name'>{this.props.self.name}</div>
+                        <img className='Profile_user-info_pic' src={this.props.user.img} alt='user' />
+                        <div className='Profile_user-info_name'>{this.props.user.name}</div>
                     </div>
                     <div className="Profile_user-info_container">
                         { this.renderProfileUserMessage()}
                     </div>
                 </section>
                 { this.renderProfileUserStats() }
-                <PostViewer posts={this.props.posts} includeUsers={[this.props.self._id]} view={'GRID'} />
+                <PostViewer posts={this.props.posts} includeUsers={[this.props.user._id]} view={'GRID'} />
                 <NavigatorMobile />
             </div>
         )
@@ -48,7 +48,7 @@ class Profile extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return { self: state.self, posts: state.posts }
+    return { posts: state.posts }
 }
 
 export default connect(mapStateToProps)(Profile)

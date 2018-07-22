@@ -17,6 +17,7 @@ import Likes from './container/Likes'
 
 // actions
 import addPosts from '../action/posts'
+import addUser from '../action/users'
 
 class App extends Component {
     
@@ -25,6 +26,14 @@ class App extends Component {
         .then(res => {
             this.props.addPosts(res.data)
         }).catch(err => {
+            console.log(err)
+        })
+
+        axios.get('/api/user/profile')
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => {
             console.log(err)
         })
     }
@@ -42,7 +51,7 @@ class App extends Component {
                         <AuthenticatedRoute exact path='/likes' component={Likes} />
                         <AuthenticatedRoute exact path='/createpost' component={CreatePost} />
                         <AuthenticatedRoute exact path='/home' component={Home} />
-                        <AuthenticatedRoute exact path='/profile' component={Profile} />
+                        <AuthenticatedRoute exact path='/profile' render={() => (<Profile user={this.props.self} />)} />
                         <Route render={()=>(<div>no route!</div>)} />
                     </Switch>
                 </div>
@@ -52,7 +61,11 @@ class App extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ addPosts: addPosts }, dispatch)
+    return bindActionCreators({ addPosts: addPosts, addUser: addUser }, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(App)
+const mapStateToProps = (state) => {
+    return { self: state.self }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
