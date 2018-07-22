@@ -5,7 +5,6 @@ import Card from './Card'
 
 
 function PostList(props) {
-    console.log('posts', props.posts)
     return (
         <div className = 'PostList'>
             {props.posts.map(post =>  {

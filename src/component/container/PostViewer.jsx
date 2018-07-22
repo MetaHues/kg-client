@@ -17,8 +17,8 @@ class PostViewer extends Component {
 
     render() {
         let posts = this.props.posts
-        if(this.props.userIds) {
-            posts = this.props.posts.filter(post => this.props.userIds.includes(post.userId))
+        if(this.props.includeUsers) {
+            posts = this.props.posts.filter(post => this.props.includeUsers.includes(post.userId))
         }
         let view = null;
         if(this.props.view === 'LIST') {
@@ -26,7 +26,6 @@ class PostViewer extends Component {
         } else {
             view = <PostGrid posts={posts} />
         }
-        console.log('PostViewer props', this.props)
         return (
             <div className='PostViewer'>
                 {view}

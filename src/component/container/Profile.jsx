@@ -16,8 +16,6 @@ class Profile extends React.Component {
     renderProfileUserMessage() {
         let name = get(this.props, ['self', 'name'])
         let msg = get(this.props, ['self', 'msg'])
-        msg = 'hello world'
-        console.log('profile', this.props)
         if(!name || !msg) return null
         return <ProfileUserMessage msg={msg} name={name} />
     }
@@ -29,7 +27,6 @@ class Profile extends React.Component {
     }
 
     render() {
-
         return (
             <div className='Profile'>
                 <ProfileHeader />
@@ -43,7 +40,7 @@ class Profile extends React.Component {
                     </div>
                 </section>
                 { this.renderProfileUserStats() }
-                <PostViewer posts={this.props.posts} userIds={[this.props.self._id]} view={'GRID'} />
+                <PostViewer posts={this.props.posts} includeUsers={[this.props.self._id]} view={'GRID'} />
                 <NavigatorMobile />
             </div>
         )
