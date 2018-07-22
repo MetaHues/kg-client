@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 // Style
 import '../../css/Login.css'
@@ -9,7 +10,7 @@ class Login extends Component {
             <div className="Login">
                 <div className="container border">
                     <div className="logo">
-                        KittyGlitter
+                        <Link to='/'>KittyGlitter</Link>
                     </div>
                     <div className="login-intro-gif">
                         <img src="https://media.giphy.com/media/3o85xAfFLHv8scEHsc/giphy.gif" alt=""/>

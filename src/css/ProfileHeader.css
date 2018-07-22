@@ -3,11 +3,11 @@
     justify-content: space-between;
     background-color: white;
     border-bottom: 1px solid #efefef;
+    align-items: center;
 }
 
 .profile-header_logo {
     display: flex;
-    align-items: center;
     justify-content: center;
     box-sizing: border-box;
     width: 25%;
@@ -15,10 +15,10 @@
 
 .profile-header_title {
     color: tomato;
-    align-content: center;
 }
 
-.profile-header_edit-button {
+.profile-header_logout-link {
+    display:flex;
     width: 25%;
-
+    justify-content: center;
 }

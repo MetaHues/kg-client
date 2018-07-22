@@ -30,7 +30,6 @@ class Profile extends React.Component {
 
     render() {
 
-        console.log('msg', this.renderProfileUserMessage())
         return (
             <div className='Profile'>
                 <ProfileHeader />
@@ -45,9 +44,6 @@ class Profile extends React.Component {
                 </section>
                 { this.renderProfileUserStats() }
                 <PostViewer posts={this.props.posts} userIds={[this.props.self._id]} view={'GRID'} />
-                <a href='/auth/logout'>
-                    <button>Logout</button>
-                </a>
                 <NavigatorMobile />
             </div>
         )
