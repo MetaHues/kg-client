@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Axios from 'axios'
+import get from 'lodash.get'
 
 // components
 import Comments from './Comments'
@@ -27,7 +28,7 @@ class Card extends Component {
         let user = this.props.users[this.props.post.userId]
         if(user) {
             this.setState({user: user})
-            return user
+            return
         }
 
         Axios.get(`/api/user/${this.props.post.userId}`)
@@ -36,8 +37,8 @@ class Card extends Component {
             return
         })
         .catch(err => {
-            return null
             console.log(err)
+            return
         })
     }
 
@@ -54,7 +55,10 @@ class Card extends Component {
     }
 
     render() {
-        if(this.state.user === null || this.props.post === null || !this.props.post.media.img) return null
+        let user = this.state.user
+        let post = this.props.post
+        let img = get(this.props, ['post', 'media', 'img'])
+        if(!user || !post  || !img) return null
         return (
             <article className="kard">
                 <div className="section header">
@@ -86,7 +90,6 @@ class Card extends Component {
                 </div> */}
                 <Comments userName={this.state.user.name} msg={this.props.post.msg} />
                 <div className="section time_posted">{this.getHours(this.props.post.createdAt)}</div>
-                
             </article>
         );
     }
