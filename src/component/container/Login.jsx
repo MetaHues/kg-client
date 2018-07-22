@@ -10,7 +10,7 @@ class Login extends Component {
             <div className="Login">
                 <div className="container border">
                     <div className="logo">
-                        <Link to='/'>KittyGlitter</Link>
+                        <Link className='logo-link' to='/'>KittyGlitter</Link>
                     </div>
                     <div className="login-intro-gif">
                         <img src="https://media.giphy.com/media/3o85xAfFLHv8scEHsc/giphy.gif" alt=""/>
@@ -18,7 +18,7 @@ class Login extends Component {
                     <div className="auth_button">
                         <a href="/auth/facebook" alt="facebook login button" >
                             <button className='facebook_login'>
-                                Log in with Facebook
+                                <i className="fa fa-facebook-square" /> Sign in
                             </button>
                         </a> 
                     </div>
@@ -26,11 +26,8 @@ class Login extends Component {
                 <div className="login-footer">
                     <div className="login-footer-container">
                         <nav className="login-footer-links">
-                            <li><a href="">About Us</a></li>
-                            <li><a href="">Blog</a></li>
-                            <li><a href="">Jobs</a></li>
-                            <li><a href="">Privacy</a></li>
-                            <span className="login-footer-logo">KittyGlitter</span>
+                            <li><Link to="/about">about</Link></li>
+                            <li><Link to="/privacy">privacy</Link></li>
                         </nav>
                     </div>
                 </div>
