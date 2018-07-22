@@ -25,6 +25,8 @@ class Card extends Component {
     }
 
     getUser() {
+        if(!this.props.post) return 
+        
         let user = this.props.users[this.props.post.userId]
         if(user) {
             this.setState({user: user})
@@ -43,9 +45,6 @@ class Card extends Component {
     }
 
     componentDidMount() {
-        if(!this.props.post) {
-            return
-        }
         this.getUser()
     }
 

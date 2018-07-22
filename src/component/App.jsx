@@ -7,7 +7,6 @@ import axios from 'axios'
 // import components
 import Explore from './container/Explore'
 import Post from './container/Post'
-import PostViewer from './container/PostViewer'
 import Login from './container/Login'
 import AuthenticatedRoute from './container/AuthenticatedRoute'
 import Profile from './container/Profile'
@@ -18,6 +17,7 @@ import Likes from './container/Likes'
 // actions
 import addPosts from '../action/posts'
 import addUser from '../action/users'
+import setSelf from '../action/self'
 
 class App extends Component {
     
@@ -31,6 +31,8 @@ class App extends Component {
 
         axios.get('/api/user/profile')
         .then(res => {
+            this.props.addUser(res.data)
+            this.props.setSelf(res.data)
             console.log(res)
         })
         .catch(err => {
@@ -47,11 +49,11 @@ class App extends Component {
                         <Route exact path='/explore' render={() => (<Explore view={'grid'} />)} />
                         <Route exact path='/' render={() => (<Redirect to='/explore' />)} />
                         <Route path='/post/:postId' component={Post} />
-                        <Route path='/user/:userId' component={PostViewer} />
+                        <Route path='/user/:userId' component={Profile} />
                         <AuthenticatedRoute exact path='/likes' component={Likes} />
                         <AuthenticatedRoute exact path='/createpost' component={CreatePost} />
                         <AuthenticatedRoute exact path='/home' component={Home} />
-                        <AuthenticatedRoute exact path='/profile' render={() => (<Profile user={this.props.self} />)} />
+                        <AuthenticatedRoute exact path='/profile' component={Profile} />
                         <Route render={()=>(<div>no route!</div>)} />
                     </Switch>
                 </div>
@@ -61,11 +63,7 @@ class App extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ addPosts: addPosts, addUser: addUser }, dispatch)
+    return bindActionCreators({ addPosts: addPosts, addUser: addUser, setSelf: setSelf }, dispatch)
 }
 
-const mapStateToProps = (state) => {
-    return { self: state.self }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(null, mapDispatchToProps)(App)

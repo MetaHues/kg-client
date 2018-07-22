@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 
 // components
 import PostList from '../partial/PostList'
 import NavigatorMobile from '../navigation/NavigatorMobile'
 import PostGrid from '../partial/PostGrid'
-
-// actions
-import addUser from '../../action/users'
 
 // styles
 import '../../css/PostViewer.css'
