@@ -8,11 +8,10 @@ import '../../css/PostGrid.css'
 
 
 function PostGrid(props) {
-    let posts = props.posts.map( post => {return (<PostGridTile key={post._id} post={post}/>)})
-    let orderedPosts = posts.sort((a, b) => {return new Date(a.createdAt) - new Date(b.createdAt)})
+    let posts = props.posts.map( post => {return (<PostGridTile key={post._id} post={post}/>)}).reverse()
     return (
         <div className = 'PostGrid'>
-            {orderedPosts}
+            {posts}
         </div>
     )
 }

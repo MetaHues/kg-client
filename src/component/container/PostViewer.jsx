@@ -35,16 +35,10 @@ class PostViewer extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ addUser: addUser }, dispatch)
-}
-
 const mapStateToProps = (state) => {
     return { 
-        self: state.self,
-        posts: state.posts,
-        users: state.users
+        posts: state.posts
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostViewer)
+export default connect(mapStateToProps)(PostViewer)

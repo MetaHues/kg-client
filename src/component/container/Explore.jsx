@@ -10,20 +10,15 @@ import MobileHeader from '../partial/MobileHeader'
 
 class Explore extends Component {
     render() {
-        if(this.props.posts === null) return ( <div className = 'Explore' />)
         return ( 
             <div className = 'Explore'>
                 <MobileHeader title={'Explore'}/>
                 <Search />
-                <PostViewer posts={this.props.posts} view={'GRID'} />
+                <PostViewer view={'GRID'} />
                 <NavigatorMobile/>
             </div>
         )
     }
 }
 
-const mapStateToProps = (store) => {
-    return { posts: store.posts }
-}
-
-export default connect(mapStateToProps)(Explore)
+export default Explore

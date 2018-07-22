@@ -16,7 +16,7 @@ class Home extends React.Component {
         return (
             <div className='Home'>
                 <MobileHeader title={'Friends'}/>
-                <PostViewer posts={this.props.posts} userIds={this.props.self.friends.concat([this.props.self._id])} view={'LIST'} />
+                <PostViewer includeUsers={this.props.self.friends.concat([this.props.self._id])} view={'LIST'} />
                 <NavigatorMobile />
             </div>
         )
