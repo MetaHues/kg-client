@@ -15,7 +15,7 @@ class FollowButton extends React.Component {
         Axios.post('/api/user/friend', toggleFollow)
                 .then(res => {
                     // the button needs to know who your friends are
-                    this.props.setSelf(res.data.self)
+                    this.props.setSelf(res.data)
                 })
                 .catch(err => {
                     console.log('addFriend err', err)
@@ -23,8 +23,8 @@ class FollowButton extends React.Component {
     }
 
     render() {
-        // not logged in > so do not show
-        if(!this.props.self || this.props.self._id === this.props.userId) return <div className="kard_follow-user-button"/>
+        // show when authenticated, and not your own post
+        if(!this.props.self || !this.props.self.isAuthenticated || this.props.self._id === this.props.userId) return <div className="kard_follow-user-button"/>
         // if friend show 'unfollow' if not friend show 'follow
         let isFriend = this.props.self.friends.includes(this.props.userId)
         if(isFriend) {

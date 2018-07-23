@@ -12,38 +12,33 @@ import '../../css/PostGridTile.css'
 import addUser from '../../action/users'
 
 class PostGridTile extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            user: null,
-            imgUrl: null
-        }
-    }
 
     componentDidMount() {
-        const {users, post} = this.props
-        const imgUrl = get(this.props, 'post.media.img')
 
-        if(users[post.userId]) {
-            this.setState({user: users[post.userId], imgUrl: imgUrl})
-        } else {
-            axios.get(`/api/user/${this.props.post.userId}`)
-            .then(userRes => {
-                this.setState({user: userRes.data, imgUrl: imgUrl})
-                this.props.addUser(userRes.data)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-        }
+        // let user = users[post.userId]
+        // if(user === undefined) {
+        //     console.log(`loading ${post.userId}`)
+        //     this.props.addUser({ _id:post.userId, status: 'PENDING'}) // user parent element to navigate this prior to loading
+        //     axios.get(`/api/user/${post.userId}`)
+        //     .then(userRes => {
+        //         // TODO: take care of api case user not found null will be sent back if user not found
+        //         user = Object.assign({}, userRes.data)
+        //         user.status = 'SUCCESS'
+        //         this.props.addUser(userRes.data)
+        //     })
+        //     .catch(err => {
+        //         console.log(this.props.post, err)
+        //     })
+        // }
     }
 
     render() {
-        if(!this.state.user || !this.state.imgUrl) { return null }
+        let img = get(this.props, ['post', 'media', 'img'])
+        if(!img) return null
         return (
             <div className='PostGridTile'>
                 <Link to={`/post/${this.props.post._id}`}>
-                    <img src={this.state.imgUrl} alt='' />
+                    <img src={this.props.post.media.img} alt='' />
                 </Link>
             </div>
         )

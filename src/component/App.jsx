@@ -28,19 +28,18 @@ class App extends Component {
             this.props.addPosts(res.data)
         }).catch(err => {
             console.log(err)
+            // TODO: handle this error <- need to retry
         })
 
-        axios.get('/api/user/profile')
-        .then(res => {
-            this.props.addUser(res.data)
-            this.props.setSelf(res.data)
-            console.log(res)
-        })
-        .catch(err => {
-            let self = {status: err.response.statusText}
-            this.props.setSelf(self)
-            console.log(err)
-        })
+        if(!this.props.self || !this.props.self.isAuthenticated) {
+            axios.get('/api/user/profile')
+            .then(res => {
+                this.props.setSelf(res.data)
+            })
+            .catch(err => {
+                this.props.setSelf({})
+            })
+        }
     }
 
     render() {

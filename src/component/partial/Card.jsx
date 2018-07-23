@@ -36,11 +36,9 @@ class Card extends Component {
         Axios.get(`/api/user/${this.props.post.userId}`)
         .then(userRes => {
             this.setState({user: userRes.data})
-            return
         })
         .catch(err => {
             console.log(err)
-            return
         })
     }
 
