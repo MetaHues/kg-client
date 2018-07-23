@@ -16,13 +16,12 @@ import '../../css/Profile.css'
 
 // actions
 import addUser from '../../action/users'
-import setSelf from '../../action/self'
 
 class Profile extends React.Component {
     
     renderProfileUserMessage(user) {
-        let name = get(this.props, ['name'])
-        let msg = get(this.props, ['msg'])
+        let name = get(user, ['name'])
+        let msg = get(user, ['msg'])
         if(!name || !msg) return null
         return <ProfileUserMessage msg={msg} name={name} />
     }
@@ -45,14 +44,13 @@ class Profile extends React.Component {
 
         let userId = this.props.match.params.userId
         let user = this.props.users[userId]
-        console.log('user', user)
+
         if(user !== undefined) {
             return user
         }
 
         axios.get(`/api/user/${userId}`)
         .then(userRes => {
-            console.log('adding user')
             this.props.addUser(userRes.data)
         })
         .catch(err => {
@@ -102,7 +100,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ setSelf: setSelf, addUser: addUser}, dispatch)
+    return bindActionCreators({ addUser: addUser}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)

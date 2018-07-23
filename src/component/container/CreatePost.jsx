@@ -68,7 +68,7 @@ class CreatePost extends Component {
                 <div className="CreatePost__container">
                     <div className="CreatePost__preview-img-container" onClick={this.selectImgInput.bind(this)}>
                         <i className='CreatePost__picture-icon fa fa-picture-o' />
-                        <img ref={ref => this.previewImg = ref} src="" alt='' className="CreatePost__preview-img"/>
+                        <img ref={r => this.previewImg = r} src="" alt='' className="CreatePost__preview-img"/>
                     </div>
                     <form action='/api/post' method='post'>
                         <h2>Add the url to the image below</h2>
