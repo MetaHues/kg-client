@@ -6,13 +6,9 @@ import NavMobile from '../navigation/NavigatorMobile'
 
 export default class Likes extends React.Component {
 
-    goBack() {
-        console.log('pop')
-        console.log(this.props.history)
-        this.props.history.goBack();
-    }
-
     render() {
+        // test inline style easier to find and locate, impossible to misstarget
+        // awkward type, 
         let likeStyle = {
             display: 'flex',
             flexDirection: 'column'
@@ -37,7 +33,7 @@ export default class Likes extends React.Component {
                 <MobileHeader title={'likes'} />
                 <div className='likes-container' style={likesContainer}>
                     <div><h1 style={tempStyle}> <i className='fa fa-meh-o'/> Coming Soon...</h1></div>
-                    <button onClick={this.goBack.bind(this)}>Go back</button>
+                    <button onClick={this.props.history.goBack}>Go back</button>
                 </div>
                 <NavMobile />
             </div>
