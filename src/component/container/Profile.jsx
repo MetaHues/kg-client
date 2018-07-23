@@ -19,14 +19,7 @@ import addUser from '../../action/users'
 import setSelf from '../../action/self'
 
 class Profile extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            userId: null,
-            user: null
-        }
-    }
-
+    
     renderProfileUserMessage(user) {
         let name = get(this.props, ['name'])
         let msg = get(this.props, ['msg'])
@@ -68,21 +61,28 @@ class Profile extends React.Component {
         return null
     }
 
+    editProfile() {
+        this.props.history.push('/EditProfile')
+    }
+
     render() {
         let user = this.getUser()
         if(user === null) {
             return null
         }
         return (
-            <div className='Profile'>
+            <div className='profile'>
                 <ProfileHeader />
-                <section className='Profile_user-info'>
-                    <div className="Profile_user-info_container">
-                        <img className='Profile_user-info_pic' src={user.img} alt='user' />
-                        <div className='Profile_user-info_name'>{user.name}</div>
+                <section className='profile_user-info'>
+                    <div className='profile_user-info_container'>
+                        <img className='profile_user-info-pic' src={user.img} alt='user' />
+                        <div className='profile_user-info-right'>
+                            <div className='profile_user-info_name'>{user.name}</div>
+                            <button className='profile_user-info_edit-button' onClick={this.editProfile.bind(this)}>Edit</button>
+                        </div>
                     </div>
-                    <div className="Profile_user-info_container">
-                        { this.renderProfileUserMessage(user)}
+                    <div className='profile_user-info_container'>
+                        { this.renderProfileUserMessage(user) }
                     </div>
                 </section>
                 { this.renderProfileUserStats(user) }

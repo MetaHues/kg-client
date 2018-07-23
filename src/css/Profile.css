@@ -1,29 +1,42 @@
-.Profile {
+.profile {
     position: relative;
 }
 
-.Profile_edit-button {
+.profile_edit-button {
     position: absolute;
     color: tomato;
     background-color: white;
 }
 
-.Profile_user-info_container {
+.profile_user-info_container {
     display: flex;
     margin: 16px 30px 16px 24px;
 }
 
-.Profile_user-info_pic {
+.profile_user-info-pic {
     border-radius: 50%;
     width: 50px;
     height: 50px;
 }
 
-.Profile_user-info_name {
+.profile_user-info-right {
+    display: flex;
+    flex-direction: column;
     align-self: center;
     margin-left: 30px;
-    font-size: 1.3rem;
-    font-weight: 400;
     letter-spacing: -.5px;
+    flex: 1;
 }
 
+.profile_user-info_name {
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: .5rem;
+}
+
+.profile_user-info_edit-button {
+    justify-content: center;
+    padding: .3rem;
+    border: 1px solid #fefefe;
+    border-radius: 4px;
+}

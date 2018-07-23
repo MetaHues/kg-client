@@ -13,6 +13,7 @@ import Profile from './container/Profile'
 import CreatePost from './container/CreatePost'
 import Home from './container/Home'
 import Likes from './container/Likes'
+import EditProfile from './container/EditProfile'
 
 // actions
 import addPosts from '../action/posts'
@@ -55,6 +56,7 @@ class App extends Component {
                         <AuthenticatedRoute exact path='/createpost' component={CreatePost} />
                         <AuthenticatedRoute exact path='/home' component={Home} />
                         <AuthenticatedRoute exact path='/profile' component={Profile} />
+                        <AuthenticatedRoute exact path='/editprofile' component={EditProfile} />
                         <Route render={()=>(<div>no route!</div>)} />
                     </Switch>
                 </div>
