@@ -25,6 +25,7 @@ class App extends Component {
         axios.get('/api/post')
         .then(res => {
             this.props.addPosts(res.data)
+            console.log(res)
         }).catch(err => {
             console.log(err)
         })

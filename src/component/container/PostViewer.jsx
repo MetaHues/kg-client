@@ -13,6 +13,7 @@ class PostViewer extends Component {
 
     render() {
         let posts = this.props.posts
+        console.log(this.props)
         if(this.props.includeUsers) {
             posts = this.props.posts.filter(post => this.props.includeUsers.includes(post.userId))
         }

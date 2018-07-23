@@ -27,15 +27,15 @@ class Profile extends React.Component {
         }
     }
 
-    renderProfileUserMessage() {
-        let name = get(this.props, ['user', 'name'])
-        let msg = get(this.props, ['user', 'msg'])
+    renderProfileUserMessage(user) {
+        let name = get(this.props, ['name'])
+        let msg = get(this.props, ['msg'])
         if(!name || !msg) return null
         return <ProfileUserMessage msg={msg} name={name} />
     }
 
-    renderProfileUserStats() {
-        let counts = get(this.props, ['user', 'counts'])
+    renderProfileUserStats(user) {
+        let counts = get(user, ['counts'])
         if(!counts) return null
         else return <ProfileUserStats counts={counts}/>
     }
@@ -82,10 +82,10 @@ class Profile extends React.Component {
                         <div className='Profile_user-info_name'>{user.name}</div>
                     </div>
                     <div className="Profile_user-info_container">
-                        { this.renderProfileUserMessage()}
+                        { this.renderProfileUserMessage(user)}
                     </div>
                 </section>
-                { this.renderProfileUserStats() }
+                { this.renderProfileUserStats(user) }
                 <PostViewer posts={this.props.posts} includeUsers={[user._id]} view={'GRID'} />
                 <NavigatorMobile />
             </div>
