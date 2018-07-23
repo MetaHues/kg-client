@@ -13,11 +13,17 @@ export default class Likes extends React.Component {
     }
 
     render() {
+        let likeStyle = {
+            display: 'flex',
+            flexDirection: 'column'
+        }
+
         let likesContainer = {
-            'marginTop': '1rem',
+            height: 'calc(100vh - 33px - 45px)',
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'center'
+            alignItems: 'center',
+            justifyContent: 'center'
         }
 
         let tempStyle = {
@@ -27,7 +33,7 @@ export default class Likes extends React.Component {
         }
 
         return (
-            <div className='likes'>
+            <div className='likes' style={likeStyle}>
                 <MobileHeader title={'likes'} />
                 <div className='likes-container' style={likesContainer}>
                     <div><h1 style={tempStyle}> <i className='fa fa-meh-o'/> Coming Soon...</h1></div>
