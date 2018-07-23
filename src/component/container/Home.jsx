@@ -11,6 +11,7 @@ import '../../css/Profile.css'
 
 class Home extends React.Component {
     render() {
+        console.log(this.props)
         if(!this.props.posts || !this.props.self) return (null)
         console.log('home props', this.props)
         return (

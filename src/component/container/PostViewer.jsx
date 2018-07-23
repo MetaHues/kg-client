@@ -12,10 +12,10 @@ import '../../css/PostViewer.css'
 class PostViewer extends Component {
 
     render() {
-        let posts = this.props.posts
-        console.log(this.props)
+        let { posts } = this.props
         if(this.props.includeUsers) {
-            posts = this.props.posts.filter(post => this.props.includeUsers.includes(post.userId))
+            // keep only included userid's posts
+            posts = posts.filter(post => this.props.includeUsers.includes(post.userId))
         }
         let view = null;
         if(this.props.view === 'LIST') {

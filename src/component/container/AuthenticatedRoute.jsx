@@ -15,15 +15,19 @@ class AuthenticatedRoute extends React.Component {
         if(!this.props.self || !this.props.self.name) {
             axios.get('/api/user/profile')
             .then(res => {
-                this.props.setSelf(res.data)
+                let self = res.data
+                self.statusText = res.statusText
+                this.props.setSelf(self)
             })
             .catch(err => {
-                this.props.setSelf({})
+                let self = {status: err.response.statusText}
+                this.props.setSelf(self)
             })
         }
     }
     
     render() {
+        console.log(this.props)
         const { self, component: Component, render, ...rest } = this.props
 
         // Loading
@@ -33,7 +37,9 @@ class AuthenticatedRoute extends React.Component {
         }
 
         // Not logged in
-        let isAuthorized = (self !== undefined)
+        let isAuthorized = (self.status !== 'NOT_AUTHORIZED')
+        console.log('isauth', isAuthorized)
+
         if(!isAuthorized) {
             return (<Redirect to='/login' />)
         }

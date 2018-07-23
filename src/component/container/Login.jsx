@@ -6,7 +6,6 @@ import '../../css/Login.css'
 
 class Login extends Component {
     render() {
-        if(this.props.error)
         return (
             <div className="Login">
                 <div className="container border">
