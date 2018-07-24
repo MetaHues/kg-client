@@ -16,3 +16,20 @@
     background-color: #fff;
     display: flex;
 }
+
+
+/* Using 60% width at PostViewer */
+@media (min-width: 700px) {
+    .PostGridTile {
+        width: 19vw;
+        height: 19vw;
+        margin-bottom: 1vh;
+    }
+    
+    .PostGridTile img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        overflow: hidden;
+    }
+}

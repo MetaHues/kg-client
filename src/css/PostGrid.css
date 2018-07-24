@@ -5,3 +5,12 @@
     grid-gap: 1.33%;
     margin: 0 auto;
 }
+@media (min-width: 700px)
+{
+    .PostGrid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }    
+}
+

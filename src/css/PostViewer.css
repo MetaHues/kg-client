@@ -7,3 +7,10 @@
     padding: .5rem 0 .5rem 0;
     color: tomato;
 }
+
+@media (min-width: 700px) {
+    .PostViewer {
+        width: 60%;
+        margin: 0 20%;
+    }
+}
