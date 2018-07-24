@@ -19,5 +19,8 @@
     color: black;
 }
 
-
-
+@media (min-width: 700px) {
+    .NavigatorMobile {
+        display: none;
+    }
+}
