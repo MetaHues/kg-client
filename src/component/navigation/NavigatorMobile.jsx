@@ -8,7 +8,7 @@ class NavigatorMobile extends Component {
     render() {
         return (
             <div className="NavigatorMobile">
-                <nav>
+                <nav className='nav-mobile_container'>
                     <ul>
                         <Link to={'/home'}><li><i className='fa fa-home'/></li></Link>
                         <Link to={'/explore'}><li><i className='fa fa-search'/></li></Link>

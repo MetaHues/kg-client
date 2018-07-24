@@ -1,8 +1,11 @@
 .profile-header {
-    display: flex;
-    justify-content: space-between;
     background-color: white;
     border-bottom: 1px solid #efefef;
+}
+
+.profile-header_container {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -21,4 +24,11 @@
     display:flex;
     width: 25%;
     justify-content: center;
+}
+
+@media (min-width: 700px) {
+    .profile-header_container{
+        width: 90%;
+        margin: 0 auto;
+    }
 }

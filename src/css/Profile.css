@@ -2,12 +2,6 @@
     position: relative;
 }
 
-.profile_edit-button {
-    position: absolute;
-    color: tomato;
-    background-color: white;
-}
-
 .profile_user-info_container {
     display: flex;
     margin: 16px 30px 16px 24px;
@@ -39,4 +33,12 @@
     padding: .3rem;
     border: 1px solid #fefefe;
     border-radius: 4px;
+    background-color: #D0D0D0;
+}
+
+@media (min-width: 700px) {
+    .profile_user-info {
+        width: 60%;
+        margin: 0 20%;
+    }
 }
