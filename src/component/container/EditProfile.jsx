@@ -33,19 +33,21 @@ class EditProfile extends React.Component {
         return (
             <div className='edit-profile' >
                 <MobileHeader title={'Edit Profile'}/>
-                <section className='profile_user-info'>
-                    <div className='profile_user-info_container'>
-                        <img className='profile_user-info-pic' src={this.props.self.img} alt='user' />
-                        <div className='profile_user-info-right'>
-                            <div className='profile_user-info_name'>{this.props.self.name}</div>
+                <div className="edit-profile_container">
+                    <section className='edit-profile_user-info'>
+                        <div className='edit-profile_user-info_container'>
+                            <div className="edit-profile_col-left">
+                                <img className='edit-profile_user-info-pic' src={this.props.self.img} alt='user' />
+                            </div>
+                            <div className='edit-profile_user-info_name .edit-profile_col-right'>{this.props.self.name}</div>
                         </div>
-                    </div>
-                </section>
-                <section className='edit-profile_form'>
-                    <h2 className='edit-profile_form_bio-label edit-profile_label'>Bio</h2>
-                    <textarea ref={r => this.msg = r} className='edit-profile_form_bio-input edit-profile_input' rows={2} defaultValue={this.props.self.msg} />
+                    </section>
+                    <section className='edit-profile_form'>
+                        <h2 className='edit-profile_form_bio-label edit-profile_label edit-profile_col-left'>Bio</h2>
+                        <textarea ref={r => this.msg = r} className='edit-profile_form_bio-input edit-profile_input edit-profile_col-right' rows={2} defaultValue={this.props.self.msg} />
+                    </section>
                     <button className='edit-profile_submit-button' onClick={this.submitEdit.bind(this)}>Submit</button>
-                </section>
+                </div>
                 <NavMobile />
             </div>
         )
