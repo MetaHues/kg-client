@@ -1,8 +1,10 @@
 .user-stats_list {
+    width: 100vw;
     display: flex;
     padding: .5rem 0;
     border-top: 1px solid #efefef;
     border-bottom: 1px solid #efefef;
+    margin-bottom: 1.4rem;
 }
 
 .user-stats_list-item {
@@ -19,4 +21,10 @@
 
 .user-stats_list-item_stat {
     margin-bottom: .1rem;
+}
+
+@media (min-width: 700px) {
+    .user-stats_list {
+        width: 50vw;
+    }
 }

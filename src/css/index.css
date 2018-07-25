@@ -11,4 +11,12 @@ a:link, a:visited {
 
 .logo {
   font-family: 'Lobster', cursive;
+  color: tomato;
 }
+
+button {
+  border-style: none;
+  background-color: transparent;
+  -webkit-appearance: none;
+}
+

@@ -1,16 +1,6 @@
 .PostGrid {
-    display: grid;
-    width: 100%;
-    grid-template-columns: 32% 32% 32%;
-    grid-gap: 1.33%;
-    margin: 0 auto;
-}
-@media (min-width: 700px)
-{
-    .PostGrid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-    }    
-}
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}    
 

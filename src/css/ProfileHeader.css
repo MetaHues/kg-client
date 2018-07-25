@@ -7,11 +7,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 90%;
+    margin: 0 auto;
 }
 
 .profile-header_logo {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     box-sizing: border-box;
     width: 25%;
 }
@@ -21,14 +23,36 @@
 }
 
 .profile-header_logout-link {
-    display:flex;
+    display: flex;
     width: 25%;
-    justify-content: center;
+    justify-content: flex-end;
+}
+
+.profile-header_nav{
+    display: none;
 }
 
 @media (min-width: 700px) {
-    .profile-header_container{
-        width: 90%;
+    .profile-header {
+        font-size: 1.4rem;
+    }
+
+    .profile-header_container {
+        width: 70%;
         margin: 0 auto;
+    }
+
+    .profile-header_logo {
+        justify-content: flex-start;
+    }
+
+    .profile-header_nav{
+        flex: 1;
+    }
+
+    .profile-header_nav-list {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
     }
 }

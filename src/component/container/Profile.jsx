@@ -78,12 +78,10 @@ class Profile extends React.Component {
                             <div className='profile_user-info_name'>{user.name}</div>
                             <button className='profile_user-info_edit-button' onClick={this.editProfile.bind(this)}>Edit</button>
                         </div>
-                    </div>
-                    <div className='profile_user-info_container'>
                         { this.renderProfileUserMessage(user) }
+                        { this.renderProfileUserStats(user) }
                     </div>
                 </section>
-                { this.renderProfileUserStats(user) }
                 <PostViewer posts={this.props.posts} includeUsers={[user._id]} view={'GRID'} />
                 <NavigatorMobile />
             </div>
