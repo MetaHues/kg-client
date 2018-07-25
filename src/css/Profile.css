@@ -48,6 +48,7 @@
 @media (min-width: 700px) {
     .profile_user-info_container{
         position: relative;
+        min-height: 192px;
     }
 
     .profile_user-info-pic {
