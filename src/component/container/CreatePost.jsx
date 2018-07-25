@@ -70,13 +70,28 @@ class CreatePost extends Component {
                         <i className='CreatePost__picture-icon fa fa-picture-o' />
                         <img ref={r => this.previewImg = r} src="" alt='' className="CreatePost__preview-img"/>
                     </div>
-                    <form action='/api/post' method='post'>
-                        <h2>Add the url to the image below</h2>
+                    <div className="CreatePost__input-container">
+                        <h2 className='CreatePost-input-container__title'>
+                            <div>Add the url to the image below</div>
+                        </h2>
                         {this.state.alert}
-                        <input ref={r => this.imgInput=r} type='text' placeholder='Image URL' onChange={this.setImgUrl.bind(this)} />
-                        <input ref={r => this.msgInput=r} type='text' placeholder='Comment' />
-                        <button type='submit' onClick={this.submitPost} >Submit</button>
-                    </form>
+                        <div className="CreatePost-input-container__input-row">
+                            <div className="CreatePost-input-container__label-col">
+                                <div>Image Url</div>
+                            </div>
+                            <div className='CreatePost-input-container__input-col'>
+                                <input ref={r => this.imgInput=r} type='text' placeholder='Image URL' onChange={this.setImgUrl.bind(this)} />
+                            </div>
+                        </div>
+                        <div className="CreatePost-input-container__input-row">
+
+                            <div className="CreatePost-input-container__label-col">
+                                <div>Comment</div>
+                            </div>
+                            <input className='CreatePost-input-container__input-col' ref={r => this.msgInput=r} type='text' placeholder='Write a comment...' />
+                        </div>
+                    </div>
+                    <button type='submit' onClick={this.submitPost} >Submit</button>
                 </div>
                 <NavigatorMobile/>
             </div>
