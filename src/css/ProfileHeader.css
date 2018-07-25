@@ -47,6 +47,7 @@
     }
 
     .profile-header_nav{
+        display: block;
         flex: 1;
     }
 

@@ -21,3 +21,8 @@
 .mobile-header_spacer {
     width: 25%;
 }
+
+
+.profile-header_nav{
+    display: none;
+}
