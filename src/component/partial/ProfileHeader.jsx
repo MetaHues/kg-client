@@ -22,6 +22,7 @@ export default function ProfileHeader() {
                             <Link className='profile-header_nav-list-item' to={'/profile'}><li><i className="fa fa-user-o"/></li></Link>                        
                         </ul>
                     </nav>
+                    <a href='/auth/logout'><button>Logout</button></a>
                 </div>
             </div>
         </header>

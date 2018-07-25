@@ -16,7 +16,7 @@
     display: flex;
     justify-content: flex-start;
     box-sizing: border-box;
-    width: 25%;
+    flex: 1;
 }
 
 .profile-header_title {
@@ -25,7 +25,13 @@
 
 .profile-header_logout-link {
     display: flex;
+}
+
+.profile-header_nav{
+    display: flex;
     justify-content: flex-end;
+    align-items: center;
+    flex: 1;
 }
 
 .profile-header_nav-list-container{
