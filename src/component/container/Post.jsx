@@ -6,6 +6,9 @@ import Card from '../partial/Card'
 import NavigatorMobile from '../navigation/NavigatorMobile'
 import MobileHeader from '../partial/MobileHeader'
 
+// styles
+import '../../css/Post.css'
+
 class Post extends Component {
     constructor(props) {
         super(props)
@@ -40,7 +43,9 @@ class Post extends Component {
         return (
             <div className='Post'>
                 <MobileHeader title={'Post'}/>
-                <Card postId={this.post._id} post={this.post} />                
+                <div className='post_card'>
+                    <Card postId={this.post._id} post={this.post} />         
+                </div>       
                 <NavigatorMobile/>
             </div>
         )

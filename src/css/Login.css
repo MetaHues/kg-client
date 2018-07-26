@@ -1,4 +1,4 @@
-.Login {
+.login {
     padding-top: 40px;
     padding-bottom: 5px;
     height: 100vh;
@@ -7,33 +7,27 @@
     box-sizing: border-box;
 }
 
-.Login .container {
+.login__container {
     display: flex;
     flex-direction: column;
     width: 80%;
     margin: 0 auto;
+    align-items: center;
 }
 
-.Login .container > * {
-    margin-bottom: 30px;
-}
-
-.Login .container .logo {
+.login__logo {
     text-align: center;
     font-size: 3.2rem;
     margin-bottom: 2.2rem;
 }
 
-.Login .container .logo-link {
-    color: tomato;
+.login__img-container {
+    text-align: center;
 }
 
-.login-intro-gif {
-    width: 100%;
-}
-
-.login-intro-gif > img {
-    width: 100%;
+.login__gif {
+    width: 50%;
+    margin-bottom: 2.2rem;
     border-radius: 50%;
 }
 
@@ -48,7 +42,9 @@
   
 .auth_button {
     margin: 0 auto;
-    width: 50%;
+
+    width: 100%;
+    max-width: 218px;
 }
 
 .login-footer {

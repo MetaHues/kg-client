@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import axios from 'axios'
@@ -63,7 +64,21 @@ class Profile extends React.Component {
         this.props.history.push('/EditProfile')
     }
 
+    renderEditButton() {
+        if(this.props.match.path !== '/profile') return null;
+        return (
+            <button className='profile_user-info_edit-button' onClick={this.editProfile.bind(this)}>Edit</button>
+        )
+    }
+
+    isSelf() {
+        let userId = get(this.props, ['match', 'params', 'userId'])
+        let selfId = get(this.props, ['self', '_id'])
+        return userId === selfId
+    }
+
     render() {
+        if(this.isSelf()) return (<Redirect to='/profile' />)
         let user = this.getUser()
         if(user === null) {
             return null
@@ -76,7 +91,7 @@ class Profile extends React.Component {
                         <img className='profile_user-info-pic' src={user.img} alt='user' />
                         <div className='profile_user-info-right'>
                             <div className='profile_user-info_name'>{user.name}</div>
-                            <button className='profile_user-info_edit-button' onClick={this.editProfile.bind(this)}>Edit</button>
+                            { this.renderEditButton() }
                         </div>
                         { this.renderProfileUserMessage(user) }
                         { this.renderProfileUserStats(user) }

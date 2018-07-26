@@ -1,42 +1,45 @@
 .CreatePost {
-    height: 80vh;
     width: 100%;
 }
 
 .CreatePost__container {
-    border: 1px solid black;
+    background-color: white;
+    border: 1px solid #efefef;
     width: 100%;
     margin: 0 auto;
     height: 100%;
     box-sizing: border-box;
-}
-
-.CreatePost__container form {
-    padding: 15px 15px;
     display: flex;
     flex-direction: column;
-    height: 66%;
-    box-sizing: border-box;
 }
 
-.CreatePost__container form > * {
-    margin-bottom: 15px;
+.CreatePost__input-container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    flex-grow: 1;
+}
+
+.CreatePost-input-container__title {
+    margin: 2rem 0 1rem 0;
 }
 
 .CreatePost__container button {
-    margin-top: auto;
     padding: 10px;
     color: tomato;
     background-color: white;
+    margin-top: auto;
 }
 
 .CreatePost__preview-img-container {
-    height: 33%;
+    height: 50vw;
     position: relative;
     font-size: 5rem;
     font-weight: 300;
     color: #888;
-    border-bottom: 1px solid black;
+    border: 1px solid #efefef;
 }
 .CreatePost__preview-img-container > img,
 .CreatePost__preview-img-container > i {
@@ -50,4 +53,37 @@
 
 .CreatePost__alert {
     color: tomato;
+}
+
+.CreatePost-input-container__input-row {
+    display: flex;
+    margin-bottom: .5rem;
+}
+
+.CreatePost-input-container__label-col {
+    display: none;
+}
+
+@media (min-width: 700px) {
+    .CreatePost__container {
+        width: 70%;
+    }
+
+    .CreatePost__input-container {
+        width: 50vw;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: col;
+    }
+
+    .CreatePost-input-container__label-col {
+        width: 30%;
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .CreatePost-input-container__input-col {
+        width: 65%;
+        margin-left: 5%;
+    }
 }
