@@ -86,4 +86,8 @@
         width: 65%;
         margin-left: 5%;
     }
+
+    .CreatePost-input-container__input {
+        width: 100%;
+    }
 }

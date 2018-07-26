@@ -79,9 +79,7 @@ class CreatePost extends Component {
                             <div className="CreatePost-input-container__label-col">
                                 <div>Image Url</div>
                             </div>
-                            <div className='CreatePost-input-container__input-col'>
-                                <input ref={r => this.imgInput=r} type='text' placeholder='Image URL' onChange={this.setImgUrl.bind(this)} />
-                            </div>
+                            <input className='CreatePost-input-container__input-col' ref={r => this.imgInput=r} type='text' placeholder='Image URL' onChange={this.setImgUrl.bind(this)} />
                         </div>
                         <div className="CreatePost-input-container__input-row">
 
