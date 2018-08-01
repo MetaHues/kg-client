@@ -20,7 +20,8 @@ class CreatePost extends Component {
         this.setImgUrl = this.setImgUrl.bind(this)
         this.focusImgInput = this.selectImgInput.bind(this)
         this.state = {
-            alert: (<div className='CreatePost__alert' />)
+            alert: (<div className='CreatePost__alert' />),
+            img: ''
         }
     }
 
@@ -35,7 +36,7 @@ class CreatePost extends Component {
 
         let newPost = {
             media: {
-                img: this.imgInput.value
+                img: this.state.img
             },
             msg: this.msgInput.value,
             likes: 0,
@@ -54,11 +55,25 @@ class CreatePost extends Component {
     }
 
     setImgUrl() {
-        this.previewImg.src = this.imgInput.value
+        this.setState({img: this.imgInput.value}) 
     }
 
     selectImgInput() {
         this.imgInput.focus()
+    }
+
+    setFile() {
+        let file = this.fileInput.files[0]
+        let fr = new FileReader()
+        fr.onload = () => {
+            console.log(fr.result)
+            this.setState({img: fr.result})
+        }
+        fr.onerror = () => {
+            console.log(fr.error)
+        }
+        fr.readAsDataURL(file)
+        console.log(file)
     }
 
     render() {
@@ -68,7 +83,7 @@ class CreatePost extends Component {
                 <div className="CreatePost__container">
                     <div className="CreatePost__preview-img-container" onClick={this.selectImgInput.bind(this)}>
                         <i className='CreatePost__picture-icon fa fa-picture-o' />
-                        <img ref={r => this.previewImg = r} src="" alt='' className="CreatePost__preview-img"/>
+                        <img ref={r => this.previewImg = r} src={this.state.img} alt='' className="CreatePost__preview-img"/>
                     </div>
                     <div className="CreatePost__input-container">
                         <h2 className='CreatePost-input-container__title'>
@@ -82,7 +97,12 @@ class CreatePost extends Component {
                             <input className='CreatePost-input-container__input-col' ref={r => this.imgInput=r} type='text' placeholder='Image URL' onChange={this.setImgUrl.bind(this)} />
                         </div>
                         <div className="CreatePost-input-container__input-row">
-
+                            <div className="CreatePost-input-container__label-col">
+                                <div>Upload Img</div>
+                            </div>
+                            <input className='CreatePost-input-container__input-col' ref={r => this.fileInput=r} type='file' placeholder='file' onChange={this.setFile.bind(this)} />
+                        </div>
+                        <div className="CreatePost-input-container__input-row">
                             <div className="CreatePost-input-container__label-col">
                                 <div>Comment</div>
                             </div>
