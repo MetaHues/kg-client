@@ -13,17 +13,21 @@
 .PostGridTile {
     height: 33vw;
     width: 33vw;
-    margin-bottom: 1vw;
+    margin-bottom: .5vw;
     background-color: #fff;
-    display: flex;
+    margin-left: .5vw;
+}
+
+.PostGridTile:nth-child(3n + 1) {
+    margin-left: 0;
 }
 
 
 /* Using 70% width at PostViewer */
 @media (min-width: 700px) {
     .PostGridTile {
-        width: 22vw;
-        height: 22vw;
+        width: 23vw;
+        height: 23vw;
         margin-bottom: 1vh;
     }
     
