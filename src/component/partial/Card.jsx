@@ -60,7 +60,7 @@ class Card extends Component {
             <article className="kard">
                 <div className="section header">
                     <Link to={`/user/${this.state.user._id}`}>
-                        <img src={this.state.user.img} alt="" srcSet=""/>
+                        <img src={`https://s3.us-east-2.amazonaws.com/kg.jonathanearl.io/profile/${this.state.user._id}.jpg`} alt="" srcSet=""/>
                     </Link>
                     <Link to={`/user/${this.state.user._id}`}>
                         <div className="kitty_name"><strong>{this.state.user.name}</strong></div>
