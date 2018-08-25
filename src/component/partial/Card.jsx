@@ -54,13 +54,14 @@ class Card extends Component {
     render() {
         let user = this.state.user
         let post = this.props.post
+        console.log(user)
         let img = get(this.props, ['post', 'media', 'img'])
         if(!user || !post  || !img) return null
         return (
             <article className="kard">
                 <div className="section header">
                     <Link to={`/user/${this.state.user._id}`}>
-                        <img src={`https://s3.us-east-2.amazonaws.com/kg.jonathanearl.io/profile/${this.state.user._id}.jpg`} alt="" srcSet=""/>
+                        <img src={user.img} alt="" srcSet=""/>
                     </Link>
                     <Link to={`/user/${this.state.user._id}`}>
                         <div className="kitty_name"><strong>{this.state.user.name}</strong></div>

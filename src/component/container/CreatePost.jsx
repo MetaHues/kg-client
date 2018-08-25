@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import FormData from 'form-data'
 
 // components
 import NavigatorMobile from '../navigation/NavigatorMobile'
@@ -33,18 +34,29 @@ class CreatePost extends Component {
             this.setState({alert: <div className='CreatePost__alert'>Invalid Img: Please add url below. </div>})
             return
         }
+        let formData = new FormData()
+        formData.append('imgUpload', this.state.imgUpload)
+        formData.append('msg', this.msgInput.value)
+        formData.append('likes', 0)
+        formData.append('comments', '')
+        formData.append('userId', this.props.self)
 
-        let newPost = {
-            media: {
-                img: this.state.img
-            },
-            msg: this.msgInput.value,
-            likes: 0,
-            comments: [],
-            userId: this.props.self
+        // let newPost = {
+        //     img: this.state.img,
+        //     imgUpload: this.state.imgUpload,
+        //     msg: this.msgInput.value,
+        //     likes: 0,
+        //     comments: [],
+        //     userId: this.props.self
+        // }
+        const headers = {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
         }
-        axios.post('/api/post', newPost)
+        axios.post('/api/post', formData, headers)
         .then(res => {
+            console.log(res.data)
             this.props.addPosts([res.data.post])
             this.props.setSelf(res.data.self)
             this.props.history.push(`/post/${res.data.post._id}`)
@@ -65,9 +77,8 @@ class CreatePost extends Component {
     setFile() {
         let file = this.fileInput.files[0]
         let fr = new FileReader()
-        fr.onload = () => {
-            console.log(fr.result)
-            this.setState({img: fr.result})
+        fr.onload = (e) => {
+            this.setState({img: fr.result, imgUpload: file})
         }
         fr.onerror = () => {
             console.log(fr.error)
