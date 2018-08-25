@@ -41,14 +41,6 @@ class CreatePost extends Component {
         formData.append('comments', '')
         formData.append('userId', this.props.self)
 
-        // let newPost = {
-        //     img: this.state.img,
-        //     imgUpload: this.state.imgUpload,
-        //     msg: this.msgInput.value,
-        //     likes: 0,
-        //     comments: [],
-        //     userId: this.props.self
-        // }
         const headers = {
             headers: {
                 'Content-Type': 'multipart/form-data'
