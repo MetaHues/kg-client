@@ -3,14 +3,15 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import axios from 'axios'
+import get from 'lodash.get'
 
 // components
 import NavigatorMobile from '../navigation/NavigatorMobile'
-import ProfileHeader from '../partial/ProfileHeader'
+
 import ProfileUserMessage from '../partial/ProfileUserMessage'
 import ProfileUserStats from '../partial/ProfileUserStats'
 import PostViewer from './PostViewer'
-import get from 'lodash.get'
+import MainHeader from '../partial/MainHeader'
 
 // styles
 import '../../css/Profile.css'
@@ -71,6 +72,15 @@ class Profile extends React.Component {
         )
     }
 
+    renderLogoutButton() {
+        if(this.props.match.path !== '/profile') return null;
+        return (
+            <button className='profile__button--logout'>                    
+                <a href='/auth/logout'>Logout</a>
+            </button>
+        )
+    }
+
     isSelf() {
         let userId = get(this.props, ['match', 'params', 'userId'])
         let selfId = get(this.props, ['self', '_id'])
@@ -85,13 +95,14 @@ class Profile extends React.Component {
         }
         return (
             <div className='profile'>
-                <ProfileHeader />
+                <MainHeader title={'Profile'}/>
                 <section className='profile_user-info'>
                     <div className='profile_user-info_container'>
                         <img className='profile_user-info-pic' src={user.img} alt='user' />
                         <div className='profile_user-info-right'>
                             <div className='profile_user-info_name'>{user.name}</div>
                             { this.renderEditButton() }
+                            { this.renderLogoutButton() }
                         </div>
                         { this.renderProfileUserMessage(user) }
                         { this.renderProfileUserStats(user) }

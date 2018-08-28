@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 // components
 import Card from '../partial/Card'
 import NavigatorMobile from '../navigation/NavigatorMobile'
-import MobileHeader from '../partial/MobileHeader'
+import MainHeader from '../partial/MainHeader'
 
 // styles
 import '../../css/Post.css'
@@ -42,7 +42,7 @@ class Post extends Component {
 
         return (
             <div className='Post'>
-                <MobileHeader title={'Post'}/>
+                <MainHeader title={'Post'}/>
                 <div className='post_card'>
                     <Card postId={this.post._id} post={this.post} />         
                 </div>       
