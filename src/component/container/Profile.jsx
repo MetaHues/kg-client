@@ -88,7 +88,7 @@ class Profile extends React.Component {
                 <ProfileHeader />
                 <section className='profile_user-info'>
                     <div className='profile_user-info_container'>
-                        <img className='profile_user-info-pic' src={`https://s3.us-east-2.amazonaws.com/kg.jonathanearl.io/profile/${user._id}.jpg`} alt='user' />
+                        <img className='profile_user-info-pic' src={user.img} alt='user' />
                         <div className='profile_user-info-right'>
                             <div className='profile_user-info_name'>{user.name}</div>
                             { this.renderEditButton() }
