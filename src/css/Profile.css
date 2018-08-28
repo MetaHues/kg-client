@@ -40,9 +40,16 @@
     background-color: #D0D0D0;
 }
 
-.Profile_user-info_msg-container {
+.profile_user-info_msg-container {
     width: 90%;
     margin-bottom: 1rem;
+}
+
+.profile__button--logout {
+    margin-left: auto;
+    border-radius: 4px;
+    padding: .3rem;
+    border: 1px solid tomato;
 }
 
 @media (min-width: 700px) {

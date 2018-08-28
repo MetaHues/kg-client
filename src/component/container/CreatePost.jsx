@@ -6,7 +6,7 @@ import FormData from 'form-data'
 
 // components
 import NavigatorMobile from '../navigation/NavigatorMobile'
-import MobileHeader from '../partial/MobileHeader'
+import MainHeader from '../partial/MainHeader'
 
 // styles
 import '../../css/CreatePost.css'
@@ -82,7 +82,7 @@ class CreatePost extends Component {
     render() {
         return (
             <div className='CreatePost'>
-                <MobileHeader title={'New Post'} />
+                <MainHeader title={'New Post'} />
                 <div className="CreatePost__container">
                     <div className="CreatePost__preview-img-container" onClick={this.selectImgInput.bind(this)}>
                         <i className='CreatePost__picture-icon fa fa-picture-o' />

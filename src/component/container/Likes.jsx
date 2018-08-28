@@ -1,7 +1,7 @@
 import React from 'react'
 
 // components
-import MobileHeader from '../partial/MobileHeader'
+import MainHeader from '../partial/MainHeader'
 import NavMobile from '../navigation/NavigatorMobile'
 
 export default class Likes extends React.Component {
@@ -30,7 +30,7 @@ export default class Likes extends React.Component {
 
         return (
             <div className='likes' style={likeStyle}>
-                <MobileHeader title={'likes'} />
+                <MainHeader title={'likes'} />
                 <div className='likes-container' style={likesContainer}>
                     <div><h1 style={tempStyle}> <i className='fa fa-meh-o'/> Coming Soon...</h1></div>
                     <button onClick={this.props.history.goBack}>Go back</button>

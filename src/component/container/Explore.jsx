@@ -4,13 +4,13 @@ import React, { Component } from 'react'
 import PostViewer from './PostViewer'
 import Search from '../partial/Search'
 import NavigatorMobile from '../navigation/NavigatorMobile'
-import MobileHeader from '../partial/MobileHeader'
+import MainHeader from '../partial/MainHeader'
 
 class Explore extends Component {
     render() {
         return ( 
             <div className = 'Explore'>
-                <MobileHeader title={'Explore'}/>
+                <MainHeader title={'Explore'}/>
                 <Search />
                 <PostViewer view={'GRID'} />
                 <NavigatorMobile/>

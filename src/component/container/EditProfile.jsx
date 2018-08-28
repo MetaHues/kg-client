@@ -7,7 +7,7 @@ import axios from 'axios'
 import setSelf from '../../action/self'
 
 // components
-import MobileHeader from '../partial/MobileHeader'
+import MainHeader from '../partial/MainHeader'
 import NavMobile from '../navigation/NavigatorMobile'
 
 // style
@@ -32,7 +32,7 @@ class EditProfile extends React.Component {
     render() {
         return (
             <div className='edit-profile' >
-                <MobileHeader title={'Edit Profile'}/>
+                <MainHeader title={'Edit Profile'}/>
                 <div className="edit-profile_container">
                     <section className='edit-profile_user-info'>
                         <div className='edit-profile_user-info_container'>
