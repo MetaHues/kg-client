@@ -1,0 +1,15 @@
+.comment-input {
+    border-top: 1px solid #efefef;
+}
+  
+.comment-input__input {
+    flex: 1;
+    height: 2em;
+    border: none;
+}
+
+.comment-input__button {
+    font-size: 13px;
+    padding: 0 10px;
+}
+  

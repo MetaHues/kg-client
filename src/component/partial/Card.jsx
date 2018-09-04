@@ -6,8 +6,10 @@ import Axios from 'axios'
 import get from 'lodash.get'
 
 // components
-import Comments from './Comments'
+import Comment from './Comment'
 import FollowButton from './FollowButton'
+import CommentInput from './CommentInput'
+import CommentArea from './CommentArea'
 
 // actions
 import addUser from '../../action/users'
@@ -20,19 +22,20 @@ class Card extends Component {
         super(props)
         this.state = {
             user: null,
-            post: null,
+            comments: [],
+            commentArea: null,
+            commentsLoading: false,
         }
     }
 
     getUser() {
         if(!this.props.post) return 
-        
+
         let user = this.props.users[this.props.post.userId]
         if(user) {
             this.setState({user: user})
             return
         }
-
         Axios.get(`/api/user/${this.props.post.userId}`)
         .then(userRes => {
             this.setState({user: userRes.data})
@@ -42,8 +45,30 @@ class Card extends Component {
         })
     }
 
+    getComments() {
+        if(this.state.commentsLoading || this.state.commentsLoaded) return
+
+        this.setState({commentsLoading: true})
+
+        Axios.get(`/api/comment/${this.props.post._id}`)
+        .then(res => {
+            this.setState({commentsLoaded: true})
+            this.addComments(res.data, this)
+            return
+        }).catch(err => {
+            this.setState({commentsLoading: false})
+            this.getComments()
+            console.log(err)
+        })
+    }
+
+    addComments(newComments, card) {
+        card.setState({comments: card.state.comments.concat(newComments)})
+    }
+
     componentDidMount() {
         this.getUser()
+        this.getComments()
     }
 
     getHours(createdAtString) {
@@ -52,11 +77,10 @@ class Card extends Component {
     }
 
     render() {
-        let user = this.state.user
-        let post = this.props.post
-        console.log(user)
+        let {user, comments} = this.state
+        let {post} = this.props
         let img = get(this.props, ['post', 'media', 'img'])
-        if(!user || !post  || !img) return null
+        if(!user || !post  || !img || !comments) return null
         return (
             <article className="kard">
                 <div className="section header">
@@ -66,7 +90,6 @@ class Card extends Component {
                     <Link to={`/user/${this.state.user._id}`}>
                         <div className="kitty_name"><strong>{this.state.user.name}</strong></div>
                     </Link>
-                    {/* <button className='kard_follow-user-button' onClick={this.addFriend.bind(this)}>follow</button> */}
                     <FollowButton userId={this.state.user._id}/>
                 </div>
                 <div className="media">
@@ -74,6 +97,8 @@ class Card extends Component {
                         <img src={this.props.post.media.img} alt="" />
                     }
                 </div>
+                <CommentArea user={user} post={post} comments={this.state.comments} />
+
                 {/* <div className="section interactions">
                     <a className="like_button"><i className="fa fa-heart-o"/></a>
                     <a className="comment_button"><i className="fa fa-diamond"/></a>
@@ -82,14 +107,11 @@ class Card extends Component {
                 <div className="section like_info">
                     <p><strong>{this.state.post.likes} Grumpys</strong></p>
                 </div>
-                <div className="section comment_area">
-                <input type="text" name="" id="" placeholder="Add a some glitter..."/>
-                <a><i className="fa fa-ellipsis-h"/></a>
-                </div> */}
-                <Comments userName={this.state.user.name} msg={this.props.post.msg} />
+                */}
+                <CommentInput post={post} addComments={this.addComments} parent={this} />
                 <div className="section time_posted">{this.getHours(this.props.post.createdAt)}</div>
             </article>
-        );
+        )
     }
 }
 
