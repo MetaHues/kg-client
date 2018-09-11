@@ -98,6 +98,7 @@ class Card extends Component {
                     }
                 </div>
                 <CommentArea user={user} post={post} comments={this.state.comments} />
+                <div className="section time_posted">{this.getHours(this.props.post.createdAt)}</div>
 
                 {/* <div className="section interactions">
                     <a className="like_button"><i className="fa fa-heart-o"/></a>
@@ -109,7 +110,6 @@ class Card extends Component {
                 </div>
                 */}
                 <CommentInput post={post} addComments={this.addComments} parent={this} />
-                <div className="section time_posted">{this.getHours(this.props.post.createdAt)}</div>
             </article>
         )
     }

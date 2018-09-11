@@ -8,6 +8,14 @@
     border: none;
 }
 
+.comment-input__input::placeholder {
+    color: #cdcdcdbb;
+}
+
+.comment-input__input:focus {
+    outline: none;
+}
+
 .comment-input__button {
     font-size: 13px;
     padding: 0 10px;
