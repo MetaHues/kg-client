@@ -13,9 +13,14 @@ class CommentInput extends Component {
         axios.post(`/api/comment/`, comment)
         .then(res => {
             this.props.addComments(res.data, this.props.parent)
+            this.clearInput()
         }).catch(err => {
             console.log(err)
         })
+    }
+
+    clearInput() {
+        this.commentInput.value = ""
     }
 
     render() {
