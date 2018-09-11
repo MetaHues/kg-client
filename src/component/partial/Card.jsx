@@ -6,7 +6,6 @@ import Axios from 'axios'
 import get from 'lodash.get'
 
 // components
-import Comment from './Comment'
 import FollowButton from './FollowButton'
 import CommentInput from './CommentInput'
 import CommentArea from './CommentArea'
@@ -76,6 +75,36 @@ class Card extends Component {
         return `Created: ${createdAt.toLocaleDateString()} ${createdAt.toLocaleTimeString()}`
     }
 
+    isPostLikedBySelf() {
+        console.log(this.props)
+        // const {likes} = this.props.post
+        console.log(this.props.self)
+        const {likes} = {
+            likes: [{userId: this.props.self._id, userName: this.props.self.name}]
+        }
+        console.log(likes)
+        let isLiked = false
+        for(let i = 0; i < likes.length; i++) {
+            let userLike = likes[i]
+            if(userLike.userId === this.props.self._id) {
+                isLiked = true
+                break
+            }
+        }
+        return isLiked
+    }
+
+    toggleLike() {
+        let isPostLiked = this.isPostLikedBySelf()
+
+        if(isPostLiked) {
+            console.log('remove like')
+        } else {
+            console.log('add like')
+        }
+        // Axios.put(`/api/post/${this.props.post._id}/like`)
+    }
+
     render() {
         let {user, comments} = this.state
         let {post} = this.props
@@ -97,18 +126,20 @@ class Card extends Component {
                         <img src={this.props.post.media.img} alt="" />
                     }
                 </div>
+
+                <div className="section interactions">
+                    <a className="like_button" onClick={this.toggleLike.bind(this)}><i className="fa fa-heart-o"/></a>
+                </div>
+                <div className="section like_info">
+                    <p><strong>{this.props.post.likeCount} Grumpys</strong></p>
+                </div>
+
                 <CommentArea user={user} post={post} comments={this.state.comments} />
                 <div className="section time_posted">{this.getHours(this.props.post.createdAt)}</div>
 
-                {/* <div className="section interactions">
-                    <a className="like_button"><i className="fa fa-heart-o"/></a>
-                    <a className="comment_button"><i className="fa fa-diamond"/></a>
-                    <a className="bookmark_button"><i className="fa fa-bookmark-o"/></a>
-                </div>
-                <div className="section like_info">
-                    <p><strong>{this.state.post.likes} Grumpys</strong></p>
-                </div>
-                */}
+                {/* <a className="comment_button"><i className="fa fa-diamond"/></a> */}
+                {/* <a className="bookmark_button"><i className="fa fa-bookmark-o"/></a> */}
+                
                 <CommentInput post={post} addComments={this.addComments} parent={this} />
             </article>
         )
