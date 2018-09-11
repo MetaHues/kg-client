@@ -98,11 +98,13 @@ class Card extends Component {
         let isPostLiked = this.isPostLikedBySelf()
 
         if(isPostLiked) {
-            console.log('remove like')
-        } else {
+            Axios.delete(`/api/post/${this.props.post._id}/like`)
+            .then(
+                
+            )
+    } else {
             console.log('add like')
         }
-        // Axios.put(`/api/post/${this.props.post._id}/like`)
     }
 
     render() {
