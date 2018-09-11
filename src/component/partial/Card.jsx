@@ -25,6 +25,10 @@ class Card extends Component {
             comments: [],
             commentArea: null,
             commentsLoading: false,
+            likes: {
+                loading: false,
+                data: undefined,
+            }
         }
     }
 
@@ -62,6 +66,21 @@ class Card extends Component {
         })
     }
 
+    getLikes() {
+        if(this.state.likes.loaded || this.state.likes.loading) return
+        this.setState({likes: {loading: true}})
+        Axios.get(`/api/like/${this.props.post._id}`)
+        .then(res => {
+            this.setState({likes:{data: res.data}})
+            console.log('getlikes res.data', res.data)
+            return
+        }).catch(err => {
+            this.setState({likes:{loading: false}})
+            this.getLikes()
+            console.log(err)
+        })
+    }
+
     addComments(newComments, card) {
         card.setState({comments: card.state.comments.concat(newComments)})
     }
@@ -69,6 +88,7 @@ class Card extends Component {
     componentDidMount() {
         this.getUser()
         this.getComments()
+        this.getLikes()
     }
 
     getHours(createdAtString) {
@@ -77,16 +97,12 @@ class Card extends Component {
     }
 
     isPostLikedBySelf() {
-        console.log(this.props)
-        const {likes} = this.props.post
-        console.log(this.props.self)
-        // const {likes} = {
-        //     likes: [{userId: this.props.self._id, userName: this.props.self.name}]
-        // }
+        // check if self is in likes
+        const {likes} = this.state
         console.log(likes)
         let isLiked = false
-        for(let i = 0; i < likes.length; i++) {
-            let userLike = likes[i]
+        for(let i = 0; i < likes.data.length; i++) {
+            let userLike = likes.data[i]
             if(userLike.userId === this.props.self._id) {
                 isLiked = true
                 break
@@ -99,14 +115,13 @@ class Card extends Component {
 
     toggleLike() {
         let isPostLiked = this.isPostLikedBySelf()
-
+        console.log('likes state', this.state.likes.data)
         if(isPostLiked) {
-
             console.log('remove like')
             Axios.delete(`/api/like/${this.props.post._id}`)
             .then(res => {
-                console.log(res.data)
-                this.addPosts(res.data)  
+                console.log('delete res', res.data)
+                this.removeLikes()
             })
             .catch(err => {
                 console.log(err)
@@ -114,11 +129,10 @@ class Card extends Component {
             })
         } else {
             console.log('add like')
-            console.log('url', `/api/like/${this.props.post._id}`)
             Axios.post(`/api/like/${this.props.post._id}`, {})
             .then(res => {
                 console.log(res.data)
-                this.removeLikes(res.data)
+                this.addLikes(res.data.like)
             })
             .catch(err => {
                 console.log(err)
@@ -127,13 +141,22 @@ class Card extends Component {
         }
     }
 
+    addLikes(like) {
+        let updatedLikes = this.state.likes.data.concat([like])
+        this.setState({likes:{data: updatedLikes}})
+    }
+
     removeLikes() {
         let updatedPost = Object.assign({}, this.props.post)
         updatedPost.likeCount -= 1
-        updatedPost.likes = updatedPost.likes.filter(user => {
-            return user._id !== this.props.self._id;
-        })
         this.props.addPosts([updatedPost])
+
+        console.log('this.state.likes.data', this.state.likes.data)
+        let updatedLikes = this.state.likes.data.filter(like => {
+            return like.userId !== this.props.self._id
+        })
+        console.log('updatedLikes', updatedLikes)
+        this.setState({likes:{data: updatedLikes}})
     }
 
     render() {
