@@ -12,6 +12,7 @@ import CommentArea from './CommentArea'
 
 // actions
 import addUser from '../../action/users'
+import addPosts from '../../action/posts'
 
 // styles
 import '../../css/Card.css'
@@ -77,11 +78,11 @@ class Card extends Component {
 
     isPostLikedBySelf() {
         console.log(this.props)
-        // const {likes} = this.props.post
+        const {likes} = this.props.post
         console.log(this.props.self)
-        const {likes} = {
-            likes: [{userId: this.props.self._id, userName: this.props.self.name}]
-        }
+        // const {likes} = {
+        //     likes: [{userId: this.props.self._id, userName: this.props.self.name}]
+        // }
         console.log(likes)
         let isLiked = false
         for(let i = 0; i < likes.length; i++) {
@@ -94,15 +95,44 @@ class Card extends Component {
         return isLiked
     }
 
+
+
     toggleLike() {
         let isPostLiked = this.isPostLikedBySelf()
 
         if(isPostLiked) {
             console.log('remove like')
+            Axios.delete(`/api/like/${this.props.post._id}`)
+            .then(res => {
+                console.log(res.data)
+                this.addPosts(res.data)  
+            })
+            .catch(err => {
+                console.log(err)
+                // need to display error in some way
+            })
         } else {
             console.log('add like')
+            console.log('url', `/api/like/${this.props.post._id}`)
+            Axios.post(`/api/like/${this.props.post._id}`, {})
+            .then(res => {
+                console.log(res.data)
+                this.removeLikes(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+                // need to display error in some way
+            })
         }
-        // Axios.put(`/api/post/${this.props.post._id}/like`)
+    }
+
+    removeLikes() {
+        let updatedPost = Object.assign({}, this.props.post)
+        updatedPost.likeCount -= 1
+        updatedPost.likes = updatedPost.likes.filter(user => {
+            return user._id !== this.props.self._id;
+        })
+        this.props.addPosts([updatedPost])
     }
 
     render() {
@@ -147,7 +177,7 @@ class Card extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ addUser: addUser }, dispatch)
+    return bindActionCreators({ addUser, addPosts }, dispatch)
 }
 
 const mapStateToProps = (state) => {
