@@ -12,7 +12,8 @@ import CommentArea from './CommentArea'
 
 // actions
 import addUser from '../../action/users'
-import addPosts from '../../action/posts'
+import addPosts from '../../action/addPosts'
+import replacePost from '../../action/replacePost'
 
 // styles
 import '../../css/Card.css'
@@ -28,6 +29,8 @@ class Card extends Component {
             likes: {
                 loading: false,
                 data: undefined,
+                isLiked: false,
+                icon: 'fa fa-heart-o',
             }
         }
     }
@@ -71,8 +74,15 @@ class Card extends Component {
         this.setState({likes: {loading: true}})
         Axios.get(`/api/like/${this.props.post._id}`)
         .then(res => {
-            this.setState({likes:{data: res.data}})
-            console.log('getlikes res.data', res.data)
+            let isLiked = false
+            for(let i = 0; i < res.data.length; i++) {
+                let userLike = res.data[i]
+                if(userLike.userId === this.props.self._id) {
+                    isLiked = true
+                    break
+                }
+            }
+            this.setState({likes:{data: res.data, isLiked}})
             return
         }).catch(err => {
             this.setState({likes:{loading: false}})
@@ -99,7 +109,6 @@ class Card extends Component {
     isPostLikedBySelf() {
         // check if self is in likes
         const {likes} = this.state
-        console.log(likes)
         let isLiked = false
         for(let i = 0; i < likes.data.length; i++) {
             let userLike = likes.data[i]
@@ -115,13 +124,13 @@ class Card extends Component {
 
     toggleLike() {
         let isPostLiked = this.isPostLikedBySelf()
-        console.log('likes state', this.state.likes.data)
         if(isPostLiked) {
             console.log('remove like')
             Axios.delete(`/api/like/${this.props.post._id}`)
             .then(res => {
                 console.log('delete res', res.data)
                 this.removeLikes()
+                this.props.replacePost(this.props.post, res.data.post)
             })
             .catch(err => {
                 console.log(err)
@@ -131,8 +140,8 @@ class Card extends Component {
             console.log('add like')
             Axios.post(`/api/like/${this.props.post._id}`, {})
             .then(res => {
-                console.log(res.data)
                 this.addLikes(res.data.like)
+                this.props.replacePost(this.props.post, res.data.post)
             })
             .catch(err => {
                 console.log(err)
@@ -143,7 +152,7 @@ class Card extends Component {
 
     addLikes(like) {
         let updatedLikes = this.state.likes.data.concat([like])
-        this.setState({likes:{data: updatedLikes}})
+        this.setState({likes:{data: updatedLikes, isLiked: true}})
     }
 
     removeLikes() {
@@ -156,12 +165,20 @@ class Card extends Component {
             return like.userId !== this.props.self._id
         })
         console.log('updatedLikes', updatedLikes)
-        this.setState({likes:{data: updatedLikes}})
+        this.setState({likes:{data: updatedLikes, isLiked: false}})
+    }
+
+    renderHeartIcon() {
+        if(this.state.likes.isLiked) {
+            return <i className="fa fa-heart"/>
+        }
+        return <i className="fa fa-heart-o"/>
     }
 
     render() {
         let {user, comments} = this.state
         let {post} = this.props
+        console.log('render post', post)
         let img = get(this.props, ['post', 'media', 'img'])
         if(!user || !post  || !img || !comments) return null
         return (
@@ -182,7 +199,7 @@ class Card extends Component {
                 </div>
 
                 <div className="section interactions">
-                    <a className="like_button" onClick={this.toggleLike.bind(this)}><i className="fa fa-heart-o"/></a>
+                    <a className="like_button" onClick={this.toggleLike.bind(this)}>{this.renderHeartIcon()}</a>
                 </div>
                 <div className="section like_info">
                     <p><strong>{this.props.post.likeCount} Grumpys</strong></p>
@@ -201,7 +218,7 @@ class Card extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ addUser, addPosts }, dispatch)
+    return bindActionCreators({ addUser, addPosts, replacePost }, dispatch)
 }
 
 const mapStateToProps = (state) => {

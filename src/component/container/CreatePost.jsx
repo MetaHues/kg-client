@@ -12,7 +12,7 @@ import MainHeader from '../partial/MainHeader'
 import '../../css/CreatePost.css'
 
 // actions
-import addPosts from '../../action/posts'
+import addPosts from '../../action/addPosts'
 import setSelf from '../../action/self'
 
 class CreatePost extends Component {
