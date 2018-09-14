@@ -31,13 +31,14 @@
     border-radius: 50%;
 }
 
-.facebook_login {
+.login_button {
     width: 100%;
     font-size: 1.1rem;
     background-color: tomato;
     color: white;
     padding: .5rem;
     border-radius: 360px;
+    margin-bottom: 1rem;
 }
   
 .auth_button {
