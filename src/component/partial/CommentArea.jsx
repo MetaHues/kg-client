@@ -4,10 +4,6 @@ import React, {Component} from 'react'
 import Comment from './Comment'
 
 class CommentArea extends Component {
-    constructor(props) {
-        super(props)
-    }
-
     renderComments() {
         let comments = this.props.comments.map(comment => {
             return (<li key={comment._id}><Comment  userName={comment.userName} userComment={comment.msg} /></li>)

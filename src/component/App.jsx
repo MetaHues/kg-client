@@ -16,7 +16,7 @@ import Likes from './container/Likes'
 import EditProfile from './container/EditProfile'
 
 // actions
-import addPosts from '../action/posts'
+import addPosts from '../action/addPosts'
 import addUser from '../action/users'
 import setSelf from '../action/self'
 

@@ -6,13 +6,14 @@ import Axios from 'axios'
 import get from 'lodash.get'
 
 // components
-import Comment from './Comment'
 import FollowButton from './FollowButton'
 import CommentInput from './CommentInput'
 import CommentArea from './CommentArea'
 
 // actions
 import addUser from '../../action/users'
+import addPosts from '../../action/addPosts'
+import replacePost from '../../action/replacePost'
 
 // styles
 import '../../css/Card.css'
@@ -25,6 +26,12 @@ class Card extends Component {
             comments: [],
             commentArea: null,
             commentsLoading: false,
+            likes: {
+                loading: false,
+                data: undefined,
+                isLiked: false,
+                icon: 'fa fa-heart-o',
+            }
         }
     }
 
@@ -62,6 +69,28 @@ class Card extends Component {
         })
     }
 
+    getLikes() {
+        if(this.state.likes.loaded || this.state.likes.loading) return
+        this.setState({likes: {loading: true}})
+        Axios.get(`/api/like/${this.props.post._id}`)
+        .then(res => {
+            let isLiked = false
+            for(let i = 0; i < res.data.length; i++) {
+                let userLike = res.data[i]
+                if(userLike.userId === this.props.self._id) {
+                    isLiked = true
+                    break
+                }
+            }
+            this.setState({likes:{data: res.data, isLiked}})
+            return
+        }).catch(err => {
+            this.setState({likes:{loading: false}})
+            this.getLikes()
+            console.log(err)
+        })
+    }
+
     addComments(newComments, card) {
         card.setState({comments: card.state.comments.concat(newComments)})
     }
@@ -69,6 +98,7 @@ class Card extends Component {
     componentDidMount() {
         this.getUser()
         this.getComments()
+        this.getLikes()
     }
 
     getHours(createdAtString) {
@@ -76,9 +106,79 @@ class Card extends Component {
         return `Created: ${createdAt.toLocaleDateString()} ${createdAt.toLocaleTimeString()}`
     }
 
+    isPostLikedBySelf() {
+        // check if self is in likes
+        const {likes} = this.state
+        let isLiked = false
+        for(let i = 0; i < likes.data.length; i++) {
+            let userLike = likes.data[i]
+            if(userLike.userId === this.props.self._id) {
+                isLiked = true
+                break
+            }
+        }
+        return isLiked
+    }
+
+
+
+    toggleLike() {
+        let isPostLiked = this.isPostLikedBySelf()
+        if(isPostLiked) {
+            console.log('remove like')
+            Axios.delete(`/api/like/${this.props.post._id}`)
+            .then(res => {
+                console.log('delete res', res.data)
+                this.removeLikes()
+                this.props.replacePost(this.props.post, res.data.post)
+            })
+            .catch(err => {
+                console.log(err)
+                // need to display error in some way
+            })
+        } else {
+            console.log('add like')
+            Axios.post(`/api/like/${this.props.post._id}`, {})
+            .then(res => {
+                this.addLikes(res.data.like)
+                this.props.replacePost(this.props.post, res.data.post)
+            })
+            .catch(err => {
+                console.log(err)
+                // need to display error in some way
+            })
+        }
+    }
+
+    addLikes(like) {
+        let updatedLikes = this.state.likes.data.concat([like])
+        this.setState({likes:{data: updatedLikes, isLiked: true}})
+    }
+
+    removeLikes() {
+        let updatedPost = Object.assign({}, this.props.post)
+        updatedPost.likeCount -= 1
+        this.props.addPosts([updatedPost])
+
+        console.log('this.state.likes.data', this.state.likes.data)
+        let updatedLikes = this.state.likes.data.filter(like => {
+            return like.userId !== this.props.self._id
+        })
+        console.log('updatedLikes', updatedLikes)
+        this.setState({likes:{data: updatedLikes, isLiked: false}})
+    }
+
+    renderHeartIcon() {
+        if(this.state.likes.isLiked) {
+            return <i className="fa fa-heart"/>
+        }
+        return <i className="fa fa-heart-o"/>
+    }
+
     render() {
         let {user, comments} = this.state
         let {post} = this.props
+        console.log('render post', post)
         let img = get(this.props, ['post', 'media', 'img'])
         if(!user || !post  || !img || !comments) return null
         return (
@@ -97,26 +197,28 @@ class Card extends Component {
                         <img src={this.props.post.media.img} alt="" />
                     }
                 </div>
-                <CommentArea user={user} post={post} comments={this.state.comments} />
 
-                {/* <div className="section interactions">
-                    <a className="like_button"><i className="fa fa-heart-o"/></a>
-                    <a className="comment_button"><i className="fa fa-diamond"/></a>
-                    <a className="bookmark_button"><i className="fa fa-bookmark-o"/></a>
+                <div className="section interactions">
+                    <a className="like_button" onClick={this.toggleLike.bind(this)}>{this.renderHeartIcon()}</a>
                 </div>
                 <div className="section like_info">
-                    <p><strong>{this.state.post.likes} Grumpys</strong></p>
+                    <p><strong>{this.props.post.likeCount} Grumpys</strong></p>
                 </div>
-                */}
-                <CommentInput post={post} addComments={this.addComments} parent={this} />
+
+                <CommentArea user={user} post={post} comments={this.state.comments} />
                 <div className="section time_posted">{this.getHours(this.props.post.createdAt)}</div>
+
+                {/* <a className="comment_button"><i className="fa fa-diamond"/></a> */}
+                {/* <a className="bookmark_button"><i className="fa fa-bookmark-o"/></a> */}
+                
+                <CommentInput post={post} addComments={this.addComments} parent={this} />
             </article>
         )
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ addUser: addUser }, dispatch)
+    return bindActionCreators({ addUser, addPosts, replacePost }, dispatch)
 }
 
 const mapStateToProps = (state) => {
