@@ -19,8 +19,15 @@ class Login extends Component {
                     </div>
                     <div className="auth_button">
                         <a href="/auth/facebook" alt="facebook login button" >
-                            <button className='facebook_login'>
-                                <i className="fa fa-facebook-square" /> Sign in
+                            <button className='login_button'>
+                                <i className="fa fa-facebook-square" /> Sign in with Facebook
+                            </button>
+                        </a> 
+                    </div>
+                    <div className="auth_button">
+                        <a href="/auth/google" alt="google login button" >
+                            <button className='login_button'>
+                                <i className="fa fa-google" /> Sign in with Google
                             </button>
                         </a> 
                     </div>
