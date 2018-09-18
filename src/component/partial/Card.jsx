@@ -120,8 +120,6 @@ class Card extends Component {
         return isLiked
     }
 
-
-
     toggleLike() {
         let isPostLiked = this.isPostLikedBySelf()
         if(isPostLiked) {
@@ -144,7 +142,7 @@ class Card extends Component {
                 this.props.replacePost(this.props.post, res.data.post)
             })
             .catch(err => {
-                console.log(err)
+                console.log('add like err returned', err)
                 // need to display error in some way
             })
         }
