@@ -11,6 +11,7 @@
 }
 
 .PostGridTile {
+    box-sizing: border-box;
     height: 33vw;
     width: 33vw;
     margin-bottom: .5vw;
@@ -26,8 +27,9 @@
 /* Using 70% width at PostViewer */
 @media (min-width: 700px) {
     .PostGridTile {
-        width: 23vw;
-        height: 23vw;
+        box-sizing: border-box;
+        width: 32%;
+        height: 22vw;
         margin-bottom: 1vh;
     }
     
