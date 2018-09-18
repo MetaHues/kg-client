@@ -1,11 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import TimePassed from '../partial/TimePassed'
+
 const TextArea = styled.div`
-    display: flex;
-    flex-wrap: wrap;
     color: black;
-    flex: 1;
 `   
 
 const Row = styled.div`
@@ -24,31 +23,29 @@ const PostImg = styled.img`
     height: 50px;
     width: 50px;
     padding: .5rem;
+    margin-left: auto;
 `
 
 const UserName = styled.div`
     font-weight: 700;
+    display: inline;
 `
 
-const ActivityDate = styled.div`
-    color: gray;
+const UserComment = styled.span`
     margin-left: .25rem;
-`
-
-const UserComment = styled.div`
-    margin-left: .25rem;
+    margin-right: .25rem;
 `
 
 const ActivityComment = ({userName, userImg, userComment, postImg, postId, activityDate}) => {
     return (
         <Row>
-            <UserImg src={'userImg'} alt='userName'/>
+            <UserImg src={userImg} alt='userName'/>
             <TextArea>
                 <UserName>{userName}</UserName>
                 <UserComment>{`commented: ${userComment}`}</UserComment>
-                <ActivityDate>{activityDate}</ActivityDate>
+                <TimePassed createdAt={activityDate}/>
             </TextArea>
-            <PostImg src={'postImg'} alt='post'/>
+            <PostImg src={postImg} alt='post'/>
         </Row>
     )
 }

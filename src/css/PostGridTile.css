@@ -4,39 +4,34 @@
 }
 
 .PostGridTile img {
-    height: 100%;
-    width: 100%;
+    height: 99%;
+    width: 99%;
+    padding: .5%;
     object-fit: cover;
     overflow: hidden;
 }
 
 .PostGridTile {
     box-sizing: border-box;
-    height: 33vw;
-    width: 33vw;
-    margin-bottom: .5vw;
+    height: 33.33vw;
+    width: 33.33vw;
     background-color: #fff;
-    margin-left: .5vw;
 }
 
-.PostGridTile:nth-child(3n + 1) {
-    margin-left: 0;
-}
-
-
-/* Using 70% width at PostViewer */
-@media (min-width: 700px) {
-    .PostGridTile {
-        box-sizing: border-box;
-        width: 32%;
-        height: 22vw;
-        margin-bottom: 1vh;
-    }
-    
+@media (min-width: 700px) {    
     .PostGridTile img {
-        height: 100%;
-        width: 100%;
+        height: 90%;
+        width: 90%;
+        padding: 5%;
         object-fit: cover;
         overflow: hidden;
+    }
+}
+
+@media (min-width: 1000px) {
+    .PostGridTile {
+        box-sizing: border-box;
+        width: 333px;
+        height: 333px;
     }
 }

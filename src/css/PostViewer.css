@@ -8,9 +8,9 @@
     color: tomato;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 1000px) {
     .PostViewer {
-        width: 70%;
+        width: 1000px;
         margin: 0 auto;
     }
 }
