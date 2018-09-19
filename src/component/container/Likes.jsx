@@ -6,18 +6,12 @@ import styled from 'styled-components'
 import MainHeader from '../partial/MainHeader'
 import NavMobile from '../navigation/NavigatorMobile'
 import ActivityComment from '../partial/ActivityComment'
-import TimePassed from '../partial/TimePassed'
+import ActivityLike from '../partial/ActivityLike'
 
 // Testing inline styles
 const likeStyle = {
     display: 'flex',
     flexDirection: 'column',
-}
-
-const tempStyle = {
-    fontSize: '2rem',
-    display: 'inline-block',
-    marginBottom: '2rem'
 }
 
 // Prefer styled components
@@ -27,10 +21,6 @@ const ActivityContainer = styled.div`
     flex-direction: column;
     justify-items: space-between;
     align-self: center;
-`
-
-const Like = styled.div`
-    color: red;
 `
 
 export default class Likes extends Component {
@@ -53,14 +43,30 @@ export default class Likes extends Component {
     // push comments into notifications
     addComments(notifications, comments, users, posts) {
         comments.forEach(comment => {
-            notifications.push(<ActivityComment key={comment.createdAt} userName={comment.userName} userComment={comment.msg} userImg={users[comment.userId].img} postImg={posts[comment.postId].media.img} postId={comment.postId} activityDate={comment.createdAt}/>)
+            notifications.push(
+                <ActivityComment 
+                    key={comment.createdAt} 
+                    userName={users[comment.userId].name} 
+                    userComment={comment.msg} 
+                    userImg={users[comment.userId].img} 
+                    postImg={posts[comment.postId].media.img} 
+                    postId={comment.postId} 
+                    activityDate={comment.createdAt}
+                />
+            )
         })
     }
 
     // push likes into notifications
     addLikes(notifications, likes, users, posts) {
         likes.forEach(like => {
-            notifications.push(<Like key={like.createdAt}>{`${like.userId} like your photo.`}<TimePassed createdAt={like.createdAt}/></Like>)
+            notifications.push(
+                <ActivityLike 
+                    key={like.createdAt}
+                    user={users[like.userId]}
+                    post={posts[like.postId]}
+                    createdAt={like.createdAt}
+                />)
         })
     }
 
@@ -82,9 +88,7 @@ export default class Likes extends Component {
         this.setState({notifications: 'loading'})
         try {
             let {comments, likes, users, posts} = (await axios.get('/api/self/recentactivity')).data
-
             const notifications = this.getNotifications(comments, likes, users, posts)
-            
             this.setState({notifications: notifications})
         } catch(err) {
             console.log('fetch recent activity err', err)
@@ -95,9 +99,9 @@ export default class Likes extends Component {
         return (
             <div className='likes' style={likeStyle}>
                 <MainHeader title={'likes'} />
-                <ActivityContainer>{this.state.notifications}</ActivityContainer>
-                <div><h1 style={tempStyle}><i className='fa fa-meh-o'/> In Progress...</h1></div>
-                <button onClick={this.props.history.goBack}>Go back</button>
+                <ActivityContainer>
+                    {this.state.notifications}
+                </ActivityContainer>
                 <NavMobile />
             </div>
         )

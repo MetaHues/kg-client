@@ -11,8 +11,13 @@ const TextArea = styled.div`
 `   
 
 const Row = styled.div`
+    width: 700px;
     display: flex;
     margin-bottom: 2rem;
+
+    @media (max-width: 700px) {
+        width: 100vw;
+    }
 `
 
 const UserImg = styled.img`
@@ -38,18 +43,18 @@ const UserComment = styled.span`
     margin-left: .5rem;
 `
 
-const ActivityComment = ({userName, userImg, userComment, postImg, postId, activityDate}) => {
+const ActivityLike = ({user, post, createdAt}) => {
     return (
         <Row>
-            <UserImg src={userImg} alt='userName'/>
+            <UserImg src={user.img} alt='userName'/>
             <TextArea>
-                <UserName>{userName}</UserName>
-                <UserComment>{`commented: ${userComment}`}</UserComment>
-                <TimePassed createdAt={activityDate}/>
+                <UserName>{user.name}</UserName>
+                <UserComment>{`liked your photo.`}</UserComment>
+                <TimePassed createdAt={createdAt}/>
             </TextArea>
-            <PostImg src={postImg} alt='post'/>
+            <PostImg src={post.media.img} alt='post'/>
         </Row>
     )
 }
 
-export default ActivityComment
+export default ActivityLike
