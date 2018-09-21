@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 // components
-import PostList from '../PostList'
+import PostList from './PostList'
 import NavigatorMobile from '../../navigation/NavigatorMobile'
-import PostGrid from '../PostGrid'
+import PostGrid from './PostGrid'
 
 // styles
 import './style.css'

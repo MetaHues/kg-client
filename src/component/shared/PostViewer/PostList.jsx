@@ -1,7 +1,7 @@
 import React from 'react'
 
 // components
-import Card from './Card'
+import Card from '../Card'
 
 
 function PostList(props) {
