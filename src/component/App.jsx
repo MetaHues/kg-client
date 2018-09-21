@@ -5,15 +5,15 @@ import { bindActionCreators } from 'redux'
 import axios from 'axios'
 
 // import components
-import Explore from './container/Explore'
-import Post from './container/Post'
-import Login from './container/Login'
-import AuthenticatedRoute from './container/AuthenticatedRoute'
-import Profile from './container/Profile'
-import CreatePost from './container/CreatePost'
-import Home from './container/Home'
-import Likes from './container/Likes'
-import EditProfile from './container/EditProfile'
+import Explore from './pages/Explore'
+import Post from './pages/Post'
+import Login from './pages/Login'
+import AuthenticatedRoute from './shared/AuthenticatedRoute'
+import Profile from './pages/Profile'
+import CreatePost from './pages/CreatePost'
+import Home from './pages/Home'
+import Notifications from './pages/Notifications'
+import EditProfile from './pages/EditProfile'
 
 // actions
 import addPosts from '../action/addPosts'
@@ -52,7 +52,7 @@ class App extends Component {
                         <Route exact path='/' render={() => (<Redirect to='/explore' />)} />
                         <Route path='/post/:postId' component={Post} />
                         <Route path='/user/:userId' component={Profile} />
-                        <AuthenticatedRoute exact path='/likes' component={Likes} />
+                        <AuthenticatedRoute exact path='/notifications' component={Notifications} />
                         <AuthenticatedRoute exact path='/createpost' component={CreatePost} />
                         <AuthenticatedRoute exact path='/home' component={Home} />
                         <AuthenticatedRoute exact path='/profile' component={Profile} />

@@ -12,7 +12,7 @@ import App from './component/App';
 
 // global style
 import 'font-awesome/css/font-awesome.min.css'
-import './css/index.css';
+import './component/global.css';
 
 const store = createStore(rootReducer)
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
