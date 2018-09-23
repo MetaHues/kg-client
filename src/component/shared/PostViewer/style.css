@@ -1,5 +1,5 @@
 .PostViewer {
-    margin-bottom: 15%;
+    margin: 0 auto;
 }
 
 .PostViewer__title {
@@ -8,9 +8,8 @@
     color: tomato;
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 900px) {
     .PostViewer {
-        width: 1000px;
-        margin: 0 auto;
+        width: 900px;
     }
 }

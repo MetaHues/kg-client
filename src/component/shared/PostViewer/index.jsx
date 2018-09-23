@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 
 // components
 import PostList from './PostList'
@@ -10,7 +11,6 @@ import PostGrid from './PostGrid'
 import './style.css'
 
 class PostViewer extends Component {
-
     render() {
         let { posts } = this.props
         if(this.props.includeUsers) {

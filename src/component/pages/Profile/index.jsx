@@ -7,7 +7,6 @@ import get from 'lodash.get'
 
 // components
 import NavigatorMobile from '../../navigation/NavigatorMobile'
-
 import ProfileUserMessage from './UserMessage'
 import ProfileUserStats from './Stats'
 import PostViewer from '../../shared/PostViewer'

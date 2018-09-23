@@ -24,7 +24,10 @@
 }
 
 @media (min-width: 700px) {
+    .user-stats {
+        width: 100%;
+    }
     .user-stats_list {
-        width: 50vw;
+        width: 100%;
     }
 }
