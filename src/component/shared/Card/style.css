@@ -37,8 +37,20 @@ body {
 .comment_button
 {
   margin-left: 16px;
-}
+  font-size: 1.25rem;
+  font-weight: 400;
 
+  
+}
+@media (min-width: 600px) {
+  .kitty_name,
+  .comment_button
+  {
+    margin-left: 16px;
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+}
 
 .option_button,
 .bookmark_button {
@@ -52,26 +64,9 @@ body {
 .interactions i {
   font-size: 20px;
 }
-
-.header img {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  border: solid 1.2px black;
-}
 /*END Iconic */
 
 /*START Media */
-.media img,
-.media video {
-  width: 100%;
-  height: auto;
-  max-height: 125vw;
-  min-height: 50vw;
-  object-fit: contain;
-  border-top: 1px solid #efefef;
-  border-bottom: 1px solid #efefef;
-}
 
 video {
   object-fit: fill;
@@ -108,14 +103,4 @@ input, select, textarea, button{
 
 .kard_follow-user-button_grey {
   color: #8e8e8e;
-}
-
-@media (min-width: 700px) {
-  .media img,
-  .media video {
-    width: 100%;
-    height: auto;
-    max-height: calc(125vw * .7);
-    min-height: calc(100vw * .7 * .5);
-  }
 }

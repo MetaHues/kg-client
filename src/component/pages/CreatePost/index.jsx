@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import FormData from 'form-data'
 
 // components
-import NavigatorMobile from '../../navigation/NavigatorMobile'
+import NavigatorMobile from '../../shared/NavigatorMobile'
 import MainHeader from '../../shared/MainHeader'
 
 // styles

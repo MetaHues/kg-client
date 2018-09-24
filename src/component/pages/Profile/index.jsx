@@ -2,36 +2,86 @@ import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import styled from 'styled-components'
 import axios from 'axios'
 import get from 'lodash.get'
 
+// actions
+import addUser from '../../../action/users'
+
 // components
-import NavigatorMobile from '../../navigation/NavigatorMobile'
-import ProfileUserMessage from './UserMessage'
+import NavigatorMobile from '../../shared/NavigatorMobile'
+import UserMessage from './UserMessage'
 import ProfileUserStats from './Stats'
 import PostViewer from '../../shared/PostViewer'
 import MainHeader from '../../shared/MainHeader'
 
 // styles
-import './style.css'
+// import './style.css'
+const UserProfilePic = styled.img`
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    box-sizing: border-box;
+    border-radius: 50%;
+    margin: 1rem;
+    @media (min-width: 500px) {
+        width: 150px;
+        height: 150px;
+        margin: 2rem;
+    }
 
-// actions
-import addUser from '../../../action/users'
+    @media (min-width: 700px) {
+        width: 200px;
+        height: 200px;
+        margin: 3rem;
+    }
+`
+
+const Row = styled.div`
+    display: flex;
+    max-width: 900px;
+    margin: 0 auto;
+`
+
+const Column = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%    
+    align-self: center;
+    padding-right: 1rem;
+    @media (min-width: 900px) {
+        padding-right: 0;
+    }
+`
+
+const UserName = styled.h1`
+    font-size: 2rem;
+    font-weight: 100;
+    text-transform: capitalize;
+    margin-bottom: .5rem;
+`
+
+const EditButton = styled.button`
+    width: 100%;
+    padding: .5rem;
+    border: 1px solid #efefef;
+    margin-bottom: 1.5rem;
+`
+
+const LogoutButton = styled.button`
+    align-self: flex-end;
+    padding: .5rem;
+    border: 1px solid tomato;
+    align-self: center;
+`
+
+const MessageArea = styled.div`
+    display: flex;
+    padding-bottom: 1rem;
+`
 
 class Profile extends React.Component {
-    
-    renderProfileUserMessage(user) {
-        let name = get(user, ['name'])
-        let msg = get(user, ['msg'])
-        if(!name || !msg) return null
-        return <ProfileUserMessage msg={msg} name={name} />
-    }
-
-    renderProfileUserStats(user) {
-        let counts = get(user, ['counts'])
-        if(!counts) return null
-        else return <ProfileUserStats counts={counts}/>
-    }
 
     // get the user
     getUser() {
@@ -67,16 +117,16 @@ class Profile extends React.Component {
     renderEditButton() {
         if(this.props.match.path !== '/profile') return null;
         return (
-            <button className='profile_user-info_edit-button' onClick={this.editProfile.bind(this)}>Edit</button>
+            <EditButton onClick={this.editProfile.bind(this)}>Edit</EditButton>
         )
     }
 
     renderLogoutButton() {
         if(this.props.match.path !== '/profile') return null;
         return (
-            <button className='profile__button--logout'>                    
+            <LogoutButton className='profile__button--logout'>                    
                 <a href='/auth/logout'>Logout</a>
-            </button>
+            </LogoutButton>
         )
     }
 
@@ -93,20 +143,21 @@ class Profile extends React.Component {
             return null
         }
         return (
-            <div className='profile'>
+            <div>
                 <MainHeader title={'Profile'}/>
-                <section className='profile_user-info'>
-                    <div className='profile_user-info_container'>
-                        <img className='profile_user-info-pic' src={user.img} alt='user' />
-                        <div className='profile_user-info-right'>
-                            <div className='profile_user-info_name'>{user.name}</div>
-                            { this.renderEditButton() }
+                <Row >
+                    <UserProfilePic src={user.img} alt='user' />
+                    <Column>
+                        <UserName>{user.name}</UserName>
+                        { this.renderEditButton() }
+                        <MessageArea>
+                            <UserMessage msg={user.msg}/>
                             { this.renderLogoutButton() }
-                        </div>
-                        { this.renderProfileUserMessage(user) }
-                        { this.renderProfileUserStats(user) }
-                    </div>
-                </section>
+                        </MessageArea>
+                    </Column>
+
+                </Row>
+                <ProfileUserStats user={user}/>
                 <PostViewer posts={this.props.posts} includeUsers={[user._id]} view={'GRID'} />
                 <NavigatorMobile />
             </div>

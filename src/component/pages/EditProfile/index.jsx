@@ -8,7 +8,7 @@ import setSelf from '../../../action/self'
 
 // components
 import MainHeader from '../../shared/MainHeader'
-import NavMobile from '../../navigation/NavigatorMobile'
+import NavMobile from '../../shared/NavigatorMobile'
 
 // style
 import './style.css'

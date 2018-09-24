@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 // components
 import MainHeader from '../../shared/MainHeader'
-import NavMobile from '../../navigation/NavigatorMobile'
+import NavMobile from '../../shared/NavigatorMobile'
 import CommentActivity from './Activity/Comment'
 import LikeActivity from './Activity/Like'
 

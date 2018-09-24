@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import styled from 'styled-components'
 
 // components
 import PostList from './PostList'
-import NavigatorMobile from '../../navigation/NavigatorMobile'
+import NavigatorMobile from '../../shared/NavigatorMobile'
 import PostGrid from './PostGrid'
 
 // styles

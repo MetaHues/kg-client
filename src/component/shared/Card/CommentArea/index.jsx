@@ -1,16 +1,25 @@
 import React, {Component} from 'react'
+import styled from 'styled-components'
 
-// components
+// Components
 import Comment from './Comment'
+
+// Styled
+const Area = styled.div`
+    padding: 0 1rem;
+    @media (min-width: 500px) {
+        font-size: 1.15rem;
+    }
+`
 
 class CommentArea extends Component {
     renderUserCommentOnly() {
         return (
-            <div className="comment-area section">
+            <Area>
                 <div className="comment-area__wrapper">
                     <Comment userName={this.props.user.name} userComment={this.props.post.msg} />
                 </div>
-            </div>
+            </Area>
         )
     }
 
@@ -31,14 +40,14 @@ class CommentArea extends Component {
         }
 
         return (
-            <div className="comment-area section">
+            <Area>
                 <div className="comment-area__wrapper">
                     <Comment userName={this.props.user.name} userComment={this.props.post.msg} />
                     <ol className="comment__list">
                         {this.renderComments()}
                     </ol>
                 </div>
-            </div>
+            </Area>
         )
     }
 }

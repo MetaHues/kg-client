@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 // components
 import Card from '../../shared/Card'
-import NavigatorMobile from '../../navigation/NavigatorMobile'
+import NavigatorMobile from '../../shared/NavigatorMobile'
 import MainHeader from '../../shared/MainHeader'
 
 // styles

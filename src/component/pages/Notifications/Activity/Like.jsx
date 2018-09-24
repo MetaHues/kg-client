@@ -1,9 +1,8 @@
 import React from 'react'
-import styled from 'styled-components'
 
 // Components
 import Activity from '.'
-import TimePassed from '../TimePassed'
+import TimePassed from '../../../shared/TimePassed'
 
 const LikeActivity = ({user, post, like}) => {
     return (

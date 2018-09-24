@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Axios from 'axios'
+import styled from 'styled-components'
 
 // Actions
 import replacePost from '../../../../action/replacePost'
@@ -9,6 +10,28 @@ import addPosts from '../../../../action/addPosts'
 
 // Components
 import HeartButton from './HeartButton'
+import TimePassed from '../../TimePassed'
+
+// Styled
+const Row = styled.div`
+    display: flex;
+    align-items: center;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    font-weight: 100;
+    color: #4e4e4e;
+    @media (min-width: 500px) {
+        font-size: 1.5rem;
+    }
+`
+
+const LikeCount = styled.span`
+    margin-left: .5rem;
+`
+
+const TimeContainer = styled.div`
+    margin-left: auto;
+`
 
 class CardInteractionBar extends Component {
     constructor(props) {
@@ -91,14 +114,15 @@ class CardInteractionBar extends Component {
     render() {
         return(
             <div>
-                <div className="section interactions">
+                <Row>
                     <a className="like_button" onClick={this.toggleLike.bind(this)}>
                         <HeartButton isFilled={this.state.isLiked}/>
                     </a>
-                </div>
-                <div className="section like_info">
-                    <p><strong>{this.props.post.likeCount} Grumpys</strong></p>
-                </div>
+                    <LikeCount>{this.props.post.likeCount} Likes</LikeCount>
+                    <TimeContainer>
+                        <TimePassed createdAt={this.props.post.createdAt}/>
+                    </TimeContainer>
+                </Row>
             </div>
         )
     }
