@@ -5,9 +5,10 @@ import HeaderNav from './HeaderNav'
 
 // style
 const Spacer = styled.div`
-    height: 76px;
+    height: 55px;
+
     @media(min-width: 700px) {
-        margin-bottom: 2rem;
+        height: 93px;
     }
 `
 
@@ -16,13 +17,9 @@ const Header = styled.header`
     top: 0;
     left: 0;
     right: 0;
-    background-color: white;
+    background-color: #fffa;
     border-bottom: 1px solid #efefef;
-    padding: 1rem;
-
-    @media (min-width: 700px) {
-        margin-bottom: 2rem;
-    }
+    padding: .75rem 1rem;
 `
 
 const Container = styled.div`
