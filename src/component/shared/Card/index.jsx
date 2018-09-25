@@ -65,8 +65,6 @@ class Card extends Component {
         })
     }
 
-    
-
     addComments(newComments, card) {
         card.setState({comments: card.state.comments.concat(newComments)})
     }
@@ -74,11 +72,6 @@ class Card extends Component {
     componentDidMount() {
         this.getUser()
         this.getComments()
-    }
-
-    getHours(createdAtString) {
-        const createdAt = new Date(createdAtString)
-        return `Created: ${createdAt.toLocaleDateString()} ${createdAt.toLocaleTimeString()}`
     }
 
     render() {
@@ -92,7 +85,6 @@ class Card extends Component {
                 <CardMedia post={post}/>                
                 <CardInteractionBar post={post} self={this.props.self} />
                 <CommentArea user={user} post={post} comments={this.state.comments} />
-                <div className="section time_posted">{this.getHours(this.props.post.createdAt)}</div>
                 <CommentInput post={post} addComments={this.addComments} parent={this} />
             </article>
         )

@@ -14,14 +14,11 @@
     }
 
     .header-nav-list-container {
-        width: 90%;
-        margin-left: 10%;
         display: flex;
         justify-content: flex-end;
     }
 
     .header-nav-list {
-        width: 100%;
         display: flex;
         flex-direction: row;
         justify-content: flex-end;

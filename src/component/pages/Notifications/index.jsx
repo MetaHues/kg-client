@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 // components
 import MainHeader from '../../shared/MainHeader'
-import NavMobile from '../../navigation/NavigatorMobile'
+import NavMobile from '../../shared/NavigatorMobile'
 import CommentActivity from './Activity/Comment'
 import LikeActivity from './Activity/Like'
 
@@ -16,6 +16,7 @@ const likeStyle = {
 
 // Prefer styled components
 const ActivityContainer = styled.div`
+    padding-top: 1rem;
     max-width: 700px;
     display: flex;
     flex-direction: column;

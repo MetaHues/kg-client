@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 // components
 import PostViewer from '../shared/PostViewer'
 import Search from '../shared/Search'
-import NavigatorMobile from '../navigation/NavigatorMobile'
+import NavigatorMobile from '../shared/NavigatorMobile'
 import MainHeader from '../shared/MainHeader'
 
 class Explore extends Component {

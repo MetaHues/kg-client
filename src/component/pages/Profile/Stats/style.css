@@ -1,10 +1,16 @@
+.user-stats {
+    border-top: 1px solid #efefef;
+    border-bottom: 1px solid #efefef;
+    margin-bottom: 2rem;
+}
+
 .user-stats_list {
     width: 100vw;
     display: flex;
     padding: .5rem 0;
-    border-top: 1px solid #efefef;
-    border-bottom: 1px solid #efefef;
     margin-bottom: 1.4rem;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .user-stats_list-item {
@@ -24,7 +30,10 @@
 }
 
 @media (min-width: 700px) {
+    .user-stats {
+        width: 100%;
+    }
     .user-stats_list {
-        width: 50vw;
+        width: 100%;
     }
 }

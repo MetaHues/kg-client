@@ -8,7 +8,7 @@
 
 @media (min-width: 700px) {
     .post_card {
-        width: 70%;
+        width: 700px;
         margin: 0 auto;
     }
 }

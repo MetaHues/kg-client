@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 // components
-import NavigatorMobile from '../navigation/NavigatorMobile'
+import NavigatorMobile from '../shared/NavigatorMobile'
 import MainHeader from '../shared/MainHeader'
 import PostViewer from '../shared/PostViewer'
 

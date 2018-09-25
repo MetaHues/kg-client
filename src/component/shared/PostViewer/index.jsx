@@ -2,15 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 // components
-import PostList from '../PostList'
-import NavigatorMobile from '../../navigation/NavigatorMobile'
-import PostGrid from '../PostGrid'
+import PostList from './PostList'
+import NavigatorMobile from '../../shared/NavigatorMobile'
+import PostGrid from './PostGrid'
 
 // styles
 import './style.css'
 
 class PostViewer extends Component {
-
     render() {
         let { posts } = this.props
         if(this.props.includeUsers) {
