@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
 import axios from 'axios'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -8,18 +9,43 @@ import FormData from 'form-data'
 import NavigatorMobile from '../../shared/NavigatorMobile'
 import MainHeader from '../../shared/MainHeader'
 
-// styles
-import './style.css'
-
 // actions
 import addPosts from '../../../action/addPosts'
 import setSelf from '../../../action/self'
 
+// styles
+import './style.css'
+
+const ImageContainer = styled.div`
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    max-width: 500px;
+    height: 100vw;
+    max-height: 500px;
+    position: relative;
+    margin-bottom: 2rem;
+`
+
+const Image = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+`
+
+const ImageIcon = styled.i`
+    color: #9e9e9e;
+`
+
 class CreatePost extends Component {
     constructor(props) {
         super(props)
-        this.setImgUrl = this.setImgUrl.bind(this)
-        this.focusImgInput = this.selectImgInput.bind(this)
         this.state = {
             alert: (<div className='CreatePost__alert' />),
             img: ''
@@ -28,9 +54,7 @@ class CreatePost extends Component {
 
     submitPost = (e) => {
         e.preventDefault()
-
         if(this.previewImg.width === 0 || this.previewImg.height === 0) {
-            this.imgInput.focus()
             this.setState({alert: <div className='CreatePost__alert'>Invalid Img: Please add url below. </div>})
             return
         }
@@ -58,14 +82,6 @@ class CreatePost extends Component {
         })
     }
 
-    setImgUrl() {
-        this.setState({img: this.imgInput.value}) 
-    }
-
-    selectImgInput() {
-        this.imgInput.focus()
-    }
-
     setFile() {
         let file = this.fileInput.files[0]
         let fr = new FileReader()
@@ -79,31 +95,27 @@ class CreatePost extends Component {
         console.log(file)
     }
 
+    selectImage(e) {
+        e.preventDefault()
+        console.log(this.fileInput.click())
+    }
+
     render() {
         return (
             <div className='CreatePost'>
                 <MainHeader title={'New Post'} />
                 <div className="CreatePost__container">
-                    <div className="CreatePost__preview-img-container" onClick={this.selectImgInput.bind(this)}>
-                        <i className='CreatePost__picture-icon fa fa-picture-o' />
-                        <img ref={r => this.previewImg = r} src={this.state.img} alt='' className="CreatePost__preview-img"/>
-                    </div>
+                    <ImageContainer onClick={this.selectImage.bind(this)}>
+                        <ImageIcon className='fa fa-5x fa-picture-o' />
+                        <Image ref={r => this.previewImg = r} src={this.state.img} alt='' className="CreatePost__preview-img"/>
+                    </ImageContainer>
                     <div className="CreatePost__input-container">
-                        <h2 className='CreatePost-input-container__title'>
-                            <div>Add the url to the image below</div>
-                        </h2>
                         {this.state.alert}
-                        <div className="CreatePost-input-container__input-row">
-                            <div className="CreatePost-input-container__label-col">
-                                <div>Image Url</div>
-                            </div>
-                            <input className='CreatePost-input-container__input-col' ref={r => this.imgInput=r} type='text' placeholder='Image URL' onChange={this.setImgUrl.bind(this)} />
-                        </div>
                         <div className="CreatePost-input-container__input-row">
                             <div className="CreatePost-input-container__label-col">
                                 <div>Upload Img</div>
                             </div>
-                            <input className='CreatePost-input-container__input-col' ref={r => this.fileInput=r} type='file' placeholder='file' onChange={this.setFile.bind(this)} />
+                            <input className='CreatePost-input-container__input-col' ref={r => this.fileInput=r} type='file' accept='image/*' placeholder='file' onChange={this.setFile.bind(this)} />
                         </div>
                         <div className="CreatePost-input-container__input-row">
                             <div className="CreatePost-input-container__label-col">

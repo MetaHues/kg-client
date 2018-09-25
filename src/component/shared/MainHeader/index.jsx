@@ -8,7 +8,7 @@ const Spacer = styled.div`
     height: 55px;
 
     @media(min-width: 700px) {
-        height: 93px;
+        height: calc(93px + 1rem);
     }
 `
 
@@ -20,6 +20,7 @@ const Header = styled.header`
     background-color: #fffa;
     border-bottom: 1px solid #efefef;
     padding: .75rem 1rem;
+    z-index: 10;
 `
 
 const Container = styled.div`

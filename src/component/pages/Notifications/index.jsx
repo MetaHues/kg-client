@@ -16,6 +16,7 @@ const likeStyle = {
 
 // Prefer styled components
 const ActivityContainer = styled.div`
+    padding-top: 1rem;
     max-width: 700px;
     display: flex;
     flex-direction: column;
