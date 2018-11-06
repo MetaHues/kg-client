@@ -69,7 +69,7 @@ export default function PageHeader({title}) {
             <Header>
                 <Container>
                     <Logo>
-                        <Link to='/'>KittyGlitter</Link>
+                        <Link to='/'>Instagram-ish</Link>
                     </Logo>
                     {renderTitle(title)}
                     <HeaderNav />

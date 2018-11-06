@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+// SVG
+import camera from './camera.svg'
+
 // Style
 import './style.css'
 
@@ -10,11 +13,11 @@ class Login extends Component {
             <div className="login">
                 <div className="login__container login__container--border">
                     <div className="login__logo logo">
-                        <Link className='logo-link' to='/'>KittyGlitter</Link>
+                        <Link className='logo-link' to='/'>Instagram-ish</Link>
                     </div>
                     <div className='login__img-container'>
                         <Link to='/'>
-                            <img className='login__gif' src="https://media.giphy.com/media/3o85xAfFLHv8scEHsc/giphy.gif" alt=""/>
+                            <img className='login__gif' style={{margin: '50px'}}src={camera} alt=""/>
                         </Link>
                     </div>
                     <div className="auth_button">

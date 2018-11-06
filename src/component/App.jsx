@@ -12,6 +12,8 @@ import AuthenticatedRoute from './shared/AuthenticatedRoute'
 import Profile from './pages/Profile'
 import CreatePost from './pages/CreatePost'
 import Home from './pages/Home'
+import About from './pages/About'
+import Privacy from './pages/Privacy'
 import Notifications from './pages/Notifications'
 import EditProfile from './pages/EditProfile'
 
@@ -49,6 +51,8 @@ class App extends Component {
                     <Switch>
                         <Route exact path='/login' component={Login} />
                         <Route exact path='/explore' render={() => (<Explore view={'grid'} />)} />
+                        <Route exact path='/about' component={About} />
+                        <Route exact path='/privacy' component={Privacy} />
                         <Route exact path='/' render={() => (<Redirect to='/explore' />)} />
                         <Route path='/post/:postId' component={Post} />
                         <Route path='/user/:userId' component={Profile} />
